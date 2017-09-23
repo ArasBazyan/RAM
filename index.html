@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="css/main.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+    <script src="js/app.js"></script>
+        
+
 
 	</head>
 	<body>
-
 
 <!--
 		<nav  class="navbar navbar-default">
@@ -36,17 +49,23 @@
     <div class="col-sm-2 sidenav">
       <p>My Projects </p>
 
-      <p><br><a href="#">Test Project 1</a></p>
+      <p><br><a  href="#">Test Project 1</a></p>
       <p><br><a href="#">Test project 2</a></p>
       <p><br><a href="#">Test Project 3</a></p>
 
 
-      <p><a href="#"><br><br>Add a new project</a></p>
+      <p><br><br> <a type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createProjectModal">Create a new project</a></p>
     </div>
 
 
 
+
+
+
+
     <div class="col-sm-8 text-left"> 
+
+
       <h4>Project Name: </h4>
       <h4><br>Start of Production: </h4>
       <h4><br>Project Milestones<br><br></h4>
@@ -54,14 +73,7 @@
 
       <h4><br><br><br>Description</h4>
       <textarea class="form-control" id="exampleTextarea" readonly rows="4">Original description of project</textarea>
-		
-      <script>
-      	function hey(){
-    		document.getElementById('exampleTextarea').readOnly = false;
-    		return false;
-      	}
-      	
-      </script>
+	
 
 
       <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button>
@@ -106,10 +118,11 @@
 
 
 
+    </div> <!-- end of Project Profile -->
 
-    </div>
 
 
+<!-- Attached file section -->
     <div class="col-sm-2 sidenav">
       <h4>Additional Documents</h4>
 
@@ -118,9 +131,80 @@
       <p><br><a href="#">Test3.pptx</a></p>
 
     </div>
+
+<!-- Add new project section -->
+
+<div class="container-fluid text-center">
+        <!--Modal for adding additional subnodes to current node-->
+        <div class="modal" id="createProjectModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form id="msform">
+         
+            <!-- fieldsets -->
+            <fieldset>
+                <h2 class="fs-title">Create a New Project</h2>
+                <h3 class="fs-subtitle">Project Details</h3>
+                <input type="text" name="fname" placeholder="Project Name"/>
+                <input id="selectSOP" type="text" name="selectSOP" placeholder="Start of Production (SOP)"/>
+                <textarea class="form-control" id="exampleTextarea" rows="6" placeholder="Project Description" ></textarea>
+
+                <input id="nextButton" type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Create a New Project</h2>
+                <h3 class="fs-subtitle">Project Details</h3>
+                <label>Project Milestones</label>
+                <input type="text" name="twitter" placeholder="Project Milestones in term of graph or something "/>
+
+                  <div class="form-group">
+                    <label for="exampleInputFile"> <br>Attach File</label>
+                    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">Allowed files: Word, Excel, PowerPoint, PDF</small>
+                  </div>
+
+                  <label for="exampleInputFile"> <br>Affected Teams</label>
+                  <select id="affectedTeams" multiple="multiple">
+                      <option >527</option>
+                      <option >546</option>
+                      <option >576</option>
+                      <option >527</option>
+                      <option >507</option>
+                      <option >586</option>
+                  </select>
+                  <br>
+                  <br>
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="button" name="next" class="next action-button" value="Next"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Create a New Project</h2>
+                <h3 class="fs-subtitle">Project Details</h3>
+                <label>Calculation Deadlines</label>
+                <input type="text"  placeholder="Calculation Deadlines in term of table or ..."/>
+
+                <label>Create Subcalculations</label>
+                <input type="text"  placeholder="Create Subcalculations: wut?"/>
+                
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+</div> 
+<!-- end of create project -->
+
+
+
+
+
   </div>
 </div>
-
 
 
 
