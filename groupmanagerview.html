@@ -72,15 +72,18 @@
       <p><br><a href="#">EU-872</a></p>
       <p><br><a href="#">AW-560</a></p>
 
-      <p><a href="#"><br><br>Old Projects</a></p>
+      <p><a href="#"><br><br>Old Projects</a></p><br>
+      <p><a href="#">Add new Delivery</a></p><br>
+
     </div>
     <!---left colum area-->
 
 <div class="col-sm-8 text-left">
+        <p><h3>General Overview</h3></p><br><br>
         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Project</th>
+                <th>Projects</th>
                 <th>Activities</th>
                 <th>Responsable</th>
                 <th>Cost</th>
@@ -88,7 +91,7 @@
         </thead>
         <tfoot>
             <tr>
-                <th>Total</th>
+                <th>NT-9822</th>
                 <th></th>
                 <th></th>
                 <th>200</th>
@@ -96,31 +99,32 @@
         </tfoot>
         <tbody>
             <tr>
-              <td>97520</td>
+                <th>VC-900</th>
+              <td></td>
               <td>Colak</td>
               <td></td>
               <td>200</td>
             </tr>
             <tr>
-              <td>97521</td>
+              <td>QP-837</td>
               <td></td>
               <td>0</td>
               <td>0</td>
             </tr>
             <tr>
-              <td>97522</td>
+              <td>S-9299</td>
               <td></td>
               <td>0</td>
               <td>0</td>
             </tr>
             <tr>
-              <td>97523</td>
+              <td>EU-872</td>
               <td></td>
               <td>0</td>
               <td>0</td>
             </tr>
             <tr>
-              <td>97524</td>
+              <td>AW-560</td>
               <td></td>
               <td>0</td>
               <td>0</td>
@@ -128,29 +132,85 @@
         </tbody>
     </table>
     
+    <div>
+    <h3>Add Delivery</h3><br>
+    <form action="/action_page">
+      Department:
+       <select>
+              <option value="R&D">R&D</option>
+              <option value="Propultion">Propultion</option>
+              <option value="Testing">Testing</option>
+              <option value="Design">Design</option>
+              <option value="Infotaiment">Infotaiment</option>
+              <option value="IDK">IDK</option>
+              <option value="IDKmore">IDKmore</option>
+       </select><br><br>
+      Group Code:
+       <input type="Number" name="group code"/><br><br>
+      Group Manager:
+       <select>
+              <option value="Malin Andersson">Malin Andersson</option>
+              <option value="Malin Svensson">Marcus Svensson</option>
+              <option value="Lincon">George Lincon</option>
+              <option value="Jenkins">X Jenkins</option>
+              <option value="Gupta">Lalita Gupta</option>
+              <option value="Hofstader">Y Hofstader</option>
+              <option value="Lecur">Jean Lecur</option>
+       </select><br><br>
+    </form>
+
+    <h4><br><br>Comments</h4>
+    <textarea class="form-control" id="exampleTextarea" readonly rows="4">Add Comments</textarea><br>
+
+    <script>
+      function hey(){
+      document.getElementById('exampleTextarea').readOnly = false;
+      return false;
+      }
+    </script>
+
+
+    <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button><br><br>
+    </div>
     
-    <select>
-      <option value="97500">97500</option>
-      <option value="97510">97510</option>
-      <option value="97520">97520</option>
-      <option value="97530">97530</option>
-      <option value="97540">97540</option>
-      <option value="97550">97550</option>
-      <option value="97560">97560</option>
-    </select>
-
-   
-
-    <div class="col-sm-2 sidenav">
-      <h4>Additional Documents</h4>
-
-      <p><br><a href="#">Test1.xsxl</a></p>
-      <p><br><a href="#">Test2.pdf</a></p>
-      <p><br><a href="#">Test3.pptx</a></p>
-
+    <div>   
+      <h3>Edit a Group</h3><br>
+      <form action="/action_page">
+       Department:
+       <select>
+              <option value="R&D">R&D</option>
+              <option value="Propultion">Propultion</option>
+              <option value="Testing">Testing</option>
+              <option value="Design">Design</option>
+              <option value="Infotaiment">Infotaiment</option>
+              <option value="IDK">IDK</option>
+              <option value="IDKmore">IDKmore</option>
+       </select><br><br>
+        Group Code:
+       <select>
+              <option value="97520">97520</option>
+              <option value="97542">97542</option>
+              <option value="97542">97542</option>
+              <option value="97542">97542</option>
+              <option value="97542">97542</option>
+              <option value="97542">97542</option>
+              <option value="97542">97542</option>
+       </select><br><br>
+      </form>
     </div>
   </div>
-</div>
--->
-</body>
+    <!--left navigation menu-->
+      <div class="col-sm-2 sidenav">
+        <h4>Additional Documents</h4>
+
+        <p><br><a href="#">Test1.xsxl</a></p>
+        <p><br><a href="#">Test2.pdf</a></p>
+        <p><br><a href="#">Test3.pptx</a></p>
+        <p><br><a href="#">Test4.exe</a></p>
+        <br><br><br><br><br><br><br><br><br><br>
+      </div> 
+    
+    </div>
+    </div>
+  </body>
 </html>
