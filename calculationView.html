@@ -8,116 +8,82 @@
 
 	</head>
 
-  <body>
-<!-- this is a comment -->
-<div class="container-fluid text-center">
-  <!--<div class="row content">-->
-    <div class="col-sm-2 sidenav">
-
-      <div class="dropdown">
-
-  <button onclick="myFunction()" class="dropbtn">Project Reviews</button>
-
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Incoming Reviews</a>
-    <a href="#">Outgoing Reviews</a>
-    <a href="#">Link 3</a>
-  </div>
-      </div>
-
-<!-- this is the list of incoming reviews, should be scrollable -->
-
-      <ol>
-        <li><a href="#">Test Project 1</a></li>
-        <li><a href="#">Test project 2</a></li>
-        <li><a href="#">Test Project 3</a></li>
-      </ol>
-
-      <p><br><a href="#">Test Project 1</a></p>
-      <p><br><a href="#">Test project 2</a></p>
-      <p><br><a href="#">Test Project 3</a></p>
-
-    </div>
+<body>
 
 
+<center>
+	<div class="button">
 
-    <div class="col-sm-8 text-left">
-      <h4>Project Name: </h4>
-      <h4><br>Start of Production: </h4>
-      <h4><br>Project Milestones<br><br></h4>
-      <p>A scrollable graph/table/form</p>
+		<button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Incoming Projects</button>
+    <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createNodeModal">Outgoing Projects</button>
 
-      <h4><br><br><br>Description</h4>
-      <textarea class="form-control" id="exampleTextarea" readonly rows="4">Original description of project</textarea>
-
-      <script>
-      	function hey(){
-    		document.getElementById('exampleTextarea').readOnly = false;
-    		return false;
-      	}
-
-      </script>
-
-
-      <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button>
-
-
-
-
-     <div class="form-group">
-    	<label for="exampleInputFile"> <br>  Attach File</label>
-    	<input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-    	<small id="fileHelp" class="form-text text-muted">Allowed files: Word, Excel, PowerPoint, PDF</small>
-  	</div>
-
-<br>
-
-
-	<div class="form-group">
-		<h4>Affected Teams </h4>
-		<div class="checkbox">
-		  <label><input type="checkbox" value="">535</label>
-		</div>
-		<div class="checkbox">
-		  <label><input type="checkbox" value="">557</label>
-		</div>
-		<div class="checkbox">
-		  <label><input type="checkbox" value="">547</label>
-		</div>
 	</div>
+</center>
+
+
+<div style="overflow-x:auto;">
+<!-- dataTables -->
+	<h3>Project Reviews</h3>
+	<br>
+ <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<thead>
+				<tr>
+						<th>Project Id</th>
+						<th>Version</th>
+						<th>Calculation Status</th>
+						<th>Responsible Person</th>
+						<th>Delivery Date</th>
+				</tr>
+		</thead>
+		<tbody>
+				<tr>
+					<td>VC-900</td>
+					<td>1</td>
+					<td>In Progress</td>
+					<td>Mike Hillary</td>
+					<td>2017-10-08</td>
+				</tr>
+				<tr>
+					<td>QP-837</td>
+					<td>2</td>
+					<td>Submitted</td>
+					<td>Nina Sharon</td>
+					<td>2017-10-08</td>
+				</tr>
+				<tr>
+					<td>S-9299</td>
+					<td>5</td>
+					<td>In Progress</td>
+					<td>Gustav Pelle</td>
+					<td>2018-01-30</td>
+				</tr5>
+				<tr>
+					<td>EU-872</td>
+					<td>11</td>
+					<td>Submitted</td>
+					<td>Karl Karlsson</td>
+					<td>2017-11-16</td>
+				</tr>
+				<tr>
+					<td>NT-982</td>
+					<td>3</td>
+					<td>Submitted</td>
+					<td>N/A</td>
+					<td>2017-12-10</td>
+				</tr>
+		</tbody>
+</table><br>
 
 
 
-	<div class="form-group">
-		<h4>Calculation Deadlines </h4>
-		<p>A form/table here </p>
-	</div>
+<center>
+<div class="button_2">
 
+		<button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Create Node</button>
+    <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createNodeModal">Calculate Project</button>
 
-	<div class="form-group">
-		<h4>Create sub calculations </h4>
-		<p>No info yet </p>
-	</div>
-
-
-
-
-    </div>
-
-
-    <div class="col-sm-2 sidenav">
-      <h4>Additional Documents</h4>
-
-      <p><br><a href="#">Test1.xsxl</a></p>
-      <p><br><a href="#">Test2.pdf</a></p>
-      <p><br><a href="#">Test3.pptx</a></p>
-
-    </div>
-  </div>
 </div>
-
-  <script src="js/supportLibrary.js"></script>
-
+</center>
 
 
 	</body>
