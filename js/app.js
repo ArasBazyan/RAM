@@ -10,7 +10,7 @@ var selectedGroups = [];
 
 function hey(){
 	alert("workss");
-	
+
 	
     console.log(" GGG  " + selectedGroups);
 }

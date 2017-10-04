@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Department Level</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="This page will be for Section level where is children of Department nodes">
-    <link type="text/css" rel="stylesheet" href="css/main.css"/>
-    <!-- bootstrap library -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- bootstrap library end -->
-    <!-- Datatable -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+      <!-- Datatable -->
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="css/main.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+      <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+
+
+      <link type="text/css" rel="stylesheet" href="css/adminView.css"/>
+
+
+      <script src="js/admin.js"></script>
+
+
+
     <script>
     $(document).ready(function() {
     //this is an scrip that will be use down in the table 
@@ -30,6 +45,64 @@
   </head>
 
 	<body>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                </button>
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Help</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="wrapper" class="toggled">
+        <div class="container-fluid">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <br>
+                    </li>
+                    <li class="sidebar-brand">
+                        <a class="navbar-brand">
+                            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Shortcuts
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Project</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Create Group</a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+    </script>
   
 <!--navegator menu starts here-->
 	<!--
@@ -178,12 +251,7 @@
     <h4><br><br>Comments</h4>
     <textarea class="form-control" id="exampleTextarea" readonly rows="4">Add Comments</textarea><br>
 
-    <script>
-      function hey(){
-      document.getElementById('exampleTextarea').readOnly = false;
-      return false;
-      }
-    </script>
+
 
 
     <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button><br><br>
@@ -226,5 +294,83 @@
     
     </div>
     </div>
-  </body>
+
+
+
+
+
+
+    <!-- Add new project section -->
+    <div class="container-fluid text-center">
+        <!--Modal for adding additional subnodes to current node-->
+        <div class="modal" id="createProjectModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form id="msform">
+
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <h2 class="fs-title">Create a New Project</h2>
+                        <h3 class="fs-subtitle">Project Details</h3>
+                        <input type="text" name="fname" placeholder="Project Name"/>
+                        <input id="selectSOP" type="text" name="selectSOP" placeholder="Start of Production (SOP)"/>
+                        <textarea class="form-control" id="exampleTextarea" rows="6" placeholder="Project Description" ></textarea>
+
+                        <input id="nextButton" type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Create a New Project</h2>
+                        <h3 class="fs-subtitle">Project Details</h3>
+                        <label>Project Milestones</label>
+                        <input type="text" name="twitter" placeholder="Project Milestones in term of graph or something "/>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile"> <br>Attach File</label>
+                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                            <small id="fileHelp" class="form-text text-muted">Allowed files: Word, Excel, PowerPoint, PDF</small>
+                        </div>
+
+                        <label for="exampleInputFile"> <br>Affected Teams</label>
+                        <select id="affectedTeams" multiple="multiple">
+                            <option >527</option>
+                            <option >546</option>
+                            <option >576</option>
+                            <option >527</option>
+                            <option >507</option>
+                            <option >586</option>
+                        </select>
+                        <br>
+                        <br>
+
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                        <input type="button" name="next" class="next action-button" value="Next"/>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Create a New Project</h2>
+                        <h3 class="fs-subtitle">Project Details</h3>
+                        <label>Calculation Deadlines</label>
+                        <input type="text"  placeholder="Calculation Deadlines in term of table or ..."/>
+
+                        <label>Create Subcalculations</label>
+                        <input type="text"  placeholder="Create Subcalculations: wut?"/>
+
+
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- end of create project -->
+
+
+
+
+
+
+
+    </body>
 </html>
