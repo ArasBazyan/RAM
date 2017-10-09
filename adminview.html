@@ -322,8 +322,8 @@
 
                               <!-- fieldsets -->
                               <fieldset>
-                                  <h2 class="fs-title">Create New Group</h2>
-                                  <label for="exampleInputFile"> <br>Select Section </label>
+                                  <h3 class="fs-title">Create New Group</h3>
+                                  <label> <br>Select Section </label>
                                   <select id="selectSection" multiple="multiple">
                                       <option >Section1</option>
                                       <option >Section2</option>
@@ -333,12 +333,18 @@
                                       <option >Section6</option>
                                   </select><br><br>
 
-                                  <!--Here we can add automatic generated numbers-->
-                                  <label for="exampleInputFile"> <br>Enter a group number</label>
-                                  <input type="file" class="form-control-file" id="exampleInputFile"
-                                         aria-describedby="fileHelp"><br><br>
+                                  <h3 class="fs-subtitle">Group Description</h3>
+                                  <textarea class="form-control" id="exampleTextarea" rows="6" placeholder="Add Description" ></textarea>
+                                  <!--button to redirect to the next modal-->
+                                  <input type="button" name="next" class="next action-button" value="Next"/>
+                              </fieldset>
+                              <fieldset>
+                                  <h3 class="fs-title">Create New Group</h3>
+                                  <!--Here we can add automatic generated numbers (after)-->
+                                  <label> <br>Enter a group number</label>
+                                  <input type="Number" name="group code"/><br><br>
 
-                                  <label for="exampleInputFile"> <br>Select Group Manager </label>
+                                  <label> <br>Select Group Manager </label><br>
                                   <select id="selectGroupManager" multiple="multiple">
                                       <option >Manager1</option>
                                       <option >Manager2</option>
@@ -346,57 +352,22 @@
                                       <option >Manager4</option>
                                       <option >Manager5</option>
                                       <option >Manager6</option>
-                                  </select>
-                                  <textarea class="form-control" id="exampleTextarea" rows="6"
-                                            placeholder="Project Description" ></textarea>
+                                  </select><br><br>
 
-                                  <input id="nextButton" type="button" name="next" class="next action-button" value="Next"/>
+                                  <label> <br>Select Group Members</label><br>
+                                  <select id="selectGroupMember" multiple="multiple">
+                                      <option >Member1</option>
+                                      <option >Member2</option>
+                                      <option >Member3</option>
+                                      <option >Member4</option>
+                                      <option >Member5</option>
+                                      <option >Member6</option>
+                                  </select><br><br>
+
+                                  <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                  <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+
                               </fieldset>
-
-                             <!-- h4>Create New Group</h4>
-                              <form action="/action_page">
-                                  Department:
-                                  <select>
-                                      <option value="R&D">R&D</option>
-                                      <option value="Propultion">Propultion</option>
-                                      <option value="Testing">Testing</option>
-                                      <option value="Design">Design</option>
-                                      <option value="Infotaiment">Infotaiment</option>
-                                      <option value="IDK">IDK</option>
-                                      <option value="IDKmore">IDKmore</option>
-                                  </select><br><br>
-                                  Group Code:
-                                  <input type="Number" name="group code"/><br><br>
-                                  Group Manager:
-                                  <select>
-                                      <option value="Malin Andersson">Malin Andersson</option>
-                                      <option value="Malin Svensson">Marcus Svensson</option>
-                                      <option value="Lincon">George Lincon</option>
-                                      <option value="Jenkins">X Jenkins</option>
-                                      <option value="Gupta">Lalita Gupta</option>
-                                      <option value="Hofstader">Y Hofstader</option>
-                                      <option value="Lecur">Jean Lecur</option>
-                                  </select><br><br>
-                                  Group Members
-                                  <select>
-                                      <option value="Andersson">Andersson</option>
-                                      <option value="Svensson">Svensson</option>
-                                      <option value="Lincon">Lincon</option>
-                                      <option value="Jenkins">Jenkins</option>
-                                      <option value="Gupta">Gupta</option>
-                                      <option value="Hofstader">Hofstader</option>
-                                      <option value="Lecur">Lecur</option>
-                                  </select>
-                              </form>
-
-
-                              <h4><br><br><br>Description</h4>
-                              <textarea class="form-control" id="exampleTextarea" readonly rows="4">Original description of project</textarea>
-
-
-
-                              <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button>
-                              -->
 
                           </form>
 
