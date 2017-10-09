@@ -177,126 +177,6 @@
 
 
     <!-- dataTables end -->
-    <!--Adding a form for input new section-->
-<!--
-        <div class="col-sm-8 text-left">
-
-            <h4>Create New Group</h4>
-            <form action="/action_page">
-                Department:
-                <select>
-                    <option value="R&D">R&D</option>
-                    <option value="Propultion">Propultion</option>
-                    <option value="Testing">Testing</option>
-                    <option value="Design">Design</option>
-                    <option value="Infotaiment">Infotaiment</option>
-                    <option value="IDK">IDK</option>
-                    <option value="IDKmore">IDKmore</option>
-                </select><br><br>
-                Group Code:
-                <input type="Number" name="group code"/><br><br>
-                Group Manager:
-                <select>
-                    <option value="Malin Andersson">Malin Andersson</option>
-                    <option value="Malin Svensson">Marcus Svensson</option>
-                    <option value="Lincon">George Lincon</option>
-                    <option value="Jenkins">X Jenkins</option>
-                    <option value="Gupta">Lalita Gupta</option>
-                    <option value="Hofstader">Y Hofstader</option>
-                    <option value="Lecur">Jean Lecur</option>
-                </select><br><br>
-                Group Members
-                <select>
-                    <option value="Andersson">Andersson</option>
-                    <option value="Svensson">Svensson</option>
-                    <option value="Lincon">Lincon</option>
-                    <option value="Jenkins">Jenkins</option>
-                    <option value="Gupta">Gupta</option>
-                    <option value="Hofstader">Hofstader</option>
-                    <option value="Lecur">Lecur</option>
-                </select>
-            </form>
-
-
-            <h4><br><br><br>Description</h4>
-            <textarea class="form-control" id="exampleTextarea" readonly rows="4">Original description of project</textarea>
-
-
-
-            <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button>
--->
-            <!--
-            <div>
-    <h3>Add new Group</h3><br>
-    <form action="/action_page">
-      Department:
-       <select>
-              <option value="R&D">R&D</option>
-              <option value="Propultion">Propultion</option>
-              <option value="Testing">Testing</option>
-              <option value="Design">Design</option>
-              <option value="Infotaiment">Infotaiment</option>
-              <option value="IDK">IDK</option>
-              <option value="IDKmore">IDKmore</option>
-       </select><br><br>
-      Group Code:
-       <input type="Number" name="group code"/><br><br>
-      Group Manager:
-       <select>
-              <option value="Malin Andersson">Malin Andersson</option>
-              <option value="Malin Svensson">Marcus Svensson</option>
-              <option value="Lincon">George Lincon</option>
-              <option value="Jenkins">X Jenkins</option>
-              <option value="Gupta">Lalita Gupta</option>
-              <option value="Hofstader">Y Hofstader</option>
-              <option value="Lecur">Jean Lecur</option>
-       </select><br><br>
-      Group Members
-       <select>
-              <option value="Andersson">Andersson</option>
-              <option value="Svensson">Svensson</option>
-              <option value="Lincon">Lincon</option>
-              <option value="Jenkins">Jenkins</option>
-              <option value="Gupta">Gupta</option>
-              <option value="Hofstader">Hofstader</option>
-              <option value="Lecur">Lecur</option>
-        </select>
-    </form>
-
-    <h4><br><br>Comments</h4>
-    <textarea class="form-control" id="exampleTextarea" readonly rows="4">Add Comments</textarea><br>
-
-
-
-
-     </div>
-    
-    <div>   
-      <h3>Edit a Group</h3><br>
-      <form action="/action_page">
-       Department:
-       <select>
-              <option value="R&D">R&D</option>
-              <option value="Propultion">Propultion</option>
-              <option value="Testing">Testing</option>
-              <option value="Design">Design</option>
-              <option value="Infotaiment">Infotaiment</option>
-              <option value="IDK">IDK</option>
-              <option value="IDKmore">IDKmore</option>
-       </select><br><br>
-        Group Code:
-       <select>
-              <option value="97520">97520</option>
-              <option value="97542">97542</option>
-              <option value="97542">97542</option>
-              <option value="97542">97542</option>
-              <option value="97542">97542</option>
-              <option value="97542">97542</option>
-              <option value="97542">97542</option>
-       </select><br><br>
-      </form>
-    </div>
-  </div>
     <!--left navigation menu-->
 
       <div class="col-sm-2 sidenav"><br><br>
@@ -309,7 +189,7 @@
     
     </div>
 
-
+        <!--Adding a form for input new section-->
 
               <div class="container-fluid text-center">
                   <!--Modal for adding additional subnodes to current node-->
@@ -324,7 +204,7 @@
                               <fieldset>
                                   <h3 class="fs-title">Create New Group</h3>
                                   <label> <br>Select Section </label>
-                                  <select id="selectSection" multiple="multiple">
+                                  <select id="selectSection">
                                       <option >Section1</option>
                                       <option >Section2</option>
                                       <option >Section3</option>
@@ -338,6 +218,7 @@
                                   <!--button to redirect to the next modal-->
                                   <input type="button" name="next" class="next action-button" value="Next"/>
                               </fieldset>
+
                               <fieldset>
                                   <h3 class="fs-title">Create New Group</h3>
                                   <!--Here we can add automatic generated numbers (after)-->
@@ -345,7 +226,7 @@
                                   <input type="Number" name="group code"/><br><br>
 
                                   <label> <br>Select Group Manager </label><br>
-                                  <select id="selectGroupManager" multiple="multiple">
+                                  <select id="selectGroupManager">
                                       <option >Manager1</option>
                                       <option >Manager2</option>
                                       <option >Manager3</option>
@@ -355,7 +236,7 @@
                                   </select><br><br>
 
                                   <label> <br>Select Group Members</label><br>
-                                  <select id="selectGroupMember" multiple="multiple">
+                                  <select id="selectGroupMember">
                                       <option >Member1</option>
                                       <option >Member2</option>
                                       <option >Member3</option>
@@ -373,13 +254,62 @@
 
                       </div>
                     </div>
+                   </div>
+
               </div>
 
+        <div class="container-fluid text-center">
+            <!--Modal for adding additional subnodes to current node-->
+            <div class="modal" id="editGroupModal" data-easein="slideUpIn"
+                 tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="msform">
+
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <h3 class="fs-title">Delete a Group</h3>
+                                Department:
+                                <select>
+                                    <option value="R&D">R&D</option>
+                                    <option value="Propultion">Propultion</option>
+                                    <option value="Testing">Testing</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Infotaiment">Infotaiment</option>
+                                    <option value="IDK">IDK</option>
+                                    <option value="IDKmore">IDKmore</option>
+                                </select><br><br>
+                                Group Code:
+                                <select>
+                                    <option value="97520">97520</option>
+                                    <option value="97542">97542</option>
+                                    <option value="97542">97542</option>
+                                    <option value="97542">97542</option>
+                                    <option value="97542">97542</option>
+                                    <option value="97542">97542</option>
+                                    <option value="97542">97542</option>
+                                </select><br><br>
+                                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                            </fieldset>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
 
 
 
 
-          </div>
-      </div>
+    </body>
+</html>
+
 
 
