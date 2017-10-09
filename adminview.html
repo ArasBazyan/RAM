@@ -7,7 +7,8 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-      <link type="text/css" rel="stylesheet" href="css/main.css" />
+      <link type="text/css" rel="stylesheet" href="css/adminView.css"/>
+      <!--link type="text/css" rel="stylesheet" href="css/main.css" /-->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,11 +23,7 @@
       <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
 
-
-      <link type="text/css" rel="stylesheet" href="css/adminView.css"/>
-
-
-      <script src="js/admin.js"></script>
+      <script src="js/adminView2.js"></script>
 
 
 
@@ -103,110 +100,133 @@
         });
 
     </script>
-  
-<!--navegator menu starts here-->
-	<!--
-    <nav  class="navbar navbar-default">
-     <div class="container-fluid">
-      <div class="navbar-header">
-  
-        <a  href="http://www.volvo.com" > 
-        <img style="position:absolute; left:5%; "  src="img/Volvo-logo.png" class="img-circle" alt="userImage" width="46" height="46">
-          </a>
-          </div>
-        <div class=" navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="index.html">Department Level</a></li>
-            <li class="active"><a href="section.html">Section Level</a></li>
-            <li><a href="#">Group Level</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Hello, @username </a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
--->
 
   
-<div class="container-fluid text-center">    
-  <div class="row content">
-<!---left navegation menu -->
-    <div class="col-sm-2 sidenav">
+    <div class="container-fluid text-center">
+      <div class="row content">
+        <!---left navegation menu -->
+          <div class="col-sm-2 sidenav"><br><br>
      
-     <h4>All Projects</h4>
+            <h4>All Projects</h4>
      
       
-      <p><br><a href="#">A-97520</a></p>
-      <p><br><a href="#">B-97500</a></p>
-      <p><br><a href="#">C-97540</a></p>
-      <p><br><a href="#">D-97530</a></p>
-      <p><br><a href="#">E-97550</a></p>
-      <p><br><a href="#">F-97560</a></p><br><br>
+               <p><br><a href="#">A-97520</a></p>
+               <p><br><a href="#">B-97500</a></p>
+               <p><br><a href="#">C-97540</a></p>
+               <p><br><a href="#">D-97530</a></p>
+               <p><br><a href="#">E-97550</a></p>
+               <p><br><a href="#">F-97560</a></p>
 
 
-        <p><br><br> <a type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createGroupModal">Create a new Group</a></p>
-        <p><br><br> <a type="button" class="btn btn-createNode" data-toggle="modal" data-target="#editGroupModal">Edit a Group</a></p>
+               <p><br><br> <a type="button" class="btn btn-createNode" data-toggle="modal"
+                              data-target="#createGroupModal">Create a new Group</a></p>
+               <p><br> <a type="button" class="btn btn-createNode" data-toggle="modal"
+                              data-target="#editGroupModal">Edit a Group</a></p>
 
 
-    </div>
+          </div>
     <!--end of left colum area-->
     <!--Central area of the page-->
-    <div class="col-sm-8 text-left">
+          <div class="col-sm-8 text-left">
     <!-- dataTables -->
-      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-            <tr>
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+               <tr>
                 <th>Project</th>
                 <th>Manager</th>
                 <th>Cost</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Total</th>
-                <th></th>
-                <th>200</th>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr>
-              <td>A-97520</td>
-              <td>Colak</td>
-              <td>200</td>
-            </tr>
-            <tr>
-              <td>B-97521</td>
-              <td>Svensson</td>
-              <td></td>
-              <td>400</td>
-            </tr>
-            <tr>
-              <td>C-97522</td>
-              <td>Hausson</td>
-              <td>500</td>
-            </tr>
-            <tr>
-              <td>D-97523</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>E-97524</td>
-              <td></td>
-              <td></td>
-            </tr>
-        </tbody>
-    </table><br>
+               </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                 <th>Total</th>
+                 <th></th>
+                 <th>200</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr>
+                 <td>A-97520</td>
+                 <td>Colak</td>
+                 <td>200</td>
+                </tr>
+                <tr>
+                 <td>B-97521</td>
+                 <td>Svensson</td>
+                 <td>400</td>
+                </tr>
+                <tr>
+                 <td>C-97522</td>
+                 <td>Hausson</td>
+                 <td>500</td>
+               </tr>
+               <tr>
+                 <td>D-97523</td>
+                 <td></td>
+                 <td></td>
+               </tr>
+               <tr>
+                <td>E-97524</td>
+                <td></td>
+                <td></td>
+               </tr>
+              </tbody>
+            </table><br>
+          </div>
+
+
+
     <!-- dataTables end -->
     <!--Adding a form for input new section-->
-    
-    <div>
+<!--
+        <div class="col-sm-8 text-left">
+
+            <h4>Create New Group</h4>
+            <form action="/action_page">
+                Department:
+                <select>
+                    <option value="R&D">R&D</option>
+                    <option value="Propultion">Propultion</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Design">Design</option>
+                    <option value="Infotaiment">Infotaiment</option>
+                    <option value="IDK">IDK</option>
+                    <option value="IDKmore">IDKmore</option>
+                </select><br><br>
+                Group Code:
+                <input type="Number" name="group code"/><br><br>
+                Group Manager:
+                <select>
+                    <option value="Malin Andersson">Malin Andersson</option>
+                    <option value="Malin Svensson">Marcus Svensson</option>
+                    <option value="Lincon">George Lincon</option>
+                    <option value="Jenkins">X Jenkins</option>
+                    <option value="Gupta">Lalita Gupta</option>
+                    <option value="Hofstader">Y Hofstader</option>
+                    <option value="Lecur">Jean Lecur</option>
+                </select><br><br>
+                Group Members
+                <select>
+                    <option value="Andersson">Andersson</option>
+                    <option value="Svensson">Svensson</option>
+                    <option value="Lincon">Lincon</option>
+                    <option value="Jenkins">Jenkins</option>
+                    <option value="Gupta">Gupta</option>
+                    <option value="Hofstader">Hofstader</option>
+                    <option value="Lecur">Lecur</option>
+                </select>
+            </form>
+
+
+            <h4><br><br><br>Description</h4>
+            <textarea class="form-control" id="exampleTextarea" readonly rows="4">Original description of project</textarea>
+
+
+
+            <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button>
+-->
+            <!--
+            <div>
     <h3>Add new Group</h3><br>
     <form action="/action_page">
       Department:
@@ -249,8 +269,7 @@
 
 
 
-    <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button><br><br>
-    </div>
+     </div>
     
     <div>   
       <h3>Edit a Group</h3><br>
@@ -279,7 +298,8 @@
     </div>
   </div>
     <!--left navigation menu-->
-      <div class="col-sm-2 sidenav">
+
+      <div class="col-sm-2 sidenav"><br><br>
         <h4>Additional Documents</h4>
 
         <p><br><a href="#">Test1.xsxl</a></p>
@@ -288,84 +308,107 @@
       </div> 
     
     </div>
-    </div>
+
+
+
+              <div class="container-fluid text-center">
+                  <!--Modal for adding additional subnodes to current node-->
+                  <div class="modal" id="createGroupModal" data-easein="slideUpIn"
+                       tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+                          <form id="msform">
+
+                              <!-- fieldsets -->
+                              <fieldset>
+                                  <h2 class="fs-title">Create New Group</h2>
+                                  <label for="exampleInputFile"> <br>Select Section </label>
+                                  <select id="selectSection" multiple="multiple">
+                                      <option >Section1</option>
+                                      <option >Section2</option>
+                                      <option >Section3</option>
+                                      <option >Section4</option>
+                                      <option >Section5</option>
+                                      <option >Section6</option>
+                                  </select><br><br>
+
+                                  <!--Here we can add automatic generated numbers-->
+                                  <label for="exampleInputFile"> <br>Enter a group number</label>
+                                  <input type="file" class="form-control-file" id="exampleInputFile"
+                                         aria-describedby="fileHelp"><br><br>
+
+                                  <label for="exampleInputFile"> <br>Select Group Manager </label>
+                                  <select id="selectGroupManager" multiple="multiple">
+                                      <option >Manager1</option>
+                                      <option >Manager2</option>
+                                      <option >Manager3</option>
+                                      <option >Manager4</option>
+                                      <option >Manager5</option>
+                                      <option >Manager6</option>
+                                  </select>
+                                  <textarea class="form-control" id="exampleTextarea" rows="6"
+                                            placeholder="Project Description" ></textarea>
+
+                                  <input id="nextButton" type="button" name="next" class="next action-button" value="Next"/>
+                              </fieldset>
+
+                             <!-- h4>Create New Group</h4>
+                              <form action="/action_page">
+                                  Department:
+                                  <select>
+                                      <option value="R&D">R&D</option>
+                                      <option value="Propultion">Propultion</option>
+                                      <option value="Testing">Testing</option>
+                                      <option value="Design">Design</option>
+                                      <option value="Infotaiment">Infotaiment</option>
+                                      <option value="IDK">IDK</option>
+                                      <option value="IDKmore">IDKmore</option>
+                                  </select><br><br>
+                                  Group Code:
+                                  <input type="Number" name="group code"/><br><br>
+                                  Group Manager:
+                                  <select>
+                                      <option value="Malin Andersson">Malin Andersson</option>
+                                      <option value="Malin Svensson">Marcus Svensson</option>
+                                      <option value="Lincon">George Lincon</option>
+                                      <option value="Jenkins">X Jenkins</option>
+                                      <option value="Gupta">Lalita Gupta</option>
+                                      <option value="Hofstader">Y Hofstader</option>
+                                      <option value="Lecur">Jean Lecur</option>
+                                  </select><br><br>
+                                  Group Members
+                                  <select>
+                                      <option value="Andersson">Andersson</option>
+                                      <option value="Svensson">Svensson</option>
+                                      <option value="Lincon">Lincon</option>
+                                      <option value="Jenkins">Jenkins</option>
+                                      <option value="Gupta">Gupta</option>
+                                      <option value="Hofstader">Hofstader</option>
+                                      <option value="Lecur">Lecur</option>
+                                  </select>
+                              </form>
+
+
+                              <h4><br><br><br>Description</h4>
+                              <textarea class="form-control" id="exampleTextarea" readonly rows="4">Original description of project</textarea>
+
+
+
+                              <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()" > Edit </button>
+                              -->
+
+                          </form>
+
+                      </div>
+                    </div>
+              </div>
 
 
 
 
 
-
-    <!-- Add new project section -->
-    <div class="container-fluid text-center">
-        <!--Modal for adding additional subnodes to current node-->
-        <div class="modal" id="createProjectModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
-
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <form id="msform">
-
-                    <!-- fieldsets -->
-                    <fieldset>
-                        <h2 class="fs-title">Create a New Project</h2>
-                        <h3 class="fs-subtitle">Project Details</h3>
-                        <input type="text" name="fname" placeholder="Project Name"/>
-                        <input id="selectSOP" type="text" name="selectSOP" placeholder="Start of Production (SOP)"/>
-                        <textarea class="form-control" id="exampleTextarea" rows="6" placeholder="Project Description" ></textarea>
-
-                        <input id="nextButton" type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
-                    <fieldset>
-                        <h2 class="fs-title">Create a New Project</h2>
-                        <h3 class="fs-subtitle">Project Details</h3>
-                        <label>Project Milestones</label>
-                        <input type="text" name="twitter" placeholder="Project Milestones in term of graph or something "/>
-
-                        <div class="form-group">
-                            <label for="exampleInputFile"> <br>Attach File</label>
-                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                            <small id="fileHelp" class="form-text text-muted">Allowed files: Word, Excel, PowerPoint, PDF</small>
-                        </div>
-
-                        <label for="exampleInputFile"> <br>Affected Teams</label>
-                        <select id="affectedTeams" multiple="multiple">
-                            <option >527</option>
-                            <option >546</option>
-                            <option >576</option>
-                            <option >527</option>
-                            <option >507</option>
-                            <option >586</option>
-                        </select>
-                        <br>
-                        <br>
-
-                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                        <input type="button" name="next" class="next action-button" value="Next"/>
-                    </fieldset>
-                    <fieldset>
-                        <h2 class="fs-title">Create a New Project</h2>
-                        <h3 class="fs-subtitle">Project Details</h3>
-                        <label>Calculation Deadlines</label>
-                        <input type="text"  placeholder="Calculation Deadlines in term of table or ..."/>
-
-                        <label>Create Subcalculations</label>
-                        <input type="text"  placeholder="Create Subcalculations: wut?"/>
+          </div>
+      </div>
 
 
-                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-                    </fieldset>
-                </form>
-
-            </div>
-        </div>
-    </div>
-    <!-- end of create project -->
-
-
-
-
-
-
-
-    </body>
-</html>
