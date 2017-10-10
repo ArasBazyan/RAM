@@ -41,35 +41,39 @@
       <tbody>
           <tr>
             <td><a type="button" data-toggle="modal"
-                           data-target="#calculationSubmission">VC-900</a></td>
+                           data-target="#calculationSubmission" onclick="setProjectID(this.innerHTML)">VC-900</a></td>
             <td>1</td>
             <td>In Progress</td>
             <td>Mike Hillary</td>
             <td>2017-10-08</td>
           </tr>
           <tr>
-            <td>QP-837</td>
+            <td><a type="button" data-toggle="modal"
+                           data-target="#calculationSubmission" onclick="setProjectID(this.innerHTML)">QP-837</a></td>
             <td>2</td>
             <td>Submitted</td>
             <td>Nina Sharon</td>
             <td>2017-10-08</td>
           </tr>
           <tr>
-            <td>S-9299</td>
+            <td><a type="button" data-toggle="modal"
+                           data-target="#calculationSubmission" onclick="setProjectID(this.innerHTML)">S-9299</a></td>
             <td>5</td>
             <td>In Progress</td>
             <td>Gustav Pelle</td>
             <td>2018-01-30</td>
           </tr5>
           <tr>
-            <td>EU-872</td>
+            <td><a type="button" data-toggle="modal"
+                           data-target="#calculationSubmission" onclick="setProjectID(this.innerHTML)">EU-872</a></td>
             <td>11</td>
             <td>Submitted</td>
             <td>Karl Karlsson</td>
             <td>2017-11-16</td>
           </tr>
           <tr>
-            <td>NT-982</td>
+            <td><a type="button" data-toggle="modal"
+                           data-target="#calculationSubmission" onclick="setProjectID(this.innerHTML)">NT-982</a></td>
             <td>3</td>
             <td>Submitted</td>
             <td>N/A</td>
@@ -103,42 +107,42 @@
            </thead>
            <tbody>
                <tr>
-                 <td id="projectID">VC-900</td>
+                 <td class="projectID">VC-90</td>
                  <td>97520</td>
                  <td>3</td>
                  <td>200</td>
                  <td>In Progress</td>
                </tr>
                <tr>
-                 <td>VC-900</td>
+                 <td class="projectID">VC-90</td>
                  <td>97521</td>
                  <td>3</td>
                  <td>300</td>
                  <td>Submitted</td>
                </tr>
                <tr>
-                 <td>VC-900</td>
+                 <td class="projectID">VC-90</td>
                  <td>97522</td>
                  <td>3</td>
                  <td>400</td>
                  <td>In Progress</td>
                </tr>
                <tr>
-                 <td>VC-900</td>
+                 <td class="projectID">VC-900</td>
                  <td>97524</td>
                  <td>3</td>
                  <td>400</td>
                  <td>Submitted</td>
                </tr>
                <tr>
-                 <td>VC-900</td>
+                 <td class="projectID">VC-900</td>
                  <td>97522</td>
                  <td>2</td>
                  <td>400</td>
                  <td>Submitted</td>
                </tr>
                <tr>
-                 <td>VC-900</td>
+                 <td class="projectID">VC-900</td>
                  <td>97522</td>
                  <td>1</td>
                  <td>400</td>
@@ -157,6 +161,14 @@
 
         </div>
 
+<script type="text/javascript">
+  function setProjectID(projectID){
+    var elementsProjectID = document.getElementsByClassName('projectID');
+    for(let i = 0; i < elementsProjectID.length; i++){
+      elementsProjectID[i].innerHTML = projectID;
+    }
+  }
+</script>
 
 </body>
 </html>
