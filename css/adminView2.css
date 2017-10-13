@@ -197,7 +197,7 @@ body {
     border-radius: 0px;
     margin-bottom: 10px;
     width: 100%;
-    box-sizing: border-box;
+    box-sizing: content-box; /*boarder_box*/
     font-family: montserrat;
     color: #2C3E50;
     font-size: 13px;
