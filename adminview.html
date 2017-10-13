@@ -259,10 +259,11 @@
             }
         }
     </script>
-        <!--Adding a form for input new section-->
+
+    <!--Adding a form for createGroup -->
 
               <div class="container-fluid text-center">
-                  <!--Modal for adding additional subnodes to current node-->
+
                   <div class="modal" id="createGroupModal" data-easein="slideUpIn"
                        tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
 
@@ -305,15 +306,6 @@
                                       <option >Manager6</option>
                                   </select><br><br>
 
-                                  <label> <br>Select Group Members</label><br>
-                                  <select id="selectGroupMember">
-                                      <option >Member1</option>
-                                      <option >Member2</option>
-                                      <option >Member3</option>
-                                      <option >Member4</option>
-                                      <option >Member5</option>
-                                      <option >Member6</option>
-                                  </select><br><br>
 
                                   <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                   <input type="submit" name="submit" class="submit action-button" value="Submit"/>
@@ -327,9 +319,12 @@
                    </div>
 
               </div>
+              <!-- End of group-->
+
+             <!--Adding a form for delete group-->
 
         <div class="container-fluid text-center">
-            <!--Modal for adding additional subnodes to current node-->
+
             <div class="modal" id="editGroupModal" data-easein="slideUpIn"
                  tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
 
@@ -360,7 +355,7 @@
                                     <option value="97542">97542</option>
                                     <option value="97542">97542</option>
                                 </select><br><br>
-                                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                                <input type="save" name="save" class="save action-button" value="Save"/>
                             </fieldset>
 
                         </form>
