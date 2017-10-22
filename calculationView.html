@@ -5,6 +5,9 @@
     <link type="text/css" rel="stylesheet" href="css/calculationView.css"/>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Project Calculations</title>
+		<link type="text/css" rel="stylesheet" href="css/createProject.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	</head>
 
@@ -12,20 +15,30 @@
 
 
 <center>
-	<div class="button">
+	<div class="mycheckbox">
 
-		<button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Incoming Projects</button>
-    <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createNodeModal">Outgoing Projects</button>
+		<form>
+			<p>Filter Project by Status</p>
+		<label for="myfirstcheck"><strong>In progress</strong></label>
+		<input id="myfirstcheck" type="checkbox" name="project" value="">
+
+		<label for="mysecondcheck"><strong>Completed</strong></label>
+		<input id="mysecondcheck" type="checkbox" name="project" value="">
+
+		<label for="mythirdcheck"><strong>Archive</strong></label>
+		<input id="mythirdcheck" type="checkbox" name="project" value="">
+		</form>
+		
+			<button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="">Submit</button>
 
 	</div>
 </center>
-
-
 <div style="overflow-x:auto;">
 <!-- dataTables -->
 	<h3>Project Reviews</h3>
 	<br>
- <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<div class="My_Table">
+  <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>
 				<tr>
 						<th>Project Id</th>
@@ -67,23 +80,101 @@
 				<tr>
 					<td>NT-982</td>
 					<td>3</td>
-					<td>Submitted</td>
+					<td>Archived</td>
 					<td>N/A</td>
 					<td>2017-12-10</td>
 				</tr>
 		</tbody>
 </table><br>
-
+</div>
 
 
 <center>
-<div class="button_2">
-		<a href="createNode.html"><button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Create Node</button></a>
-    <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createNodeModal">Calculate Project</button>
+<div>
+		<!-- <a href="createNode.html"><button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Create Node</button></a>-->
+    <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="">Calculate Project</button>
+		<button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Create Child Node</button>
+
+						<!--Modal for adding additional subnodes to current node-->
+						<div class="modal" id="createNodeModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog">
+										<div class="modal-content">
+												<div class="modal-header">
+														<button class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Create Node</h4>
+												</div>
+
+												<div class="modal-body">
+														<form>
+																<div class="form-group">
+																		<label for="inputNodeName">Node Name</label>
+																		<input class="form-control" placeholder="Node name" type="text" id="inputNodeName">
+																</div>
+																<div class="form-group">
+																		<label for="inputNodeDesc">Node Description</label>
+																		<textarea class="form-control" rows="1" placeholder="Node description" type="text" id="inputNodeDesc"></textarea>
+																</div>
+																<div class="form-group">
+																		<label for="inputNodeType">Select Node Type</label>
+																		<select class="form-control" id="sel1">
+																				<option>Node type 1</option>
+																				<option>Node type 2</option>
+																				<option>Node type 3</option>
+																				<option>Node type 4</option>
+																		</select>
+																		<br>
+																		<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#createNodeCollapse">Create Type</button>
+																		<div class="collapse" id="createNodeCollapse">
+																				<form>
+																						<div class="form-group">
+																								<br>
+																								<label for="inputNodeName">Type Name</label>
+																								<input class="form-control" placeholder="Type name" type="text" id="inputNodeName">
+																						</div>
+																						<div class="form-group">
+																								<label for="inputNodeDesc">Type Description</label>
+																								<textarea class="form-control" rows="1" placeholder="Type description" type="text" id="inputNodeDesc"></textarea>
+																						</div>
+																				</form>
+																		</div>
+																</div>
+																<div class="form-group">
+																		<label for="inputNodePerson">Add people to node</label>
+																		<select multiple class="form-control" id="sel1">
+																				<option>Person 1</option>
+																				<option>Person 2</option>
+																				<option>Person 3</option>
+																				<option>Person 4</option>
+																				<option>Person 5</option>
+																				<option>Person 6</option>
+																				<option>Person 7</option>
+																				<option>Person 8</option>
+																				<option>Person 9</option>
+																				<option>Person 10</option>
+																				<option>Person 11</option>
+																				<option>Person 12</option>
+																		</select>
+																</div>
+														</form>
+												</div>
+												<div class="modal-footer">
+														<button class="btn btn-primary" data-dismiss="modal">Save</button>
+														<!--TODO: Add a function that saves data to DB from form-->
+														<button class="btn btn-primary" data-dismiss="modal">Close</button>
+												</div>
+										</div>
+								</div>
+						</div>
+
+
 
 </div>
 </center>
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+<script src="js/supportLibrary.js"></script>
 
 	</body>
 </html>

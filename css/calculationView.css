@@ -1,20 +1,23 @@
-.button {
+.mycheckbox {
     text-align: center;
     display: inline-block;
     font-size: 16px;
+    color: inherit;
+    
 }
 
-.button_2 {
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
+.My_Table{
+text-align: center;
+
 }
 
-.table{
-  border-collapse: collapse;
-  width: auto;
-  color: inherit;
-  text-align: center;
-  column-rule-color: black;
-  table-layout: auto;
+.myheader{
+text-align: center;
+color: pink;
+}
+
+
+.my_submit{
+shape-outside: padding-box;
+text-align: center;
 }
