@@ -46,11 +46,76 @@ $(document).ready(function() {
             console.log("selected teams " + selected);
 
         }
-
-
-
     });
 
+
+
+    // Buildseries Milestones
+    $('#buildSeries').multiselect({
+        selectAllValue: 'multiselect-all',
+        includeSelectAllOption: true,
+
+        numberDisplayed: 3,
+        buttonWidth: '200px',
+        onChange: function(element, checked) {
+            var brands = $('#buildSeries option:selected');
+            var selected = [];
+            $(brands).each(function(index, brand){
+                selected.push($(this).val());
+            });
+
+
+            console.log("selected teams " + selected);
+
+            selectedGroups = selected;
+        },
+        onSelectAll: function() {
+            alert('You selected all available teams!');
+            var brands = $('#buildSeries option:selected');
+            var selected = [];
+            $(brands).each(function(index, brand){
+                selected.push($(this).val());
+            });
+
+            console.log("selected teams " + selected);
+
+        }
+    });
+
+
+
+    // SW Milestones
+
+    $('#SWMilestones').multiselect({
+        selectAllValue: 'multiselect-all',
+        includeSelectAllOption: true,
+
+        numberDisplayed: 3,
+        buttonWidth: '200px',
+        onChange: function(element, checked) {
+            var brands = $('#SWMilestones option:selected');
+            var selected = [];
+            $(brands).each(function(index, brand){
+                selected.push($(this).val());
+            });
+
+
+            console.log("selected teams " + selected);
+
+            selectedGroups = selected;
+        },
+        onSelectAll: function() {
+            alert('You selected all available teams!');
+            var brands = $('#SWMilestones option:selected');
+            var selected = [];
+            $(brands).each(function(index, brand){
+                selected.push($(this).val());
+            });
+
+            console.log("selected teams " + selected);
+
+        }
+    });
 
 
 
@@ -82,6 +147,35 @@ $(document).ready(function() {
 
         });
     });
+
+
+
+    // Calc deadline datepicker
+    $(function() {
+        $("#calcDeadline").datepicker({
+            showAnim:'fadeIn',
+            changeMonth: true,
+            changeYear: true,
+            showWeek: true,
+            firstDay: 1
+        });
+
+        $(function() {
+
+            $("#calcDeadline").datepicker("option", "onSelect",
+                function(value, date)
+                { var week=$.datepicker.iso8601Week (
+                    new Date(date.selectedYear,
+                        date.selectedMonth,
+                        date.selectedDay));
+                    $(this).val(date.selectedYear+'-'+(week<10?'0':'')+week);
+
+                }
+            );
+
+        });
+    });
+
 
 
 
@@ -172,7 +266,12 @@ $(document).ready(function() {
 
 
 
-    $(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");"shake"==o?$(".modal-dialog").velocity("callout."+o):"pulse"==o?$(".modal-dialog").velocity("callout."+o):"tada"==o?$(".modal-dialog").velocity("callout."+o):"flash"==o?$(".modal-dialog").velocity("callout."+o):"bounce"==o?$(".modal-dialog").velocity("callout."+o):"swing"==o?$(".modal-dialog").velocity("callout."+o):$(".modal-dialog").velocity("transition."+o)})});
+    $(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");
+    "shake"==o?$(".modal-dialog").velocity("callout."+o):"pulse"==o?$(".modal-dialog").velocity("callout."+o):
+        "tada"==o?$(".modal-dialog").velocity("callout."+o):"flash"==o?$(".modal-dialog").
+        velocity("callout."+o):"bounce"==o?$(".modal-dialog").velocity("callout."+o):
+            "swing"==o?$(".modal-dialog").velocity("callout."+o):$(".modal-dialog").
+            velocity("transition."+o)})});
 
 
 
@@ -188,4 +287,8 @@ $(document).ready(function() {
 
 
 
-$(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");"shake"==o?$(".modal-dialog").velocity("callout."+o):"pulse"==o?$(".modal-dialog").velocity("callout."+o):"tada"==o?$(".modal-dialog").velocity("callout."+o):"flash"==o?$(".modal-dialog").velocity("callout."+o):"bounce"==o?$(".modal-dialog").velocity("callout."+o):"swing"==o?$(".modal-dialog").velocity("callout."+o):$(".modal-dialog").velocity("transition."+o)})});
+$(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");
+"shake"==o?$(".modal-dialog").velocity("callout."+o):"pulse"==o?$(".modal-dialog").velocity("callout."+o):
+    "tada"==o?$(".modal-dialog").velocity("callout."+o):"flash"==o?$(".modal-dialog").
+    velocity("callout."+o):"bounce"==o?$(".modal-dialog").velocity("callout."+o):
+        "swing"==o?$(".modal-dialog").velocity("callout."+o):$(".modal-dialog").velocity("transition."+o)})});

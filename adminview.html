@@ -24,7 +24,7 @@
       <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
 
-      <script src="js/adminView2.js"></script>
+      <script src="js/admin.js"></script>
 
       <!-- Make the popup scrollable-->
       <style>
@@ -95,6 +95,15 @@
 
                     <li>
                         <a data-toggle="modal" data-target="#editGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Edit Group</a>
+                    </li>
+
+
+                    <li>
+                        <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Calculation</a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Node</a>
                     </li>
 
 
@@ -371,6 +380,10 @@
     </div>
     <!--End of deleteGroup>
 
+
+
+
+
     <!-- Add new project section -->
 
     <div class="container-fluid text-center">
@@ -395,9 +408,11 @@
                     <fieldset>
                         <h2 class="fs-title">Create a New Project</h2>
                         <h3 class="fs-subtitle">Project Details</h3>
-                        <label>Project Milestones</label>
-                        <input type="text" name="twitter"
-                               placeholder="Project Milestones in term of graph or something "/>
+
+                        <label>Calculation Deadlines</label>
+                        <input id="calcDeadline" type="text" name="calcDeadline" placeholder="Calculation Deadlines"/>
+
+
 
                         <div class="form-group">
                             <label for="exampleInputFile"> <br>Attach File</label>
@@ -407,7 +422,7 @@
                             >Allowed files: Word, Excel, PowerPoint, PDF</small>
                         </div>
 
-                        <label for="exampleInputFile"> <br>Affected Teams</label>
+                        <label>Affected Teams</label>
                         <select id="affectedTeams" multiple="multiple">
                             <option >527</option>
                             <option >546</option>
@@ -425,13 +440,39 @@
                     <fieldset>
                         <h2 class="fs-title">Create a New Project</h2>
                         <h3 class="fs-subtitle">Project Details</h3>
-                        <label>Calculation Deadlines</label>
-                        <input type="text"  placeholder="Calculation Deadlines in term of table or ..."/>
-
-                        <label>Create Subcalculations</label>
-                        <input type="text"  placeholder="Create Subcalculations: wut?"/>
 
 
+                        <label>Project Milestones</label>
+                        <br><br>
+                        <label> Build Series</label>
+                        <br>
+                        <select id="buildSeries" multiple="multiple">
+                            <option >X0</option>
+                            <option >X1</option>
+                            <option >SM</option>
+                            <option >VP</option>
+                            <option >TT</option>
+                            <option >PP</option>
+                            <option >SOP</option>
+                        </select>
+
+                        <br><br><br>
+
+                        <label> SW Milestones</label>
+                        <br>
+                        <select id="SWMilestones" multiple="multiple">
+                            <option >E0</option>
+                            <option >E1</option>
+                            <option >E2</option>
+                            <option >E3</option>
+                            <option >E4</option>
+                            <option >R00</option>
+                            <option >R05</option>
+
+                        </select>
+
+
+                        <br><br>
                         <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                         <input type="submit" name="submit" class="submit action-button" value="Submit"/>
                     </fieldset>
@@ -444,6 +485,81 @@
 
 
 
+
+
+    <!-- Create Node  -->
+    <!--Modal for adding additional subnodes to current node-->
+    <div class="modal" id="createNodeModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Node</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputNodeName">Node Name</label>
+                            <input class="form-control" placeholder="Node name" type="text" id="inputNodeName">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNodeDesc">Node Description</label>
+                            <textarea class="form-control" rows="1" placeholder="Node description" type="text" id="inputNodeDesc"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNodeType">Select Node Type</label>
+                            <select class="form-control" id="sel1">
+                                <option>Node type 1</option>
+                                <option>Node type 2</option>
+                                <option>Node type 3</option>
+                                <option>Node type 4</option>
+                            </select>
+                            <br>
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#createNodeCollapse">Create Type</button>
+                            <div class="collapse" id="createNodeCollapse">
+                                <form>
+                                    <div class="form-group">
+                                        <br>
+                                        <label for="inputNodeName">Type Name</label>
+                                        <input class="form-control" placeholder="Type name" type="text" id="inputNodeName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNodeDesc">Type Description</label>
+                                        <textarea class="form-control" rows="1" placeholder="Type description" type="text" id="inputNodeDesc"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNodePerson">Add people to node</label>
+                            <select multiple class="form-control" id="sel1">
+                                <option>Person 1</option>
+                                <option>Person 2</option>
+                                <option>Person 3</option>
+                                <option>Person 4</option>
+                                <option>Person 5</option>
+                                <option>Person 6</option>
+                                <option>Person 7</option>
+                                <option>Person 8</option>
+                                <option>Person 9</option>
+                                <option>Person 10</option>
+                                <option>Person 11</option>
+                                <option>Person 12</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Save</button>
+                    <!--TODO: Add a function that saves data to DB from form-->
+                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of create node -->
 
 
 
