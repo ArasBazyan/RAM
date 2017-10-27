@@ -90,13 +90,8 @@
                         <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Project</a>
                     </li>
                     <li>
-                        <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Group</a>
+                        <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Assign Employees</a>
                     </li>
-
-                    <li>
-                        <a data-toggle="modal" data-target="#editGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Edit Group</a>
-                    </li>
-
 
                     <li>
                         <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Calculation</a>
@@ -269,7 +264,7 @@
         }
     </script>
 
-    <!--Adding a form for createGroup -->
+    <!--Adding a form for assign Employee -->
 
               <div class="container-fluid text-center">
 
@@ -277,46 +272,52 @@
                        tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
 
                     <div class="row">
+
+
+
                       <div class="col-md-6 col-md-offset-3">
                           <form id="msform">
 
                               <!-- fieldsets -->
                               <fieldset>
-                                  <h3 class="fs-title">Create New Group</h3>
-                                  <label> <br>Select Section </label>
-                                  <select id="selectSection">
-                                      <option >Section1</option>
-                                      <option >Section2</option>
-                                      <option >Section3</option>
-                                      <option >Section4</option>
-                                      <option >Section5</option>
-                                      <option >Section6</option>
-                                  </select><br><br>
+                                  <button name='closeIt' onClick="close()" >x </Button>
+                                  <h2 class="fs-title">Assign Employees</h2>
+                                  <br><br>
+                                  <label> Project Name </label>
+                                  <br>
+                                  <select id="projectName" multiple="multiple">
+                                      <option >Project1</option>
+                                      <option >Project2</option>
+                                      <option >Project3</option>
+                                      <option >Project4</option>
+                                      <option >Project5</option>
+                                      <option >Project6</option>
+                                      <option >Project7</option>
 
-                                  <h3 class="fs-subtitle">Group Description</h3>
-                                  <textarea class="form-control" id="exampleTextarea" rows="6" placeholder="Add Description" ></textarea>
-                                  <!--button to redirect to the next modal-->
-                                  <input type="button" name="next" class="next action-button" value="Next"/>
-                              </fieldset>
+                                  </select>
+                                  <br><br><br>
+                                  <label for="selectEmployee">Employee Name</label>
+                                  <select class="form-control" id="selectEmployee">
+                                      <option>Employee1</option>
+                                      <option>Employee2</option>
+                                      <option>Employee3</option>
+                                      <option>Employee4</option>
+                                      <option>Employee5</option>
+                                  </select>
+                                  <br><br><br>
+                                  <!--this part will be automaticaly updated when the employee is selected-->
+                                  <label for="selectEmployee">Employee CDSID</label>
+                                  <select class="form-control" id="cdsid">
+                                      <option>Employee1CDSID</option>
+                                      <option>Employee2CDSID</option>
+                                      <option>Employee3CDSID</option>
+                                      <option>Employee4CDSID</option>
+                                      <option>Employee5CDSID</option>
+                                  </select>
+                                  <br><br><br>
 
-                              <fieldset>
-                                  <h3 class="fs-title">Create New Group</h3>
-                                  <!--Here we can add automatic generated numbers (after)-->
-                                  <label> <br>Enter a group number</label>
-                                  <input type="Number" name="group code"/><br><br>
 
-                                  <label> <br>Select Group Manager </label>
-                                  <select id="selectGroupManager">
-                                      <option >Manager1</option>
-                                      <option >Manager2</option>
-                                      <option >Manager3</option>
-                                      <option >Manager4</option>
-                                      <option >Manager5</option>
-                                      <option >Manager6</option>
-                                  </select><br><br>
-
-
-                                  <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                  <input type="button" name="save" class="previous action-button-previous" value="Save"/>
                                   <input type="submit" name="submit" class="submit action-button" value="Submit"/>
 
                               </fieldset>
@@ -328,63 +329,29 @@
                    </div>
 
               </div>
-              <!-- End of createGroup-->
-
-             <!--Adding a form for deleteGroup-->
-
-        <div class="container-fluid text-center">
-
-            <div class="modal" id="editGroupModal" data-easein="slideUpIn"
-                 tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
-
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <form id="msform">
-
-                            <!-- fieldsets -->
-                            <fieldset>
-                                <h3 class="fs-title">Delete a Group</h3>
-                                Department:
-                                <select>
-                                    <option value="R&D">R&D</option>
-                                    <option value="Propultion">Propultion</option>
-                                    <option value="Testing">Testing</option>
-                                    <option value="Design">Design</option>
-                                    <option value="Infotaiment">Infotaiment</option>
-                                    <option value="IDK">IDK</option>
-                                    <option value="IDKmore">IDKmore</option>
-                                </select><br><br>
-                                Group Code:
-                                <select>
-                                    <option value="97520">97520</option>
-                                    <option value="97542">97542</option>
-                                    <option value="97542">97542</option>
-                                    <option value="97542">97542</option>
-                                    <option value="97542">97542</option>
-                                    <option value="97542">97542</option>
-                                    <option value="97542">97542</option>
-                                </select><br><br>
-                                <input type="save" name="save" class="save action-button" value="Save"/>
-                            </fieldset>
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-    </div>
-    <!--End of deleteGroup>
+              <!-- End of assign employee-->
+    <script type="text/javascript">
+        function close(){
+            window.close();
+        }
+    </script>
+<!--
+    <script>
+        function Exit() {
+            var x=confirm('Are You sure want to exit:');
+            if(x) window.close();
+        }
+    </script>
+-->
 
 
 
 
 
-    <!-- Add new project section -->
+
+
+
+        <!-- Add new project section -->
 
     <div class="container-fluid text-center">
         <!--Modal for adding additional subnodes to current node-->

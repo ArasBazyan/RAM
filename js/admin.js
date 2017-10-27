@@ -117,7 +117,39 @@ $(document).ready(function() {
         }
     });
 
+//  assign employee project name
 
+    $('#projectName').multiselect({
+        selectAllValue: 'multiselect-all',
+        includeSelectAllOption: true,
+
+        numberDisplayed: 3,
+        buttonWidth: '200px',
+        onChange: function(element, checked) {
+            var brands = $('#projectName option:selected');
+            var selected = [];
+            $(brands).each(function(index, brand){
+                selected.push($(this).val());
+            });
+
+
+            console.log("selected teams " + selected);
+
+            selectedGroups = selected;
+        },
+        onSelectAll: function() {
+            alert('You selected all available teams!');
+            var brands = $('#projectName option:selected');
+            var selected = [];
+            $(brands).each(function(index, brand){
+                selected.push($(this).val());
+            });
+
+            console.log("selected teams " + selected);
+
+        }
+    });
+ //end of assign employee
 
 
 
