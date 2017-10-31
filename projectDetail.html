@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/projectDetail.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect
+        /0.9.13/css/bootstrap-multiselect.css">
+
+
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            </button>
+            <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/adminView"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                <li><a href="#"><span  onclick="hey()" class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Help</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid text-center">
+    <div class="row content">
+
+        <div class="col-sm-2 sidenav">
+            <p> Involved Nodes</p>
+
+            <p><br><a href="#">Node 1</a></p>
+            <p><br><a href="#">Node 2</a></p>
+            <p><br><a href="#">Node 3</a></p>
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <div class="col-sm-8 text-left">
+
+
+            <h4>Project Name: </h4>
+            <h4><br>Start of Production: </h4>
+            <h4><br>Project Milestones<br><br></h4>
+            <p>A scrollable graph/table/form</p>
+
+            <select id="buildSeries">
+                <option >X0</option>
+                <option >X1</option>
+                <option >SM</option>
+                <option >VP</option>
+                <option >TT</option>
+                <option >PP</option>
+                <option >SOP</option>
+            </select>
+
+            <br><br><br>
+
+            <label> SW Milestones</label>
+            <br>
+            <select id="SWMilestones">
+                <option >E0</option>
+                <option >E1</option>
+                <option >E2</option>
+                <option >E3</option>
+                <option >E4</option>
+                <option >R00</option>
+                <option >R05</option>
+
+            </select>
+
+
+            <h4><br><br><br>Description</h4>
+            <textarea class="form-control" id="exampleTextarea"
+                      readonly rows="4">Original description of project</textarea>
+
+
+
+
+
+
+            <div class="form-group">
+                <h4>Affected Teams </h4>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">535</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">557</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">547</label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <h4>Calculation Deadlines </h4>
+                <p>A form/table here </p>
+            </div>
+
+
+
+            <button type="button" id="createCalcButton">Create Calculation</button>
+
+
+
+
+        </div> <!-- end of Project Profile -->
+
+
+
+        <!-- Attached file section -->
+        <div class="col-sm-2 sidenav">
+            <h4>Additional Documents</h4>
+
+            <p><br><a href="#">Test1.xsxl</a></p>
+            <p><br><a href="#">Test2.pdf</a></p>
+            <p><br><a href="#">Test3.pptx</a></p>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

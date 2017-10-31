@@ -8,13 +8,38 @@ var selectedGroups = [];
 
 
 
-function hey(){
-    alert("works");
+function hey() {
+    alert("workzzz");
 
 
     console.log(" GGG  " + selectedGroups);
 }
+
+
+    function setProjectID(projectID){
+        var elementsProjectID = document.getElementsByClassName('projectID');
+        for(let i = 0; i < elementsProjectID.length; i++){
+            elementsProjectID[i].innerHTML = projectID;
+        }
+    }
+
+function close(){
+    window.close();
+}
+
 $(document).ready(function() {
+
+
+
+            //this is an scrip that will be use down in the table
+        $('#example').DataTable();
+        //$('#examples').DataTable();
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
 
 
     $('#affectedTeams').multiselect({
@@ -116,6 +141,7 @@ $(document).ready(function() {
 
         }
     });
+
 
 //  assign employee project name
 
