@@ -11,8 +11,8 @@ app.get('/',function(req,res){
     res.sendfile(path.join(__dirname+'/projectDetail.html'));
 });
 
-app.get('/dir',function(req,res){
-    res.sendFile(path.join(__dirname+'/dir.html'));
+app.get('/adminView',function(req,res){
+    res.sendFile(path.join(__dirname+'/adminview.html'));
 });
 
 app.get('/dir',function(req,res){
