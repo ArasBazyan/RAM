@@ -58,21 +58,21 @@
                                 <li>
                                     <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Assign Employees</a>
                                 </li>
-            
+
                                 <li>
                                     <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Calculation</a>
                                 </li>
-            
+
                                 <li>
                                     <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Node</a>
                                 </li>
-            
-            
+
+
                             </ul>
                         </div>
                         <!-- /#sidebar-wrapper -->
-            
-            
+
+
                     </div>
                 </div>
                 <!-- /#wrapper -->
@@ -82,18 +82,18 @@
                             e.preventDefault();
                             $("#wrapper").toggleClass("toggled");
                         });
-                
+
                     </script>
-   
+
 
     <div class="container-fluid text-center">
 
         <div class="row content">
-      
+
           <div class="col-sm-2 sidenav">
             <p>Parent Node</p>
             <p><a href="#">Node 1</a></p><br>
-            
+
             <p>Related Nodes (Nodes on same level)</p>
             <p><a href="#">Node 3</a></p>
             <p><a href="#">Node 4</a></p>
@@ -179,8 +179,9 @@
             </table><br>
         </div>
 
+        <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createCalc">Create Calculation</button>
         <button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal">Create Child Node</button>
-        
+
                 <!--Modal for adding additional subnodes to current node-->
                 <div class="modal" id="createNodeModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
                     aria-hidden="true">
@@ -190,7 +191,7 @@
                                 <button class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Create Node</h4>
                             </div>
-        
+
                             <div class="modal-body">
                                 <form>
                                     <div class="form-group">
@@ -204,10 +205,11 @@
                                     <div class="form-group">
                                         <label for="inputNodeType">Select Node Type</label>
                                         <select class="form-control" id="sel1">
-                                            <option>Node type 1</option>
-                                            <option>Node type 2</option>
-                                            <option>Node type 3</option>
-                                            <option>Node type 4</option>
+                                            <option>Group</option>
+                                            <option>Engineering hours</option>
+                                            <option>D&D by non-production suppliers</option>
+                                            <option>D&D producion suppliers</option>
+                                            <option>Test Objects</option>
                                         </select>
                                         <br>
                                         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#createNodeCollapse">Create Type</button>
@@ -252,9 +254,53 @@
                         </div>
                     </div>
                 </div>
-        
-                
-        
+
+                <!-- from here is to create calculation -->
+                <div class="modal" id="createCalc" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+                		aria-hidden="true">
+                		<div class="modal-dialog">
+                				<div class="modal-content">
+                						<div class="modal-header">
+                								<button class="close" data-dismiss="modal">&times;</button>
+                								<h4 class="modal-title">Create Calculation</h4>
+                						</div>
+
+                						<div class="modal-body">
+                								<form>
+                										<div class="form-group">
+                												<label for="inputNodeName">Cost</label>
+                												<input class="form-control" Name="Node name" placeholder="The specific cost" type="text" id="inputNodeName">
+                										</div>
+                										<div class="form-group">
+                												<label for="inputNodeDesc">Cost Type</label>
+                												<textarea class="form-control" rows="1" placeholder="E.g Consulting, Testing equipment etc." type="text" id="inputNodeDesc"></textarea>
+                										</div>
+                                    <div class="form-group">
+                												<label for="inputNodeDesc">Value</label>
+                												<textarea class="form-control" rows="1" placeholder="Cost in $$$" type="text" id="inputNodeDesc"></textarea>
+                										</div>
+                                    <div class="form-group">
+                                        <label for="inputNodeType">Status</label>
+                                        <select class="form-control" id="sel1">
+                                            <option>In Progress</option>
+                                            <option>Done</option>
+                                        </select>
+                                    </div>
+                						<div class="modal-footer">
+                								<button class="btn btn-primary" data-dismiss="modal">Save</button>
+                								<button class="btn btn-primary" data-dismiss="modal">Submit</button>
+                								<button class="btn btn-primary" data-dismiss="modal">Close</button>
+                						</div>
+                				</div>
+                		</div>
+                </div>
+                </div>
+
+
+
+                <!--calculation ends here -->
+
+
             <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
             <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
             <script src="js/supportLibrary.js"></script>
