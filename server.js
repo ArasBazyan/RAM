@@ -8,15 +8,19 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 
 app.get('/',function(req,res){
-    res.sendfile(path.join(__dirname+'/projectDetail.html'));
+    res.sendfile(path.join(__dirname+'/adminview.html'));
 });
 
 app.get('/adminView',function(req,res){
     res.sendFile(path.join(__dirname+'/adminview.html'));
 });
 
-app.get('/dir',function(req,res){
-    res.sendFile(path.join(__dirname+'/dir.html'));
+app.get('/projectDetail',function(req,res){
+    res.sendFile(path.join(__dirname+'/projectDetail.html'));
+});
+
+app.get('/nodeAdmin',function(req,res){
+    res.sendFile(path.join(__dirname+'/nodeAdmin.html'));
 });
 
 app.listen(3000);
