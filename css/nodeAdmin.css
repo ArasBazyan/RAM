@@ -259,4 +259,7 @@
 .text-center{
     margin-top:50px;
 }
-/*End of Create new project*/
+
+textarea {
+  resize: none;
+}
