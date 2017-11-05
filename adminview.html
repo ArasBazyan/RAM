@@ -90,10 +90,7 @@
                         <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Project</a>
                     </li>
                     <li>
-                        <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Assign Employees</a>
-                    </li>
-                    <li>
-                        <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Show Calculations</a>
+                        <a data-toggle="modal" data-target="#createEmployee"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Employees</a>
                     </li>
 
                     <li>
@@ -103,7 +100,9 @@
                     <li>
                         <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Node</a>
                     </li>
-
+                    <li>
+                        <a data-toggle="modal" data-target="#createRoot"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Root</a>
+                    </li>
 
                 </ul>
             </div>
@@ -159,7 +158,7 @@
             <td>In Progress</td>
             <td>Gustav Pelle</td>
             <td>2018-01-30</td>
-            </tr5>
+            </tr>
         <tr>
             <td><a type="button" data-toggle="modal"
                    data-target="#calculationSubmission" onclick="setProjectID(this.innerHTML)">EU-872</a></td>
@@ -340,6 +339,52 @@
             window.close();
         }
     </script>
+
+
+    <!--Create root-->
+
+    <div class="container-fluid text-center">
+
+        <div class="modal" id="createGroupModal" data-easein="slideUpIn"
+             tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+
+            <div class="row">
+
+
+
+                <div class="col-md-6 col-md-offset-3">
+                    <form id="msform">
+
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
+                            <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                            <br><br>
+                            <h2 class="fs-title">Create Root</h2>
+                            <br><br>
+                            <label> Root Name </label>
+                            <br>
+                            <input type="text" name="rname" placeholder="Root Name"/>
+                            <br>
+                            <input type="button" name="save" class="previous action-button-previous" value="Save"/>
+                            <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--End of create root -->
+
+
+
+
+
+
 
         <!-- Add new project section -->
 
