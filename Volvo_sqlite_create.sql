@@ -3,12 +3,16 @@ CREATE TABLE Node (
 	idProject integer NOT NULL REFERENCES Project(idProject),
 	idParentNode integer REFERENCES Node(idNode),
 	idResponsible integer NOT NULL REFERENCES Person(idPerson),
+	idBackupResponsible integer NOT NULL REFERENCES Person(idPerson),
 	idNodeType integer NOT NULL REFERENCES NodeType(idNodeType),
 	NodeDescription string,
 	Cost integer,
 	idCostType integer REFERENCES CostType(idCostType),
 	dateStart date,
 	dateEnd date,
+	Version integer,
+	Completed boolean,
+	Archived boolean,
 	Comments string
 );
 
@@ -22,6 +26,7 @@ CREATE TABLE Project (
 	dateStart date,
 	dateEnd date,
 	StartofProduction date,
+	Archived boolean,
 	ProjectComments string
 );
 
