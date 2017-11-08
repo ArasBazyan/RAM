@@ -15,9 +15,9 @@ var rowid;
 db.serialize(function() {
 
 
-    db.each("SELECT rowid AS id, info FROM user_info", function(err, row) {
-        rowid = row.id;
-        console.log(row.id + ": " + row.info + " ----- "  + rowid);
+    db.each("SELECT idProject FROM Project", function(err, row) {
+        rowid = row.idProject;
+        console.log("row.id : " + rowid);
     });
 });
 
@@ -29,7 +29,7 @@ var loadID = function (req, res, next) {
         var id = req.params.id;
         var info = rowid;
         if(info){
-            req.info = info;
+            req.idProject = info;
             next();
         } else {
             next(new Error("Failed to load " + id));
@@ -53,7 +53,7 @@ app.get('/adminView',function(req,res){
 });
 
 app.get('/projectDetail/:id', loadID, function (req, res) {
-    res.send('Seeing user ' + req.info);
+    res.send('Seeing user ' + req.idProject);
     
 })
 
@@ -61,7 +61,7 @@ app.get('/projectDetail/:id', loadID, function (req, res) {
 app.get('/projectDetail/:id',function(req,res){
     res.sendFile(path.join(__dirname+'/projectDetail.html'));
     var id = req.params.id;
-    var query = "select * from user_info where ID = " + id;
+    var query = "select * from Project where ID = " + id;
 
     console.log(req.params.id + " ---- " + query);
 });
