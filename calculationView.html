@@ -63,6 +63,12 @@
 
   <table id="myTable" class="table table-striped table-bordered sortable" cellspacing="0" width="100%">
 		<script src="js/createTable.js"></script>
+		<script> 
+			createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
+			insertTableData(5, arrayTablesData, isATag, "myTable");
+		</script>
+
+
  </table><br>
 </div>
 </center>

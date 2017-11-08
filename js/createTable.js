@@ -103,6 +103,7 @@ function clickAbleModal(text){
 }
 
 
-createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
-insertTableData(5, arrayTablesData, isATag, "myTable");
+//createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
+//insertTableData(5, arrayTablesData, isATag, "myTable");
+
 
