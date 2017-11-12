@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/ArasBazyan/RAM#readme",
   "dependencies": {
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "mqtt": "^2.14.0",
     "sqlite3": "^3.1.13"
   }
 }

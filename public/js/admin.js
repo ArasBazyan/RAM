@@ -9,10 +9,7 @@ var selectedGroups = [];
 
 
 function hey() {
-    alert("workzzz");
-
-
-    console.log(" GGG  " + selectedGroups);
+alert("kkk");
 }
 
 
@@ -142,7 +139,7 @@ $(document).ready(function() {
         }
     });
 
-
+/*
 //  assign employee project name
 
     $('#projectName').multiselect({
@@ -177,7 +174,7 @@ $(document).ready(function() {
     });
  //end of assign employee
 
-
+*/
 
     $(function() {
 
@@ -310,7 +307,18 @@ $(document).ready(function() {
     });
 
     $(".submit").click(function(){
-        console.log("MAGIC HAPPENS HERE!")
+
+        var projname = $("#projectName").val();
+        var sop = $( "#selectSOP").val();
+        var projectDescription = $( "#projectDescription").val();
+        var calcDeadline = $( "#calcDeadline").val();
+        selectedGroups
+
+        insertProject(projname,projectDescription,  sop, calcDeadline);
+
+
+
+        console.log("MAGIC HAPPENS HERE!" + projname + sop + projectDescription  + calcDeadline + selectedGroups);
         return false;
     })
 
