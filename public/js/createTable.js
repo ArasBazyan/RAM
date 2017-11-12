@@ -1,33 +1,43 @@
-var arrayTablesData = [ { 'projectID': 'VC-900', 
-					  	  'version' : '1',
-					  	  'calculationStatus' : 'In Progress',
-					  	  'responsiblePerson': 'Mike Hillary',
-					  	  'deliveryDate': '2017-10-08' },
-				    	
-				    	{ 'projectID': 'QP-837', 
-				      	  'version' : '2',
-					  	  'calculationStatus' : 'Submitted',
-					  	  'responsiblePerson': 'Nina Sharon',
-					   	  'deliveryDate': '2017-10-08'},
+var arrayTablesData = [{"idProject":1,"ProjectName":"VC700","ProjectDescription":"This a platform for blabla bla ","Version":1,"VersionLocked":"No","idManager":700,"dateStart":"01.12.2017","dateEnd":"01.12.2018","StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
 
-					   	{ 'projectID': 'S-9299', 
-				      	  'version' : '5',
-					  	  'calculationStatus' : 'In Progress',
-					  	  'responsiblePerson': 'Gustav Pelle',
-					   	  'deliveryDate': '2018-01-30'},
+var mapp = [];
+$.ajax({ url: 'http://localhost:3000/projectDetail/700/1'
+    , type: 'GET'
+    , dataType: 'html'
+})
+    .done(function(data) {
 
-					   	{ 'projectID': 'EU-872', 
-				      	  'version' : '11',
-					  	  'calculationStatus' : 'Submitted',
-					  	  'responsiblePerson': 'Karl Karl',
-					   	  'deliveryDate': '2017-11-16'},
+        console.log("Data: " + data);
 
-					   	{ 'projectID': 'NT-982', 
-				      	  'version' : '3',
-					  	  'calculationStatus' : 'Submitted',
-					  	  'responsiblePerson': 'N/A',
-					   	  'deliveryDate': '2017-12-10'},
-				      ];
+        if(data === 'null'|| data === 'undefined')
+        	console.log("NOOOOO!")
+
+        console.log(Object.keys(arrayTablesData[0]));
+        console.log(Object.keys(data[0]));
+        console.log(Object.keys(JSON.stringify(data)));
+
+
+
+
+        //console.log(Object.keys(data));
+        mapp = data;
+
+        //  window.location.href = '/projectDetail.html/' + data.idManager + '/' + data.idProject;
+    })
+    .fail(function() {
+        console.log("Something went wrong!");
+    });
+
+/*
+jQuery.get('http://localhost:3000/projectDetail/700/1', function(data) {
+    console.log("Post resposne:");
+    console.dir(data);
+    mapp = data;
+
+});*/
+
+
+var arrayTablesData = [{"idProject":1,"ProjectName":"VC700","ProjectDescription":"This a platform for blabla bla ","Version":1,"VersionLocked":"No","idManager":700,"dateStart":"01.12.2017","dateEnd":"01.12.2018","StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
 var isATag = true;
 
 
@@ -65,7 +75,7 @@ function insertTableData(headerLength, arrayTablesData, isATag, elementId){
 			let text = document.createTextNode(tableData[tablesDataKeys[j]]);
 
 			if(j == 0 && isATag){ // if we need clickable modal
-				td.appendChild(clickAbleDirectedTo(text,"index.html"));
+				td.appendChild(clickAbleDirectedTo(text,"projectDetail"));
 			}
 			else td.appendChild(text);
 
