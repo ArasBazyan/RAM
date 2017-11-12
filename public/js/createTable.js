@@ -1,33 +1,40 @@
-var arrayTablesData = [{"idProject":1,"ProjectName":"VC700","ProjectDescription":"This a platform for blabla bla ","Version":1,"VersionLocked":"No","idManager":700,"dateStart":"01.12.2017","dateEnd":"01.12.2018","StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
+var arrayTablesData = [{"idProject":1,"ProjectName":"VC700",
+						"ProjectDescription":"This a platform for blabla bla ",
+						"Version":1,"VersionLocked":"No","idManager":700,
+						"dateStart":"01.12.2017","dateEnd":"01.12.2018",
+						"StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
 
 var mapp = [];
-$.ajax({ url: 'http://localhost:3000/projectDetail/700/1'
-    , type: 'GET'
-    , dataType: 'html'
-})
-    .done(function(data) {
 
-        console.log("Data: " + data);
+function adminViewTable(){
+	$.ajax({ url: 'http://localhost:3000/projectDetail/700/1'
+    	, type: 'GET'
+    	, dataType: 'html'
+	})
+    	.done(function(data) {
 
-        if(data === 'null'|| data === 'undefined')
-        	console.log("NOOOOO!")
+        	if(data === 'null'|| data === 'undefined')
+        		console.log("NOOOOO!")
 
-        console.log(Object.keys(arrayTablesData[0]));
-        console.log(Object.keys(data[0]));
-        console.log(Object.keys(JSON.stringify(data)));
+       	 	console.log(arrayTablesData);
 
 
 
 
-        //console.log(Object.keys(data));
-        mapp = data;
+        	//console.log(Object.keys(data));
+        	mapp = JSON.parse(data);
 
-        //  window.location.href = '/projectDetail.html/' + data.idManager + '/' + data.idProject;
-    })
-    .fail(function() {
-        console.log("Something went wrong!");
-    });
+        	createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
+          	insertTableData(5, mapp, isATag, "myTable");
 
+
+        	//  window.location.href = '/projectDetail.html/' + data.idManager + '/' + data.idProject;
+    	})
+    	.fail(function() {
+        	console.log("Something went wrong!");
+    	});
+
+}
 /*
 jQuery.get('http://localhost:3000/projectDetail/700/1', function(data) {
     console.log("Post resposne:");
@@ -36,8 +43,6 @@ jQuery.get('http://localhost:3000/projectDetail/700/1', function(data) {
 
 });*/
 
-
-var arrayTablesData = [{"idProject":1,"ProjectName":"VC700","ProjectDescription":"This a platform for blabla bla ","Version":1,"VersionLocked":"No","idManager":700,"dateStart":"01.12.2017","dateEnd":"01.12.2018","StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
 var isATag = true;
 
 
