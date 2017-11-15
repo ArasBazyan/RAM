@@ -30,9 +30,31 @@ app.use(function(req, res, next) {
 
 db.serialize(function() {
 
+    // insert
+    /*
+    db.each("INSERT INTO Project (ProjectName, ProjectDescription, Version, VersionLocked, idManager, dateStart, dateEnd, StartofProduction, ProjectComments)"
+       + "VALUES ('NT-982','lala','3','NO','4', '01.12.2017', '01.12.2017', '01.12.2017', 'lala')", function(err, rows) {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("ProjId: " + rows.idProject + " has name: " + rows.ProjectName);
+        }
+    });
+    */
 
-    db.each("SELECT idProject FROM Project", function(err, row) {
-        rowid = row.idProject;
+    /*
+    db.each("INSERT INTO Person (FirstName, LastName) "
+       + "VALUES ('Sime','Colak')", function(err, rows) {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Person: " + rows.idPerson + " has name: " + rows.FirstName);
+        }
+    });
+    */
+
+    db.each("SELECT idPerson FROM Person", function(err, row) {
+        rowid = row.idPerson;
         console.log("row.id : " + rowid);
     });
 
@@ -75,8 +97,51 @@ app.get('/adminView',function(req,res){
 
 });
 
+/**
+* fetching all projects for manager
+*/
+app.get('/projectDetail/:idManager', function(req, res, next) {
+
+    //res.render(projectDetail.html);
+// Query
+    db.all("SELECT Project.ProjectName, Project.Version, Project.ProjectComments, Person.FirstName, Project.dateEnd FROM Project "
+         + "INNER JOIN Person ON Project.idManager = Person.idPerson "
+         + "WHERE idManager = ?", [req.params.idManager] ,    function(err, rows) {
+        // If error
+        if (err) {
+            console.error(err);
+            res.status(500);    // Server Error
+            res.json({ "error" : err });
 
 
+        } else {
+            // Check if there is a project
+            if(rows == undefined) {
+                // If Project not found
+                res.status(404);
+                res.json({ "error" : "Resource not found" });
+            } else {
+                // Success
+                res.status(200);  // OK
+
+                //res.render(path.join(__dirname+'/projectDetail.html'));
+
+               // console.log("got ittt  " + JSON.stringify(rows));
+
+                res.json(rows);
+
+                //res.sendFile(path.join(__dirname+'/projectDetail.html'));
+
+            }
+        }
+        //res.end();
+    });
+
+});
+
+/**
+* this for fetching specific project
+*/
 app.get('/projectDetail/:idManager/:idProject', function(req, res, next) {
 
     //res.render(projectDetail.html);
@@ -111,7 +176,6 @@ app.get('/projectDetail/:idManager/:idProject', function(req, res, next) {
         }
         //res.end();
     });
-
 
 });
 

@@ -4,10 +4,12 @@ var arrayTablesData = [{"idProject":1,"ProjectName":"VC700",
 						"dateStart":"01.12.2017","dateEnd":"01.12.2018",
 						"StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
 
+var isATag = true;
+
 var mapp = [];
 
 function adminViewTable(){
-	$.ajax({ url: 'http://localhost:3000/projectDetail/700/1'
+	$.ajax({ url: 'http://localhost:3000/projectDetail/4'
     	, type: 'GET'
     	, dataType: 'html'
 	})
@@ -24,7 +26,9 @@ function adminViewTable(){
         	//console.log(Object.keys(data));
         	mapp = JSON.parse(data);
 
-        	createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
+        	console.log(mapp);
+
+        	createTableHeader(['Project Name', 'Version', 'Status', 'Responsible Person', 'Delivery Date'], "myTable");
           	insertTableData(5, mapp, isATag, "myTable");
 
 
@@ -42,8 +46,6 @@ jQuery.get('http://localhost:3000/projectDetail/700/1', function(data) {
     mapp = data;
 
 });*/
-
-var isATag = true;
 
 
 /**
