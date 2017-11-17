@@ -33,7 +33,7 @@ db.serialize(function() {
     // insert
     /*
     db.each("INSERT INTO Project (ProjectName, ProjectDescription, Version, VersionLocked, idManager, dateStart, dateEnd, StartofProduction, ProjectComments)"
-       + "VALUES ('NT-982','lala','3','NO','4', '01.12.2017', '01.12.2017', '01.12.2017', 'lala')", function(err, rows) {
+       + "VALUES ('NT-982','lala','3','NO','6', '01.12.2017', '01.12.2017', '01.12.2017', 'lala')", function(err, rows) {
         if (err) {
             console.error(err);
         } else {
@@ -44,7 +44,7 @@ db.serialize(function() {
 
     /*
     db.each("INSERT INTO Person (FirstName, LastName) "
-       + "VALUES ('Sime','Colak')", function(err, rows) {
+       + "VALUES ('Emieli','Larsson')", function(err, rows) {
         if (err) {
             console.error(err);
         } else {
@@ -53,8 +53,8 @@ db.serialize(function() {
     });
     */
 
-    db.each("SELECT idPerson FROM Person", function(err, row) {
-        rowid = row.idPerson;
+    db.each("SELECT FirstName FROM Person", function(err, row) {
+        rowid = row.FirstName;
         console.log("row.id : " + rowid);
     });
 
@@ -100,7 +100,7 @@ app.get('/adminView',function(req,res){
 /**
 * fetching all projects for manager
 */
-app.get('/projectDetail/:idManager', function(req, res, next) {
+app.get('/adminView/:idManager', function(req, res, next) {
 
     //res.render(projectDetail.html);
 // Query

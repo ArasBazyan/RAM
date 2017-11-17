@@ -8,17 +8,18 @@ var isATag = true;
 
 var mapp = [];
 
-function adminViewTable(){
-	$.ajax({ url: 'http://localhost:3000/projectDetail/4'
+function adminViewTable(manager){
+	$.ajax({ url: 'http://localhost:3000/adminView/' + manager
     	, type: 'GET'
     	, dataType: 'html'
 	})
     	.done(function(data) {
 
-        	if(data === 'null'|| data === 'undefined')
-        		console.log("NOOOOO!")
 
-       	 	console.log(arrayTablesData);
+    		console.log(manager);
+
+        	if(data === 'null'|| data === 'undefined')
+        		console.log("NOOOOO!");
 
 
 
