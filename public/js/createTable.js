@@ -94,7 +94,7 @@ function insertTableData(headerLength, arrayTablesData, isATag, elementId){
 	document.getElementById(elementId).appendChild(tbody);
 }
 
-/** 
+/**
 * @param element <text>
 * @param string path: like index.html
 * @return element <a>
@@ -106,7 +106,7 @@ function clickAbleDirectedTo(text,path){
 	return(a);
 }
 
-/** 
+/**
 * @param element <text>
 * @return element <a>
 */
@@ -123,5 +123,3 @@ function clickAbleModal(text){
 
 //createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
 //insertTableData(5, arrayTablesData, isATag, "myTable");
-
-

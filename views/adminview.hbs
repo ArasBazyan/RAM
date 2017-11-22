@@ -11,8 +11,8 @@
       <link rel="stylesheet" type="text/css" href="css/adminView.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-      <script src="js/localStorage.js"></script>
-      <script src="js/createTable.js"></script>
+      <script src="../js/localStorage.js"></script>
+      <script src="../js/createTable.js"></script>
 
 
 
@@ -35,9 +35,80 @@
   </head>
 
 	<body>
+//from here
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            </button>
+            <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Help</a></li>
+                <li><a href="dontknow"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="wrapper" class="toggled">
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <br>
+                </li>
+                <li class="sidebar-brand">
+                    <a class="navbar-brand">
+                        <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Shortcuts
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Create Project</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" data-target="#createEmployee"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Employees</a>
+                </li>
+
+                <li>
+                    <!--<a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Calculation</a>-->
+                    <a href="calculationView.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Create Calculation</a>
+                </li>
+
+                <li>
+                    <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Node</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" data-target="#createRoot"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Root</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
 
 
+    </div>
+</div>
+<!-- /#wrapper -->
 
+<!--
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+</script>
+-->
+
+<br><br><br><br>
+//to here
+
+<!--
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -96,6 +167,7 @@
     <!-- /#wrapper -->
 
 <!--
+-->
 
     <script>
         $("#menu-toggle").click(function(e) {

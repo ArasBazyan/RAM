@@ -10,7 +10,7 @@ var hbs = require('express-handlebars');
 var index = require('./routes/index');
 var node = require('./routes/node');
 var projectdetail = require('./routes/projectdetail');
-
+var calculations = require('./routes/calculations');
 
 var app = express();
 
@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/node', node);
 app.use('/projectdetail', projectdetail);
-
+app.use('/calculations', calculations);
 /*
 db.serialize(function() {
 
