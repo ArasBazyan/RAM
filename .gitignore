@@ -3,3 +3,4 @@
 # For those using JetBrains IDEs
 .idea
 .orig
+/node_modules/sqlite3/

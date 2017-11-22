@@ -1,22 +1,34 @@
 var express = require("express");
 var app     = express();
 var path    = require("path");
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
 var sqlite3 = require("sqlite3").verbose();
 var bodyParser = require('body-parser');
+var hbs = require('express-handlebars');
+
+var index = require('./routes/index');
+var node = require('./routes/node');
+var projectdetail = require('./routes/projectdetail');
 
 
-
-app.use(express.static(path.join(__dirname, '/public')));
+var app = express();
 
 var db = new sqlite3.Database('Volvo.db');
 
+// view engine setup
+app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts'}));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
 
 /* Config (request) and (response) */
-app.use(bodyParser.json()); // Body parser use JSON data
+ // Body parser use JSON data
+app.use(logger('dev'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Support for CORS
@@ -27,7 +39,11 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/', index);
+app.use('/node', node);
+app.use('/projectdetail', projectdetail);
 
+/*
 db.serialize(function() {
 
     // insert
@@ -52,7 +68,7 @@ db.serialize(function() {
         }
     });
     */
-
+/*
     db.each("SELECT FirstName FROM Person", function(err, row) {
         rowid = row.FirstName;
         console.log("row.id : " + rowid);
@@ -88,7 +104,7 @@ db.serialize(function() {
 
 
 
-app.get('/',function(req,res){
+/*app.get('/',function(req,res){
     res.sendFile(path.join(__dirname+'/adminview.html'));
 });
 
@@ -99,7 +115,7 @@ app.get('/adminView',function(req,res){
 
 /**
 * fetching all projects for manager
-*/
+*//*
 app.get('/adminView/:idManager', function(req, res, next) {
 
     //res.render(projectDetail.html);
@@ -141,7 +157,7 @@ app.get('/adminView/:idManager', function(req, res, next) {
 
 /**
 * this for fetching specific project
-*/
+*//*
 app.get('/projectDetail/:idManager/:idProject', function(req, res, next) {
 
     //res.render(projectDetail.html);
@@ -189,7 +205,7 @@ app.get('/projectDetail/',function(req,res){
 
 app.get('/nodeAdmin',function(req,res){
     res.sendFile(path.join(__dirname+'/nodeAdmin.html'));
-});
+});*/
 
 
 
@@ -198,5 +214,3 @@ app.get('/nodeAdmin',function(req,res){
 app.listen(3000);
 
 console.log("Running at Port 3000");
-
-

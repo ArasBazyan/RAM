@@ -18,9 +18,14 @@
   },
   "homepage": "https://github.com/ArasBazyan/RAM#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "morgan": "^1.9.0",
     "mqtt": "^2.14.0",
+    "nodemon": "^1.12.1",
+    "serve-favicon": "^2.4.5",
     "sqlite3": "^3.1.13"
   }
 }
