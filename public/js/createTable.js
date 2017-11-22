@@ -1,50 +1,34 @@
-var arrayTablesData = [{"idProject":1,"ProjectName":"VC700",
+var arrayTablesData = [{"idProject":652,"ProjectName":"VC700",
 						"ProjectDescription":"This a platform for blabla bla ",
 						"Version":1,"VersionLocked":"No","idManager":700,
 						"dateStart":"01.12.2017","dateEnd":"01.12.2018",
 						"StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
-
 var isATag = true;
-
 var mapp = [];
 
-function adminViewTable(manager){
-	$.ajax({ url: 'http://localhost:3000/adminView/' + manager
-    	, type: 'GET'
-    	, dataType: 'html'
-	})
-    	.done(function(data) {
-
-
-    		console.log(manager);
-
-        	if(data === 'null'|| data === 'undefined')
-        		console.log("NOOOOO!");
-
-
-
-
-        	//console.log(Object.keys(data));
-        	mapp = JSON.parse(data);
-
-        	console.log(mapp);
-
-        	createTableHeader(['Project Name', 'Version', 'Status', 'Responsible Person', 'Delivery Date'], "myTable");
-          	insertTableData(5, mapp, isATag, "myTable");
-
-
-        	//  window.location.href = '/projectDetail.html/' + data.idManager + '/' + data.idProject;
-    	})
-    	.fail(function() {
-        	console.log("Something went wrong!");
-    	});
-
+function adminViewTable(manager) {
+	$.ajax({
+		url: 'http://localhost:3000/adminView/' + manager,
+		type: 'GET',
+		dataType: 'html'
+	}).done(function(data) {
+			console.log(manager);
+			if (data === 'null'|| data === 'undefined') {
+					console.log("NOOOOO!");
+			}
+			mapp = JSON.parse(data);
+			console.log(mapp);
+			createTableHeader(['Project Name', 'Version', 'Status', 'Responsible Person', 'Delivery Date'], "myTable");
+			insertTableData(5, mapp, isATag, "myTable");
+	}).fail(function() {
+			console.log("Something went wrong!");
+	});
 }
 /*
 jQuery.get('http://localhost:3000/projectDetail/700/1', function(data) {
-    console.log("Post resposne:");
-    console.dir(data);
-    mapp = data;
+		console.log("Post resposne:");
+		console.dir(data);
+		mapp = data;
 
 });*/
 
@@ -119,7 +103,6 @@ function clickAbleModal(text){
 	a.appendChild(text);
 	return(a);
 }
-
 
 //createTableHeader(['Project Id', 'Version', 'Caculation', 'Responsible Person', 'Delivery Date'], "myTable");
 //insertTableData(5, arrayTablesData, isATag, "myTable");

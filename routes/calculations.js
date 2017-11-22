@@ -13,7 +13,7 @@ router.get('/:id', function(req, res, next) {
   var db = new sqlite3.Database('./Volvo.db');
   db.serialize(function() {
         db.each("SELECT * FROM Project where idProject = " + req.params.id , (err, rows)=>{
-            if (err){
+            if (err) {
                 console.error(err);
                 //res.json("Error " : err);
             } else {
