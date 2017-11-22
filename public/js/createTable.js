@@ -1,10 +1,12 @@
-var arrayTablesData = [{"idProject":652,"ProjectName":"VC700",
-						"ProjectDescription":"This a platform for blabla bla ",
-						"Version":1,"VersionLocked":"No","idManager":700,
-						"dateStart":"01.12.2017","dateEnd":"01.12.2018",
-						"StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
+//var arrayTablesData = [{"idProject":652,"ProjectName":"VC700",
+//						"ProjectDescription":"This a platform for blabla bla ",
+//						"Version":1,"VersionLocked":"No","idManager":700,
+//						"dateStart":"01.12.2017","dateEnd":"01.12.2018",
+//						"StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
+
 var isATag = true;
 var mapp = [];
+
 
 function adminViewTable(manager) {
 	$.ajax({
@@ -19,7 +21,7 @@ function adminViewTable(manager) {
 			mapp = JSON.parse(data);
 			console.log(mapp);
 			createTableHeader(['Project Name', 'Version', 'Status', 'Responsible Person', 'Delivery Date'], "myTable");
-			insertTableData(5, mapp, isATag, "myTable");
+			insertTableData(3, mapp, isATag, "myTable");
 	}).fail(function() {
 			console.log("Something went wrong!");
 	});
