@@ -143,7 +143,7 @@
                         <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Project</a>
                     </li>
                     <li>
-                        <a data-toggle="modal" data-target="#createEmployee"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Employees</a>
+                        <a data-toggle="modal" data-target="#assignEmployeeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Employees</a>
                     </li>
 
                     <li>
@@ -154,7 +154,7 @@
                         <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Node</a>
                     </li>
                     <li>
-                        <a data-toggle="modal" data-target="#createRoot"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Root</a>
+                        <a data-toggle="modal" data-target="#createRootModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Root</a>
                     </li>
 
                 </ul>
@@ -207,127 +207,89 @@
     -->
 
 
+<!--Adding a form for assign Employee -->
 
+<div class="container-fluid text-center">
+    <div class="modal" id="assignEmployeeModal" data-easein="slideUpIn"
+         tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+        <div class="row">
 
-    <!--Adding a form for assign Employee
+            <div class="col-md-6 col-md-offset-3">
+                <form id="msform">
 
-              <div class="container-fluid text-center">
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
+                        <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                        <h2 class="fs-title">Assign Employee</h2>
+                        <br><br>
+                        <label>Employee Name</label>
+                        <input type="text" name="employeeName" placeholder="Enter a name"/>
+                        <br>
+                        <label>Employee CDSI</label>
+                        <input type="text" name="employeeCdsi" placeholder="Enter a CDSI"/>
+                        <br>
+                        <br><br><br>
 
-                  <div class="modal" id="createGroupModal" data-easein="slideUpIn"
-                       tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+                        <input type="button" name="save" class="previous action-button-previous" value="Save"/>
+                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
 
-                    <div class="row">
+                    </fieldset>
 
+                </form>
 
-
-                      <div class="col-md-6 col-md-offset-3">
-                          <form id="msform">
-
-                              <!-- fieldsets
-                              <fieldset>
-                                 <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">
-                                 <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
-                                  <br><br>
-                                  <h2 class="fs-title">Assign Employees</h2>
-                                  <br><br>
-                                  <label> Project Name </label>
-                                  <br>
-                                  <select id="projectNames" multiple="multiple">
-                                      <option >Project1</option>
-                                      <option >Project2</option>
-                                      <option >Project3</option>
-                                      <option >Project4</option>
-                                      <option >Project5</option>
-                                      <option >Project6</option>
-                                      <option >Project7</option>
-
-                                  </select>
-                                  <br><br><br>
-                                  <label for="selectEmployee">Employee Name</label>
-                                  <select class="form-control" id="selectEmployee">
-                                      <option>Employee1</option>
-                                      <option>Employee2</option>
-                                      <option>Employee3</option>
-                                      <option>Employee4</option>
-                                      <option>Employee5</option>
-                                  </select>
-                                  <br><br><br>
-                                  <!--this part will be automaticaly updated when the employee is selected
-                                  <label for="selectEmployee">Employee CDSID</label>
-                                  <select class="form-control" id="cdsid">
-                                      <option>Employee1CDSID</option>
-                                      <option>Employee2CDSID</option>
-                                      <option>Employee3CDSID</option>
-                                      <option>Employee4CDSID</option>
-                                      <option>Employee5CDSID</option>
-                                  </select>
-                                  <br><br><br>
-
-
-                                  <input type="button" name="save" class="previous action-button-previous" value="Save"/>
-                                  <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-
-                              </fieldset>
-
-                          </form>
-
-                      </div>
-                    </div>
-                   </div>
-
-              </div>
-              <!-- End of assign employee-->
-
-    <!--
-    <script type="text/javascript">
-        function close(){
-            window.close();
-        }
-    </script>
-
-
-    <!--Create root-->
-
-    <div class="container-fluid text-center">
-
-        <div class="modal" id="createGroupModal" data-easein="slideUpIn"
-             tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
-
-            <div class="row">
-
-
-
-                <div class="col-md-6 col-md-offset-3">
-                    <form id="msform">
-
-                        <!-- fieldsets -->
-                        <fieldset>
-                            <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
-                            <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
-                            <br><br>
-                            <h2 class="fs-title">Create Root</h2>
-                            <br><br>
-                            <label> Root Name </label>
-                            <br>
-                            <input type="text" name="rname" placeholder="Root Name"/>
-                            <br>
-                            <input type="button" name="save" class="previous action-button-previous" value="Save"/>
-                            <input type="submit" name="submit" class="submit action-button" value="Submit"/>
-
-                        </fieldset>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 
+</div>
+<!-- End of assign employee-->
+
+<script type="text/javascript">
+    function close(){
+        window.close();
+    }
+</script>
+
+<!--Create root-->
+
+<div class="container-fluid text-center">
+
+    <div class="modal" id="createRootModal" data-easein="slideUpIn"
+         tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+
+        <div class="row">
 
 
-    <!--End of create root -->
+
+            <div class="col-md-6 col-md-offset-3">
+                <form id="msform">
+
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
+                        <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                        <br><br>
+                        <h2 class="fs-title">Create Root</h2>
+                        <br><br>
+                        <label> Root Name </label>
+                        <br>
+                        <input type="text" name="rootname" placeholder="Enter a name for the root"/>
+                        <br>
+                        <textarea class="form-control" id="RootDescription" rows="6" placeholder="add root description" ></textarea>
+                        <input type="button" name="save" class="previous action-button-previous" value="Save"/>
+                        <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-
+<!--End of create root -->
 
 
 
