@@ -1,4 +1,5 @@
 # must include this file
+node_modules/
 
 # For those using JetBrains IDEs
 .idea
