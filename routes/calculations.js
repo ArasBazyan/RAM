@@ -16,7 +16,7 @@ router.get('/:id', function(req, res, next) {
             if (err) {
                 console.error(err);
                 //res.json("Error " : err);
-            } else {
+            }else {
                 console.log('\n ÄGG' + JSON.stringify(rows));
                 res.render('calculationView', {
                     output: req.params.id,
