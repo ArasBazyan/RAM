@@ -205,7 +205,47 @@ app.get('/projectDetail/',function(req,res){
 
 app.get('/nodeAdmin',function(req,res){
     res.sendFile(path.join(__dirname+'/nodeAdmin.html'));
-});*/
+});
+//Posting
+app.post('/createRootModal', function (req,res){
+   var fromFrontEnd=req.body;
+   var data=[];
+   for (var i=0;i<fromFrontEnd.length;i++){
+        data.push([fromFrontEnd[i].rootName,fromFrontEnd[i].rootDescription]);
+   }
+
+//Insert the array int other
+db.each("INSERT INTO Organization (idOrganization, OrganizationName, idParentOrganization)"
+       + "VALUES ('00','VC700','3')", function(err, rows) {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Success");
+        }
+    });
+
+//Posting Employee
+app.post('/createEmployeeModal', function (req,res){
+   var fromFrontEnd=req.body;
+   var data=[];
+   for (var i=0;i<fromFrontEnd.length;i++){
+        data.push([fromFrontEnd[i].employeeName,fromFrontEnd[i].employeeCDSI]);
+   }
+
+//Insert the array int other
+db.each("INSERT INTO Person (idPerson, FirstName, LastName, idRoleType, idOrganization)"
+       + "VALUES ('?','?','?','?', '?')", function(err, rows) {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("Success");
+        }
+    });
+
+
+
+}
+*/
 
 
 

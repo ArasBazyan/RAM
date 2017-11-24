@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-
-
     <meta charset="UTF-8">
     <title>{{ title }}</title>
 
@@ -50,7 +47,7 @@
                           </li>
 
                           <li>
-                              <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Employee</a>
+                              <a data-toggle="modal" data-target="#createEmployeeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Employee</a>
                           </li>
 
                           <li>
@@ -92,8 +89,6 @@
 
           <div class="row">
 
-
-
               <div class="col-md-6 col-md-offset-3">
                   <form id="msform">
 
@@ -106,7 +101,7 @@
                           <br><br>
                           <label> Root Name </label>
                           <br>
-                          <input type="text" name="rootname" placeholder="Enter a name for the root"/>
+                          <input type="text" id="rootName" name="rootname" placeholder="Enter a name for the root"/>
                           <br>
                           <textarea class="form-control" id="RootDescription" rows="6" placeholder="add root description" ></textarea>
                           <input type="button" name="save" class="previous action-button-previous" value="Save"/>
@@ -121,12 +116,9 @@
   <!--End of create root -->
 
 
-
-
-
   <!--Adding a form for assign Employee -->
   <div class="container-fluid text-center">
-      <div class="modal" id="assignEmployeeModal" data-easein="slideUpIn"
+      <div class="modal" id="createEmployeeModal" data-easein="slideUpIn"
            tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
           <div class="row">
 
@@ -163,18 +155,12 @@
 
 
 
-
-
-
-
-
-
   <!-- Add new project section -->
 
   <div class="container-fluid text-center">
       <!--Modal for adding additional subnodes to current node-->
       <div class="modal" id="createProjectModal" data-easein="slideUpIn"
-           tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+           tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
 
       <div class="row">
           <div class="col-md-6 col-md-offset-3">
@@ -268,12 +254,6 @@
   </div>
   <!-- end of create project -->
 
-
-
-
-
-
-
   <!-- Create Node  -->
   <!--Modal for adding additional subnodes to current node-->
   <div class="modal" id="createNodeModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
@@ -353,9 +333,6 @@
 
 
   <script>
-
-
-
 
       //jQuery time
       var current_fs, next_fs, previous_fs; //fieldsets
@@ -632,9 +609,8 @@
 
 
       });  // end of document ready
-
-
   </script>
+
 
 </body>
 </html>
