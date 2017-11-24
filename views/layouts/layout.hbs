@@ -1,12 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+
+
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    {{{ head }}}
+
 </head>
 <body>
-
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
           <div class="container-fluid">
               <div class="navbar-header">
@@ -14,6 +20,9 @@
                   </button>
                   <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
               </div>
+              <a  href="http://www.volvo.com" >
+                  <img style="position:absolute; left:50%; "  src="/img/Volvo-logo.png" class="img-circle" alt="userImage" width="50" height="50">
+              </a>
               <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav navbar-right">
                       <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
@@ -30,26 +39,42 @@
                   <div id="sidebar-wrapper">
                       <ul class="sidebar-nav">
                           <li class="sidebar-brand">
-                              <br>
+                             <br>
                           </li>
+
                           <li class="sidebar-brand">
-                              <a class="navbar-brand">
-                                  <span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Shortcuts
-                              </a>
+                                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  Organization
                           </li>
                           <li>
-                              <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Create Project</a>
-                          </li>
-                          <li>
-                              <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Assign Employees</a>
+                              <a href="#" data-toggle="modal" data-target="#createRootModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Root</a>
                           </li>
 
                           <li>
-                              <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Calculation</a>
+                              <a data-toggle="modal" data-target="#createGroupModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Employee</a>
                           </li>
 
                           <li>
-                              <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Create Node</a>
+                              <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Child</a>
+                          </li>
+
+                          <li>
+                              <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Assign Child</a>
+                          <br>
+                          </li>
+
+                          <li class="sidebar-brand">
+
+                                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  Project Tree
+
+                          </li>
+                          <li>
+                              <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Project</a>
+                          </li>
+                          <li>
+                              <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Calculation</a>
+                          </li>
+                          <li>
+                              <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Node</a>
                           </li>
                       </ul>
                   </div>
@@ -57,12 +82,559 @@
               </div>
           </div>
           <!-- /#wrapper -->
-          <script>
-              $("#menu-toggle").click(function(e) {
-                  e.preventDefault();
-                  $("#wrapper").toggleClass("toggled");
+
+
+  <!--Create root-->
+  <div class="container-fluid text-center">
+
+      <div class="modal" id="createRootModal" data-easein="slideUpIn"
+           tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+
+          <div class="row">
+
+
+
+              <div class="col-md-6 col-md-offset-3">
+                  <form id="msform">
+
+                      <!-- fieldsets -->
+                      <fieldset>
+                          <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
+                          <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                          <br><br>
+                          <h2 class="fs-title">Create Root</h2>
+                          <br><br>
+                          <label> Root Name </label>
+                          <br>
+                          <input type="text" name="rootname" placeholder="Enter a name for the root"/>
+                          <br>
+                          <textarea class="form-control" id="RootDescription" rows="6" placeholder="add root description" ></textarea>
+                          <input type="button" name="save" class="previous action-button-previous" value="Save"/>
+                          <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+
+                      </fieldset>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--End of create root -->
+
+
+
+
+
+  <!--Adding a form for assign Employee -->
+  <div class="container-fluid text-center">
+      <div class="modal" id="assignEmployeeModal" data-easein="slideUpIn"
+           tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+          <div class="row">
+
+              <div class="col-md-6 col-md-offset-3">
+                  <form id="msform">
+
+                      <!-- fieldsets -->
+                      <fieldset>
+                          <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
+                          <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                          <h2 class="fs-title">Assign Employee</h2>
+                          <br><br>
+                          <label>Employee Name</label>
+                          <input type="text" name="employeeName" placeholder="Enter a name"/>
+                          <br>
+                          <label>Employee CDSI</label>
+                          <input type="text" name="employeeCdsi" placeholder="Enter a CDSI"/>
+                          <br>
+                          <br><br><br>
+
+                          <input type="button" name="save" class="previous action-button-previous" value="Save"/>
+                          <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+
+                      </fieldset>
+
+                  </form>
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+  <!-- End of assign employee-->
+
+
+
+
+
+
+
+
+
+  <!-- Add new project section -->
+
+  <div class="container-fluid text-center">
+      <!--Modal for adding additional subnodes to current node-->
+      <div class="modal" id="createProjectModal" data-easein="slideUpIn"
+           tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+
+      <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+              <form id="msform">
+
+                  <!-- fieldsets -->
+                  <fieldset>
+                      <h2 class="fs-title">Create a New Project</h2>
+                      <h3 class="fs-subtitle">Project Details</h3>
+                      <input type="text" id="projectName" placeholder="Project Name"/>
+                      <input id="selectSOP" type="text" name="selectSOP" placeholder="Start of Production (SOP)"/>
+                      <textarea class="form-control" id="projectDescription" rows="6" placeholder="Project Description" ></textarea>
+
+                      <input id="nextButton" type="button" name="next" class="next action-button" value="Next"/>
+                  </fieldset>
+                  <fieldset>
+                      <h2 class="fs-title">Create a New Project</h2>
+                      <h3 class="fs-subtitle">Project Details</h3>
+
+                      <label>Calculation Deadlines</label>
+                      <input id="calcDeadline" type="text" name="calcDeadline" placeholder="Calculation Deadlines"/>
+
+
+
+                      <div class="form-group">
+                          <label for="exampleInputFile"> <br>Attach File</label>
+                          <input type="file" class="form-control-file" id="exampleInputFile"
+                                 aria-describedby="fileHelp">
+                          <small id="fileHelp" class="form-text text-muted"
+                          >Allowed files: Word, Excel, PowerPoint, PDF</small>
+                      </div>
+
+                      <label>Affected Teams</label>
+                      <select id="affectedTeams" multiple="multiple">
+                          <option >527</option>
+                          <option >546</option>
+                          <option >576</option>
+                          <option >527</option>
+                          <option >507</option>
+                          <option >586</option>
+                      </select>
+                      <br>
+                      <br>
+
+                      <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                      <input type="button" name="next" class="next action-button" value="Next"/>
+                  </fieldset>
+                  <fieldset>
+                      <h2 class="fs-title">Create a New Project</h2>
+                      <h3 class="fs-subtitle">Project Details</h3>
+
+
+                      <label>Project Milestones</label>
+                      <br><br>
+                      <label> Build Series</label>
+                      <br>
+                      <select id="buildSeries" multiple="multiple">
+                          <option >X0</option>
+                          <option >X1</option>
+                          <option >SM</option>
+                          <option >VP</option>
+                          <option >TT</option>
+                          <option >PP</option>
+                          <option >SOP</option>
+                      </select>
+
+                      <br><br><br>
+
+                      <label> SW Milestones</label>
+                      <br>
+                      <select id="SWMilestones" multiple="multiple">
+                          <option >E0</option>
+                          <option >E1</option>
+                          <option >E2</option>
+                          <option >E3</option>
+                          <option >E4</option>
+                          <option >R00</option>
+                          <option >R05</option>
+
+                      </select>
+
+
+                      <br><br>
+                      <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                      <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                  </fieldset>
+              </form>
+
+          </div>
+      </div>
+  </div>
+  <!-- end of create project -->
+
+
+
+
+
+
+
+  <!-- Create Node  -->
+  <!--Modal for adding additional subnodes to current node-->
+  <div class="modal" id="createNodeModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+       aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Create Node</h4>
+              </div>
+
+              <div class="modal-body">
+                  <form>
+                      <div class="form-group">
+                          <label for="inputNodeName">Node Name</label>
+                          <input class="form-control" placeholder="Node name" type="text" id="inputNodeName">
+                      </div>
+                      <div class="form-group">
+                          <label for="inputNodeDesc">Node Description</label>
+                          <textarea class="form-control" rows="1" placeholder="Node description" type="text" id="inputNodeDesc"></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputNodeType">Select Node Type</label>
+                          <select class="form-control" id="sel1">
+                              <option>Node type 1</option>
+                              <option>Node type 2</option>
+                              <option>Node type 3</option>
+                              <option>Node type 4</option>
+                          </select>
+                          <br>
+                          <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#createNodeCollapse">Create Type</button>
+                          <div class="collapse" id="createNodeCollapse">
+                              <form>
+                                  <div class="form-group">
+                                      <br>
+                                      <label for="inputNodeName">Type Name</label>
+                                      <input class="form-control" placeholder="Type name" type="text" id="inputNodeName">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="inputNodeDesc">Type Description</label>
+                                      <textarea class="form-control" rows="1" placeholder="Type description" type="text" id="inputNodeDesc"></textarea>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="inputNodePerson">Add people to node</label>
+                          <select multiple class="form-control" id="sel1">
+                              <option>Person 1</option>
+                              <option>Person 2</option>
+                              <option>Person 3</option>
+                              <option>Person 4</option>
+                              <option>Person 5</option>
+                              <option>Person 6</option>
+                              <option>Person 7</option>
+                              <option>Person 8</option>
+                              <option>Person 9</option>
+                              <option>Person 10</option>
+                              <option>Person 11</option>
+                              <option>Person 12</option>
+                          </select>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-primary" data-dismiss="modal">Save</button>
+                  <!--TODO: Add a function that saves data to DB from form-->
+                  <button class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- end of create node -->
+
+
+  {{{ body }}}
+
+
+  <script>
+
+
+
+
+      //jQuery time
+      var current_fs, next_fs, previous_fs; //fieldsets
+      var left, opacity, scale; //fieldset properties which we will animate
+      var animating; //flag to prevent quick multi-click glitches
+      var selectedGroups = [];
+
+
+      function close(){
+          window.close();
+      }
+
+      $(document).ready(function() {
+
+
+          $("#menu-toggle").click(function(e) {
+              e.preventDefault();
+              $("#wrapper").toggleClass("toggled");
+          });
+
+
+          $('#affectedTeams').multiselect({
+              selectAllValue: 'multiselect-all',
+              includeSelectAllOption: true,
+
+              numberDisplayed: 3,
+              buttonWidth: '300px',
+              onChange: function(element, checked) {
+                  var brands = $('#affectedTeams option:selected');
+                  var selected = [];
+                  $(brands).each(function(index, brand){
+                      selected.push($(this).val());
+                  });
+
+
+                  console.log("selected teams " + selected);
+
+                  selectedGroups = selected;
+              },
+              onSelectAll: function() {
+                  alert('You selected all available teams!');
+                  var brands = $('#affectedTeams option:selected');
+                  var selected = [];
+                  $(brands).each(function(index, brand){
+                      selected.push($(this).val());
+                  });
+
+                  console.log("selected teams " + selected);
+
+              }
+          });
+
+
+
+          // Buildseries Milestones
+          $('#buildSeries').multiselect({
+              selectAllValue: 'multiselect-all',
+              includeSelectAllOption: true,
+
+              numberDisplayed: 3,
+              buttonWidth: '200px',
+              onChange: function(element, checked) {
+                  var brands = $('#buildSeries option:selected');
+                  var selected = [];
+                  $(brands).each(function(index, brand){
+                      selected.push($(this).val());
+                  });
+
+
+                  console.log("selected teams " + selected);
+
+                  selectedGroups = selected;
+              },
+              onSelectAll: function() {
+                  alert('You selected all available teams!');
+                  var brands = $('#buildSeries option:selected');
+                  var selected = [];
+                  $(brands).each(function(index, brand){
+                      selected.push($(this).val());
+                  });
+
+                  console.log("selected teams " + selected);
+
+              }
+          });
+
+
+
+          // SW Milestones
+
+          $('#SWMilestones').multiselect({
+              selectAllValue: 'multiselect-all',
+              includeSelectAllOption: true,
+
+              numberDisplayed: 3,
+              buttonWidth: '200px',
+              onChange: function(element, checked) {
+                  var brands = $('#SWMilestones option:selected');
+                  var selected = [];
+                  $(brands).each(function(index, brand){
+                      selected.push($(this).val());
+                  });
+
+
+                  console.log("selected teams " + selected);
+
+                  selectedGroups = selected;
+              },
+              onSelectAll: function() {
+                  alert('You selected all available teams!');
+                  var brands = $('#SWMilestones option:selected');
+                  var selected = [];
+                  $(brands).each(function(index, brand){
+                      selected.push($(this).val());
+                  });
+
+                  console.log("selected teams " + selected);
+
+              }
+          });
+
+          $(function() {
+
+
+              $("#selectSOP").datepicker({
+                  showAnim:'fadeIn',
+                  changeMonth: true,
+                  changeYear: true,
+                  showWeek: true,
+                  firstDay: 1
               });
-          </script>
-    {{{ body }}}
+
+              $(function() {
+
+                  $("#selectSOP").datepicker("option", "onSelect",
+                          function(value, date)
+                          { var week=$.datepicker.iso8601Week (
+                                  new Date(date.selectedYear,
+                                          date.selectedMonth,
+                                          date.selectedDay));
+                              $(this).val(date.selectedYear+'-'+(week<10?'0':'')+week);
+
+                          }
+                  );
+
+              });
+          });
+
+
+
+          // Calc deadline datepicker
+          $(function() {
+              $("#calcDeadline").datepicker({
+                  showAnim:'fadeIn',
+                  changeMonth: true,
+                  changeYear: true,
+                  showWeek: true,
+                  firstDay: 1
+              });
+
+              $(function() {
+
+                  $("#calcDeadline").datepicker("option", "onSelect",
+                          function(value, date)
+                          { var week=$.datepicker.iso8601Week (
+                                  new Date(date.selectedYear,
+                                          date.selectedMonth,
+                                          date.selectedDay));
+                              $(this).val(date.selectedYear+'-'+(week<10?'0':'')+week);
+
+                          }
+                  );
+
+              });
+          });
+
+
+
+
+
+          $(".next").click(function(){
+              //alert("hhhh");
+              if(animating) return false;
+              animating = true;
+
+              current_fs = $(this).parent();
+              next_fs = $(this).parent().next();
+
+              //show the next fieldset
+              next_fs.show();
+              //hide the current fieldset with style
+              current_fs.animate({opacity: 0}, {
+                  step: function(now, mx) {
+                      //as the opacity of current_fs reduces to 0 - stored in "now"
+                      //1. scale current_fs down to 80%
+                      scale = 1 - (1 - now) * 0.2;
+                      //2. bring next_fs from the right(50%)
+                      left = (now * 50)+"%";
+                      //3. increase opacity of next_fs to 1 as it moves in
+                      opacity = 1 - now;
+                      current_fs.css({
+                          'transform': 'scale('+scale+')',
+                          'position': 'absolute'
+                      });
+                      next_fs.css({'left': left, 'opacity': opacity});
+                  },
+                  duration: 500,
+                  complete: function(){
+                      current_fs.hide();
+                      animating = false;
+                  },
+                  //this comes from the custom easing plugin
+                  easing: 'easeInOutBack'
+              });
+          });
+
+          $(".previous").click(function(){
+              if(animating) return false;
+              animating = true;
+
+              current_fs = $(this).parent();
+              previous_fs = $(this).parent().prev();
+
+              //de-activate current step on progressbar
+              $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+              //show the previous fieldset
+              previous_fs.show();
+              //hide the current fieldset with style
+              current_fs.animate({opacity: 0}, {
+                  step: function(now, mx) {
+                      //as the opacity of current_fs reduces to 0 - stored in "now"
+                      //1. scale previous_fs from 80% to 100%
+                      scale = 0.8 + (1 - now) * 0.2;
+                      //2. take current_fs to the right(50%) - from 0%
+                      left = ((1-now) * 50)+"%";
+                      //3. increase opacity of previous_fs to 1 as it moves in
+                      opacity = 1 - now;
+                      current_fs.css({'left': left});
+                      previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+                  },
+                  duration: 500,
+                  complete: function(){
+                      current_fs.hide();
+                      animating = false;
+                  },
+                  //this comes from the custom easing plugin
+                  easing: 'easeInOutBack'
+              });
+          });
+
+          $(".submit").click(function(){
+
+              var projname = $("#projectName").val();
+              var sop = $( "#selectSOP").val();
+              var projectDescription = $( "#projectDescription").val();
+              var calcDeadline = $( "#calcDeadline").val();
+              selectedGroups
+
+              insertProject(projname,projectDescription,  sop, calcDeadline);
+
+              console.log("MAGIC HAPPENS HERE!" + projname + sop + projectDescription  + calcDeadline + selectedGroups);
+              return false;
+          })
+
+
+          // Modals
+          $(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");
+              "shake"==o?$(".modal-dialog").velocity("callout."+o):"pulse"==o?$(".modal-dialog").velocity("callout."+o):
+                      "tada"==o?$(".modal-dialog").velocity("callout."+o):"flash"==o?$(".modal-dialog").
+                      velocity("callout."+o):"bounce"==o?$(".modal-dialog").velocity("callout."+o):
+                              "swing"==o?$(".modal-dialog").velocity("callout."+o):$(".modal-dialog").
+                              velocity("transition."+o)})});
+
+
+      });  // end of document ready
+
+
+  </script>
+
 </body>
 </html>
