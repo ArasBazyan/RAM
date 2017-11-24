@@ -592,9 +592,26 @@
               var calcDeadline = $( "#calcDeadline").val();
               selectedGroups
 
-              insertProject(projname,projectDescription,  sop, calcDeadline);
+              var data = {};
+              data.projname = projname;
+              data.sop = sop;
+              data.projectDescription = projectDescription;
+              data.calcDeadline = calcDeadline;
+              data.selectedGroups = selectedGroups;
 
-              console.log("MAGIC HAPPENS HERE!" + projname + sop + projectDescription  + calcDeadline + selectedGroups);
+              $.ajax({
+                  type: 'POST',
+                  data: JSON.stringify(data),
+                  contentType: 'application/json',
+                  url: 'http://localhost:3000/createProject',
+                  success: function(data) {
+                      console.log('success');
+                      console.log(JSON.stringify(data));
+                  }
+              });
+
+              console.log(JSON.stringify(data));
+              console.log("MAGIC HAPPENS HERE! " + projname + sop + projectDescription  + calcDeadline + selectedGroups);
               return false;
           })
 
