@@ -6,9 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('adminview');
 });
 
-/*router.get('/node', function(req, res, next) {
-  res.render('nodeAdmin');
-});*/
 
 
 module.exports = router;
