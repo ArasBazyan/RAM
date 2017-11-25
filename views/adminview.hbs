@@ -28,9 +28,14 @@
         Emieli
     </button>
 
+<h4 id="pname"> ManagerID {{ data.idPerson }}</h4><br>
+
     <table id="myTable" class="table table-striped table-bordered sortable" cellspacing="0" width="100%">
         <script>
-          adminViewTable(localStorage.getItem("userID"));
+
+          //adminViewTable(localStorage.getItem("userID"));
+          adminViewTable( {{ data.idPerson }});
+
         </script>
     </table><br>
 

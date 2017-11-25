@@ -3,6 +3,11 @@ var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
 
 
+
+router.get('/favicon.ico', function(req, res) {
+    res.status(204);
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('adminview');
@@ -14,6 +19,55 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
     db.serialize(function() {
+        db.each("SELECT * FROM Person where idPerson = " + req.params.id , (err, rows)=>{
+            if (err){
+                console.error(err);
+                //res.json("Error " : err);
+            } else {
+                console.log('\n Cheese' + JSON.stringify(rows));
+                res.render('adminview', {
+                    output: req.params.id,
+                    data: rows
+                });
+
+            }
+        });
+    });
+    db.close();
+});
+
+
+
+
+
+
+/*
+
+router.get('/:id', function(req, res, next) {
+    var db = new sqlite3.Database('./Volvo.db');
+    db.serialize(function () {
+
+        db.all("SELECT Project.ProjectName, Project.Version, Project.ProjectComments, Person.FirstName, Project.dateEnd FROM Project "
+            + "INNER JOIN Person ON Project.idManager = Person.idPerson "
+            + "WHERE idManager = ?", [req.params.id], function (err, rows) {
+            // If error
+            if (err) {
+                console.error(err);
+                res.status(500);    // Server Error
+                res.json({"error": err});
+            }
+            else {
+                console.log("!! " + rows)
+                console.log('\n ÄGG' + JSON.stringify(rows));
+                res.render('adminview', {
+                    output: req.params.id,
+                    data: rows
+                });
+
+            }
+        });
+    });
+        /*
         db.each("SELECT idPerson FROM Person where idPerson = " + req.params.id , (err, rows)=>{
             if (err){
                 console.error(err);
@@ -27,9 +81,11 @@ router.get('/:id', function(req, res, next) {
             }
         });
     });
-    db.close();
-});
 
+        db.close();
+    });
+
+*/
 
 router.post('/:idManager/addproject', function(req, res, next){
     var projname = req.body.projectname;
