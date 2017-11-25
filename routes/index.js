@@ -15,14 +15,13 @@ router.get('/', function(req, res, next) {
 
 
 
-
+// Route to AdminView, based on Person. Maybe idManager?
 router.get('/:id', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
     db.serialize(function() {
         db.each("SELECT * FROM Person where idPerson = " + req.params.id , (err, rows)=>{
             if (err){
                 console.error(err);
-                //res.json("Error " : err);
             } else {
                 console.log('\n Cheese' + JSON.stringify(rows));
                 res.render('adminview', {
@@ -39,54 +38,7 @@ router.get('/:id', function(req, res, next) {
 
 
 
-
-
-/*
-
-router.get('/:id', function(req, res, next) {
-    var db = new sqlite3.Database('./Volvo.db');
-    db.serialize(function () {
-
-        db.all("SELECT Project.ProjectName, Project.Version, Project.ProjectComments, Person.FirstName, Project.dateEnd FROM Project "
-            + "INNER JOIN Person ON Project.idManager = Person.idPerson "
-            + "WHERE idManager = ?", [req.params.id], function (err, rows) {
-            // If error
-            if (err) {
-                console.error(err);
-                res.status(500);    // Server Error
-                res.json({"error": err});
-            }
-            else {
-                console.log("!! " + rows)
-                console.log('\n ÄGG' + JSON.stringify(rows));
-                res.render('adminview', {
-                    output: req.params.id,
-                    data: rows
-                });
-
-            }
-        });
-    });
-        /*
-        db.each("SELECT idPerson FROM Person where idPerson = " + req.params.id , (err, rows)=>{
-            if (err){
-                console.error(err);
-            } else {
-                console.log('\n banana' + JSON.stringify(rows));
-                res.render('adminview', {
-                    output: req.params.id,
-                    data: rows
-                });
-
-            }
-        });
-    });
-
-        db.close();
-    });
-
-*/
-
+//This route maybe, later?
 router.post('/:idManager/addproject', function(req, res, next){
     var projname = req.body.projectname;
     var sop = req.body.startofproduction;
@@ -97,27 +49,11 @@ router.post('/:idManager/addproject', function(req, res, next){
 
     console.log('All data: ' + JSON.stringify(req.body));
     console.log('pname: ' + projname);
-    /*
-    var db = new sqlite3.Database('./Volvo.db');
-
-    db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription) VALUES (?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription], function(err){
-        if (err){
-            console.log(nodeDescription + " " + nodeType + " " + nodeManager + " " + parentId + " " + projectId);
-            console.log("error in node.js");
-            return console.log(err.message);
-        } else {
-            console.log('A row has been inserted with rowid ${this.lastID}');
-        }
-    });
-
-    db.close();
-
-    res.redirect('/node/' + parentId);
-    */
 });
 
 
 
+//POST Create Project
 router.post('/createProject', function(req, res){
     var pname = req.body.projname;
     var pdescription = req.body.projectDescription;
@@ -138,7 +74,7 @@ router.post('/createProject', function(req, res){
     db.run(`INSERT INTO Project (ProjectName, ProjectDescription, Version, VersionLocked, idManager, dateEnd, StartofProduction)
             VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, 1,calcdeadline, sop], function(err) {
       if (err){
-        console.log("errrr: "+ pname + " " + pdescription + " " + calcdeadline + " " + sop);
+        console.log("error: "+ pname + " " + pdescription + " " + calcdeadline + " " + sop);
         console.log("error in node.js");
         return console.log(err.message);
     } else {
@@ -147,8 +83,6 @@ router.post('/createProject', function(req, res){
     });
 
     db.close();
-
-
 
     res.redirect('/');
 

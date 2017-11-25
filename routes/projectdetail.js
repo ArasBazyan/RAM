@@ -17,7 +17,7 @@ router.get('/:id', function(req, res, next) {
                 console.error(err);
                 //res.json("Error " : err);
             } else {
-                console.log('\n ÄGG' + JSON.stringify(rows));
+                console.log('\n Pizza' + JSON.stringify(rows));
                 res.render('projectDetail', {
                     output: req.params.id,
                     data: rows
