@@ -92,7 +92,7 @@ router.post('/createProject', function(req, res){
 
 //Creating Root
 
-router.post('/createRootModal', function(req, res){
+router.post('/createRoot', function(req, res){
     //var data = req.body;
     var rootName = req.body.rootName;
     var rootDescription = req.body.rootDescription;
@@ -122,7 +122,7 @@ router.post('/createRootModal', function(req, res){
 
 //Creating Employee
 
-router.post('/createEmployeeModal', function(req, res){
+router.post('/createEmployee', function(req, res){
     //var data = req.body;
     var employeeName = req.body.rootName;
     var employeeLastName = req.body.rootDescription;

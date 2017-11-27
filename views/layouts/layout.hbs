@@ -105,7 +105,7 @@
                           <br>
                           <textarea class="form-control" id="RootDescription" rows="6" placeholder="add root description" ></textarea>
                           <input type="button" name="save" class="previous action-button-previous" value="Save"/>
-                          <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                          <input type="submit" name="submit" class="rootSubmit action-button" value="Submit"/>
 
                       </fieldset>
                   </form>
@@ -143,7 +143,7 @@
                           <br><br><br>
 
                           <input type="button" name="save" class="previous action-button-previous" value="Save"/>
-                          <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                          <input type="submit" name="submit" class="employeeSubmit action-button" value="Submit"/>
 
                       </fieldset>
 
@@ -248,7 +248,7 @@
 
                       <br><br>
                       <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                      <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                      <input type="submit" name="submit" class="projectSubmit action-button" value="Submit"/>
                   </fieldset>
               </form>
 
@@ -587,7 +587,7 @@
               });
           });
 
-          $(".submit").click(function(){
+          $(".projectSubmit").click(function(){
 
               var projname = $("#projectName").val();
               var sop = $( "#selectSOP").val();
@@ -609,7 +609,7 @@
                   url: 'http://localhost:3000/createProject',
                   success: function(data) {
                       console.log('success');
-                      console.log(JSON.stringify(data));
+                      //console.log(JSON.stringify(data));
                   }
               });
 
@@ -636,7 +636,7 @@
        *
        */-->
       <script>
-          $(".submit").click(function(){
+          $(".rootSubmit").click(function(){
 
               var rootName = $("#rootName").val();
               var rootDescription = $( "#rootDescription").val();
@@ -652,7 +652,7 @@
                   url: 'http://localhost:3000/createRoot',
                   success: function(Ffn) {
                       console.log('success');
-                      console.log(JSON.stringify(Ffn));
+                      //console.log(JSON.stringify(Ffn));
                   }
               });
 
@@ -669,7 +669,7 @@
       *
       */-->
       <script>
-          $(".submit").click(function(){
+          $(".employeeSubmit").click(function(){
 
               var employeeName = $("#employeeNameName").val();
               var employeeLastName = $( "#employeeLastName").val();
@@ -690,7 +690,7 @@
                   url: 'http://localhost:3000/createEmployee',
                   success: function(Ffn) {
                       console.log('success');
-                      console.log(JSON.stringify(Ffn));
+                      //console.log(JSON.stringify(Ffn));
                   }
               });
 
