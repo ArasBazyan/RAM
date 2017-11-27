@@ -132,10 +132,13 @@
                           <h2 class="fs-title">Assign Employee</h2>
                           <br><br>
                           <label>Employee Name</label>
-                          <input type="text" name="employeeName" placeholder="Enter a name"/>
+                          <input type="text" id="employeeName" name="employeeName" placeholder="Enter a name"/>
+                          <br>
+                          <label>Employee Lastname</label>
+                          <input type="text" id="employeeLastName" name="employeeLastName" placeholder="Enter a name"/>
                           <br>
                           <label>Employee CDSI</label>
-                          <input type="text" name="employeeCdsi" placeholder="Enter a CDSI"/>
+                          <input type="text" id="employeeCdsi" name="employeeCdsi" placeholder="Enter a CDSI"/>
                           <br>
                           <br><br><br>
 
@@ -628,6 +631,78 @@
       });  // end of document ready
   </script>
 
+      <!--/*
+       * Script for createRoot (Organization)
+       *
+       */-->
+      <script>
+          $(".submit").click(function(){
 
-</body>
+              var rootName = $("#rootName").val();
+              var rootDescription = $( "#rootDescription").val();
+
+              var Ffn = {};
+              Ffn.rootName = rootName;
+              Ffn.rootDescription = rootDescription;
+
+              $.ajax({
+                  type: 'POST',
+                  data: JSON.stringify(Ffn),
+                  contentType: 'application/json',
+                  url: 'http://localhost:3000/createRoot',
+                  success: function(Ffn) {
+                      console.log('success');
+                      console.log(JSON.stringify(Ffn));
+                  }
+              });
+
+              console.log(JSON.stringify(Ffn));
+              console.log(rootName + rootDescription);
+              return false;
+          })
+
+          </script>
+
+
+      <!--
+      * Script for CreateEmployee (Organization)
+      *
+      */-->
+      <script>
+          $(".submit").click(function(){
+
+              var employeeName = $("#employeeNameName").val();
+              var employeeLastName = $( "#employeeLastName").val();
+              var employeeCdsi=  $( "#employeeCdsi").val();
+              //var employeeRoleType= $( "#employeeRoleType").val();
+              //var employeeOrg= $( "#employeeOrg").val();
+              var Ffn = {};
+              Ffn.employeeName = employeeName;
+              Ffn.employeeLastname = employeeLastName;
+              Ffn.employeeCdsi= employeeCdsi;
+              //Fnf.employeeRoleType= employeeRoleType;
+              //Fnf.employeeOrg= employeeOrg;
+
+              $.ajax({
+                  type: 'POST',
+                  data: JSON.stringify(Ffn),
+                  contentType: 'application/json',
+                  url: 'http://localhost:3000/createEmployee',
+                  success: function(Ffn) {
+                      console.log('success');
+                      console.log(JSON.stringify(Ffn));
+                  }
+              });
+
+              console.log(JSON.stringify(Ffn));
+              console.log(employeeName + employeeLastName + employeeCdsi);
+              return false;
+          })
+
+
+      </script>
+
+
+        </div>
+    </body>
 </html>
