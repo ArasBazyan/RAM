@@ -8,7 +8,7 @@ var mapp = [];
 
 function adminViewTable(manager) {
 	$.ajax({
-		url: 'http://localhost:3000/' + manager,
+		url: 'http://localhost:3000/adminView/' + manager,
 		type: 'GET',
 		dataType: 'html'
 	}).done(function(data) {
