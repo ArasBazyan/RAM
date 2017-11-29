@@ -113,7 +113,7 @@ router.post('/createProject', function(req, res){
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Project (ProjectName, ProjectDescription, Version, VersionLocked, idManager, dateEnd, StartofProduction)
-            VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, 1,calcdeadline, sop], function(err) {
+            VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, 4,calcdeadline, sop], function(err) {
       if (err){
         console.log("error: "+ pname + " " + pdescription + " " + calcdeadline + " " + sop);
         console.log("error in node.js");
