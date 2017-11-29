@@ -108,7 +108,7 @@ router.post('/createRoot', function(req, res){
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success ${this.lastID}');
+            console.log('Success');
         }
     });
 
@@ -124,8 +124,8 @@ router.post('/createRoot', function(req, res){
 
 router.post('/createEmployee', function(req, res){
     //var data = req.body;
-    var employeeName = req.body.rootName;
-    var employeeLastName = req.body.rootDescription;
+    var employeeName = req.body.employeeName;
+    var employeeLastName = req.body.employeeLastName;
     var employeeCdsi=req.body.employeeCdsi;
     console.log(JSON.stringify(req.body));
     //res.send("data")
@@ -138,7 +138,7 @@ router.post('/createEmployee', function(req, res){
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success ${this.lastID}');
+            console.log('Success');
         }
     });
 
@@ -148,14 +148,6 @@ router.post('/createEmployee', function(req, res){
 
 
 });
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
