@@ -90,4 +90,64 @@ router.post('/createProject', function(req, res){
 });
 
 
+//Creating Root
+
+router.post('/createRoot', function(req, res){
+    //var data = req.body;
+    var rName = req.body.rootName;
+    var rDescription = req.body.rootDescription;
+    //var isParentOrganization=req.body.isParent;
+    console.log(JSON.stringify(req.body));
+    //res.send("data")
+    var db = new sqlite3.Database('./Volvo.db');
+
+    db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
+            VALUES(?,?)`, [rName, rDescription], function(err) {
+        if (err){
+            console.log("error:", rName + " " +rDescription );
+            console.log("error in node.js");
+            return console.log(err.message);
+        } else {
+            console.log('Success');
+        }
+    });
+
+    db.close();
+
+    res.redirect('/');
+
+
+});
+
+
+//Creating Employee
+
+router.post('/createEmployee', function(req, res){
+    //var data = req.body;
+    var employeeName = req.body.employeeName;
+    var employeeLastName = req.body.employeeLastName;
+    var employeeCdsi=req.body.employeeCdsi;
+    console.log(JSON.stringify(req.body));
+    //res.send("data")
+    var db = new sqlite3.Database('./Volvo.db');
+
+    db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization)
+            VALUES(?,?,?,?)`, [employeeName, employeeLastName, employeeCdsi], function(err) {
+        if (err){
+            console.log("error:", employeeName + " " +employeeLastName + " " +employeeCdsi );
+            console.log("error in node.js");
+            return console.log(err.message);
+        } else {
+            console.log('Success');
+        }
+    });
+
+    db.close();
+
+    res.redirect('/');
+
+
+});
+
+
 module.exports = router;
