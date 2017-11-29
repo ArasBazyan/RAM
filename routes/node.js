@@ -14,22 +14,49 @@ router.get('/:id', function(req, res, next) {
   //{"cost": "This cool thing", "costType": "Type 5", "value": 900, "Status": "In Progress"}
   //var jsonTest = JSON.parse(variable);
   var db = new sqlite3.Database('./Volvo.db');
+  var lock = 2;
+  var nodeData;
+  var childData;
   db.serialize(function() {
         db.each("SELECT idNode, idProject, NodeDescription FROM Node where idNode = " + req.params.id , (err, rows)=>{
             if (err){
                 console.error(err);
                 //res.json("Error " : err);
             } else {
-                console.log('\n ÄGG' + JSON.stringify(rows));
-                console.log('\n TOAST' + JSON.stringify(jsonTest));
-                res.render('nodeAdmin', {
-                    output: req.params.id,
-                    data: rows,
-                    childNodes: jsonTest
-                });
+                nodeData = rows;
+                lock -= 1;
+                console.log('\n EGG' + JSON.stringify(nodeData));
+                //console.log('\n TOAST' + JSON.stringify(jsonTest));         
+            }
 
+            if(lock === 0){
+                sendData();
             }
         });
+
+        db.each("SELECT idNode, idProject FROM Node where idParentNode = " + req.params.id, (err, rows)=>{
+            if (err){
+                console.error(err);
+            } else {
+                childData = rows;
+                lock -= 1;
+                console.log('n\ BEANS' + JSON.stringify(childData));
+            }
+
+            if(lock === 0){
+                sendData();
+            }
+        });
+
+        var sendData = function(){
+            console.log('\n EGG2 ' + JSON.stringify(nodeData));
+            console.log('\n BEANS2 ' + JSON.stringify(childData));
+            res.render('nodeAdmin', {
+                output: req.params.id,
+                data: nodeData,
+                childNodes: childData 
+            });
+        }
     });
     db.close();
 });
