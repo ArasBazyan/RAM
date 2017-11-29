@@ -243,9 +243,9 @@ body {
     margin: 10px 5px;
 }
 
-
-.col-sm-8{
-    font-family: montserrat;
+.footer{
+    height: 100px;
+    width: 100%;
 }
 
 /*headings*/
