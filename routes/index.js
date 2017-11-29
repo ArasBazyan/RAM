@@ -94,21 +94,21 @@ router.post('/createProject', function(req, res){
 
 router.post('/createRoot', function(req, res){
     //var data = req.body;
-    var rootName = req.body.rootName;
-    var rootDescription = req.body.rootDescription;
+    var rName = req.body.rootName;
+    var rDescription = req.body.rootDescription;
     //var isParentOrganization=req.body.isParent;
     console.log(JSON.stringify(req.body));
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run(`INSERT INTO Organization (OrganizationName, idParentOrg)//OrgDescription
-            VALUES(?,?)`, [rootName, rootDescription], function(err) {
+    db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
+            VALUES(?,?)`, [rName, rDescription], function(err) {
         if (err){
-            console.log("error:", rootName + " " +rootDescription );
+            console.log("error:", rName + " " +rDescription );
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success ${this.lastID}');
+            console.log('Success');
         }
     });
 
@@ -124,21 +124,21 @@ router.post('/createRoot', function(req, res){
 
 router.post('/createEmployee', function(req, res){
     //var data = req.body;
-    var employeeName = req.body.rootName;
-    var employeeLastName = req.body.rootDescription;
+    var employeeName = req.body.employeeName;
+    var employeeLastName = req.body.employeeLastName;
     var employeeCdsi=req.body.employeeCdsi;
     console.log(JSON.stringify(req.body));
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization)//OrgDescription
+    db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization)
             VALUES(?,?,?,?)`, [employeeName, employeeLastName, employeeCdsi], function(err) {
         if (err){
             console.log("error:", employeeName + " " +employeeLastName + " " +employeeCdsi );
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success ${this.lastID}');
+            console.log('Success');
         }
     });
 
@@ -148,14 +148,6 @@ router.post('/createEmployee', function(req, res){
 
 
 });
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
