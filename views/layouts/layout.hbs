@@ -105,7 +105,7 @@
                           <br>
                           <textarea class="form-control" id="RootDescription" rows="6" placeholder="add root description" ></textarea>
                           <input type="button" name="save" class="previous action-button-previous" value="Save"/>
-                          <input type="submit" name="submit" class="rootSubmit"  value="Submit"/>
+                          <input type="submit" name="submit" class="rootSubmit action button"  value="Submit"/>
 
                       </fieldset>
                   </form>
@@ -638,12 +638,12 @@
       <script>
           $(".rootSubmit").click(function(){
 
-              var rootName = $("#rootName").val();
-              var rootDescription = $( "#rootDescription").val();
+              var rName = $("#rootName").val();
+              var rDescription = $( "#rootDescription").val();
 
               var Ffn = {};
-              Ffn.rootName = rootName;
-              Ffn.rootDescription = rootDescription;
+              Ffn.rootName = rName;
+              Ffn.rootDescription = rDescription;
 
               $.ajax({
                   type: 'POST',
@@ -657,11 +657,13 @@
               });
 
               console.log(JSON.stringify(Ffn));
-              console.log(rootName + rootDescription);
+              console.log(rName + rDescription);
               return false;
           })
 
-          </script>
+
+
+      </script>
 
 
       <!--
