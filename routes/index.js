@@ -108,7 +108,7 @@ router.post('/createRoot', function(req, res){
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success' ${this.lastID});
+            console.log('Success ${this.lastID}');
         }
     });
 
@@ -138,7 +138,7 @@ router.post('/createEmployee', function(req, res){
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success' ${this.lastID});
+            console.log('Success ${this.lastID}');
         }
     });
 
