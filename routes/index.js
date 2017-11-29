@@ -42,7 +42,7 @@ router.get('/adminView/:idManager', function(req, res, next) {
 
     //res.render(projectDetail.html);
 // Query
-    db.all("SELECT Project.idProject, Project.ProjectName, Project.Version, Project.ProjectComments, Person.FirstName, Project.dateEnd FROM Project "
+    db.all("SELECT Project.idProject, Project.ProjectName, Project.Version, Person.FirstName, Project.dateEnd FROM Project "
          + "INNER JOIN Person ON Project.idManager = Person.idPerson "
          + "WHERE idManager = ?", [req.params.idManager] ,    function(err, rows) {
         // If error

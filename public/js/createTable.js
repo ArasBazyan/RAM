@@ -18,8 +18,8 @@ function adminViewTable(manager) {
 			}
 			mapp = JSON.parse(data);
 			console.log(mapp);
-			createTableHeader(['Project Name', 'Version', 'Status', 'Responsible Person', 'Delivery Date'], "myTable");
-			insertTableData(5, mapp, "projectDetail", "myTable");
+			createTableHeader(['Project Name', 'Version', 'Responsible Person', 'Delivery Date'], "myTable");
+			insertTableData(4, mapp, "projectDetail", "myTable");
 	}).fail(function() {
 			console.log("Something went wrong!");
 	});
