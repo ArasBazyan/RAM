@@ -12,12 +12,12 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
   var db = new sqlite3.Database('./Volvo.db');
   db.serialize(function() {
-        db.each("SELECT * FROM Project where idProject = " + req.params.id , (err, rows)=>{
+        db.each("SELECT * FROM Project where idManager = " + req.params.id , (err, rows)=>{
             if (err) {
                 console.error(err);
                 //res.json("Error " : err);
             }else {
-                console.log('\n ÄGG' + JSON.stringify(rows));
+                console.log('\n Olla' + JSON.stringify(rows));
                 res.render('calculationView', {
                     output: req.params.id,
                     data: rows

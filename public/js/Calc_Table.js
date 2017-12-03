@@ -1,27 +1,21 @@
-//var arrayTablesData = [{"idProject":652,"ProjectName":"VC700",
-//						"ProjectDescription":"This a platform for blabla bla ",
-//						"Version":1,"VersionLocked":"No","idManager":700,
-//						"dateStart":"01.12.2017","dateEnd":"01.12.2018",
-//						"StartofProduction":"01.08.2018","ProjectComments":"bla bla"}];
-
 var isATag = true;
 var mapp = [];
 
 
-function adminViewTable(manager) {
+function calcTable(idManager) {
 	$.ajax({
-		url: 'http://localhost:3000/adminView/' + manager,
+		url: 'http://localhost:3000/calculations/' + idManager,
 		type: 'GET',
 		dataType: 'html'
 	}).done(function(data) {
-			console.log(manager);
+			console.log(idManager);
 			if (data === 'null'|| data === 'undefined') {
 					console.log("NOOOOO!");
 			}
 			mapp = JSON.parse(data);
 			console.log(mapp);
 			createTableHeader(['Project Name', 'Version', 'Responsible Person', 'Delivery Date'], "myTable");
-			insertTableData(4, mapp, "projectDetail", "myTable");
+			insertTableData(4, mapp, "calculationView", "myTable");
 	}).fail(function() {
 			console.log("Something went wrong!");
 	});
