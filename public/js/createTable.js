@@ -27,6 +27,24 @@ function adminViewTable(manager) {
 	});
 }
 
+function calculationTable(manager) {
+	$.ajax({
+		url: 'http://localhost:3000/calculations/table/' + manager,
+		type: 'GET',
+		dataType: 'html'
+	}).done(function(data) {
+			console.log(manager);
+			if (data === 'null'|| data === 'undefined') {
+					console.log("NOOOOO!");
+			}
+			mapp = JSON.parse(data);
+			console.log(mapp);
+			createTableHeader(['Project Name', 'Version', 'Start Date', 'Delivery Date'], "myTable");
+			insertTableData(4, mapp, "http://localhost:3000/node", "myTable");
+	}).fail(function() {
+			console.log("Something went wrong!");
+	});
+}
 
 /**
  * @param arrayString arrayHeader : you input the Headers that you want like createTableHeader[Header1, Header2]
