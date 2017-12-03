@@ -20,19 +20,12 @@ function adminViewTable(manager) {
 			}
 			mapp = JSON.parse(data);
 			console.log(mapp);
-			createTableHeader(['Project Name', 'Version', 'Status', 'Responsible Person', 'Delivery Date'], "myTable");
-			insertTableData(3, mapp, isATag, "myTable");
+			createTableHeader(['Project Name', 'Version', 'Responsible Person', 'Delivery Date'], "myTable");
+			insertTableData(4, mapp, "projectDetail", "myTable");
 	}).fail(function() {
 			console.log("Something went wrong!");
 	});
 }
-/*
-jQuery.get('http://localhost:3000/projectDetail/700/1', function(data) {
-		console.log("Post resposne:");
-		console.dir(data);
-		mapp = data;
-
-});*/
 
 
 /**
@@ -57,19 +50,21 @@ function createTableHeader(arrayHeader,elementId){
  * @param arrayString arrayTablesData : the data
  * @param bool isATag
  */
-function insertTableData(headerLength, arrayTablesData, isATag, elementId){
+function insertTableData(headerLength, arrayTablesData, urlDirectedTo, elementId){
 	const tablesDataKeys = Object.keys(arrayTablesData[0]);
 	const tbody = document.createElement("TBODY");
 
 	for(let i = 0; i < arrayTablesData.length; i++){
 		let tr = document.createElement("TR");
-		for(let j = 0; j < headerLength; j++){
+		for(let j = 1; j < headerLength+1; j++){
 			let tableData = arrayTablesData[i];
 			let td = document.createElement("TD");
 			let text = document.createTextNode(tableData[tablesDataKeys[j]]);
 
-			if(j == 0 && isATag){ // if we need clickable modal
-				td.appendChild(clickAbleDirectedTo(text,"projectDetail"));
+
+			if(j == 1){ // if we need clickable modal
+				td.appendChild(clickAbleDirectedTo(text, urlDirectedTo+"/"+tableData[tablesDataKeys[0]]));
+
 			}
 			else td.appendChild(text);
 

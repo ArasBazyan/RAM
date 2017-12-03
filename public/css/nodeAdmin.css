@@ -1,8 +1,9 @@
+
 /*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+* Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+* Code licensed under the Apache License v2.0.
+* For details, see http://www.apache.org/licenses/LICENSE-2.0.
+*/
 
 /* Toggle Styles */
 
@@ -119,6 +120,12 @@
 
 
 
+
+
+/*Create new project t*/
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
     margin-bottom: 0;
@@ -152,6 +159,12 @@
     padding: 0;
 }
 
+
+
+body {
+    padding: 50px 0 0 0;
+    font-family: montserrat, arial, verdana;
+}
 
 /*form styles*/
 #msform {
@@ -187,6 +200,7 @@
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
+    font-family: montserrat;
     color: #2C3E50;
     font-size: 13px;
 }
@@ -229,8 +243,10 @@
     margin: 10px 5px;
 }
 
-
-
+.footer{
+    height: 100px;
+    width: 100%;
+}
 
 /*headings*/
 .fs-title {
@@ -255,11 +271,14 @@
     width: 1000px;
     margin-bottom:.5em;
 }
+/*End of Create new project*/
 
-.text-center{
-    margin-top:50px;
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
 }
-
-textarea {
-  resize: none;
+.modal-body{
+    height: 250px;
+    overflow-y: auto;
 }
