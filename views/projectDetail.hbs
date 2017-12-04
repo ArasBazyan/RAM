@@ -62,22 +62,13 @@
 
 
             <h4><br>Affected Teams <br></h4>
-            <ul style="padding-left:2em">
-                <script type='text/template' id='src'>
-                    <ul>
-                        {{#each objects}}
-                        <li>{{name}}</li>
-                        {{/each}}
-                    </ul>
+            <ul>
 
-                </script>
-                <li> E0 {{name}}</li>
-                <li> E1 {{name}}</li>
-                <li> E2 {{name}}</li>
-                <li> E3 {{name}}</li>
-                <li> E4 {{name}}</li>
-                <li> R00 {{name}}</li>
-                <li> R05 {{name}}</li>
+                {{#each teamData}}
+                    <li>  {{OrganizationName}} </li>
+                {{/each}}
+
+                <li> 95550 </li>
 
             </ul>
 

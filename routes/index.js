@@ -14,22 +14,69 @@ router.get('/', function(req, res, next) {
 });
 
 // Route to AdminView, based on Person. Maybe idManager?
+
+// Route to AdminView, based on Person. Maybe idManager?
 router.get('/:id', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
+    var iddata;
+    var teamData;
+    var lock = 2;
     db.serialize(function() {
         db.each("SELECT * FROM Person where idPerson = " + req.params.id , (err, rows)=>{
             if (err){
                 console.error(err);
             } else {
-                console.log('\n Cheese' + JSON.stringify(rows));
-                res.render('adminview', {
-                    output: req.params.id,
-                    data: rows
-                });
+                iddata = rows;
+                lock -= 1;
+
+
+
+                console.log('\n iddata:  ' + JSON.stringify(iddata));
 
             }
+
+            if(lock === 0){
+                sendData();
+            }
+
         });
+
+
+
+        db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.idPerson = " + req.params.id , (err, rows)=>{
+            if (err){
+                console.error(err);
+            } else {
+                teamData = rows;
+                lock -= 1;
+
+
+                console.log('\n teamData: ' + JSON.stringify(teamData));
+
+
+            }
+
+            if(lock === 0){
+                sendData();
+            }
+
+        });
+
+
+        var sendData = function(){
+            console.log('\n EGG2 ' + JSON.stringify(iddata));
+            console.log('\n BEANS2 ' + JSON.stringify(teamData));
+            res.render('adminview', {
+                output: req.params.id,
+                data: iddata,
+                teamData: teamData
+            });
+        }
+
+
     });
+
+
     db.close();
 });
 
@@ -95,11 +142,12 @@ router.post('/:idManager/addproject', function(req, res, next){
 
 
 //POST Create Project
-router.post('/createProject', function(req, res){
+router.post('/createProject/:id', function(req, res){
     var pname = req.body.projname;
     var pdescription = req.body.projectDescription;
     var calcdeadline = req.body.calcDeadline;
     var sop = req.body.sop;
+    var id = req.params.id;
 
     console.log('All data: ' + JSON.stringify(req.body));
     console.log('pname: ' + pname);
@@ -113,7 +161,7 @@ router.post('/createProject', function(req, res){
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Project (ProjectName, ProjectDescription, Version, VersionLocked, idManager, dateEnd, StartofProduction)
-            VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, 4,calcdeadline, sop], function(err) {
+            VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, id,calcdeadline, sop], function(err) {
       if (err){
         console.log("error: "+ pname + " " + pdescription + " " + calcdeadline + " " + sop);
         console.log("error in node.js");
