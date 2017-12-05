@@ -20,31 +20,39 @@
 </head>
 
 <body>
+    Handlebars.registerHelper()
     <div class="container-fluid text-center">
 
         <div class="row content">
 
           <div class="col-sm-2 sidenav">
             <p>Parent Node</p>
-            <p><a href="/node/{{data.idParentNode}}">Node {{data.idParentNode}}</a></p><br>
+            {{#if data.idParentNode}}
+                <p><a href="/node/{{data.idParentNode}}">Node {{data.Comments}}</a></p><br>
+            {{else}}
+                <p><a href="/projectDetail/{{data.idProject}}">Project {{data.idProject}}</a></p>
+            {{/if}}
 
             <p>Related Nodes (Nodes on same level)</p>
             {{#each levelNodes}}
-                <p><a href="/node/{{idNode}}">Node {{idNode}}</a></p>
+                <p><a href="/node/{{idNode}}">{{Comments}}</a></p>
+            
             {{/each}}
 
             <p>Child Nodes</p>
             {{#each childNodes}}
-                <p><a href="/node/{{idNode}}">Node {{idNode}}</a></p>
+                <p><a href="/node/{{idNode}}">{{Comments}}</a></p>
+            {{else}}
+                <p>None</p>
             {{/each}}
 
           </div>
 
     <div class="col-sm-8 text-left">
+        
+        <h4>Node name: {{ data.Comments }} </h4>
         <h4>Node ID: {{ data.idNode }} </h4>
-
-
-        <h4><br><br>Project ID: {{ data.idProject }} </h4>
+        <h4>Project ID: {{ data.idProject }} </h4>
         <textarea class="form-control" id="exampleTextarea" readonly rows="4"> {{ data.NodeDescription }} </textarea>
 
         <script>
@@ -198,8 +206,12 @@
                                 <h4 class="modal-title">Create Node</h4>
                             </div>
 
-                            <div class="modal-body">
+                            <div style="height:100%;" class="modal-body">
                                 <form action="/node/{{ data.idProject }}/{{ output }}/addchild/" method="POST">
+                                    <div class="form-group">
+                                        <label for="inputNodeName">Node Name</label>
+                                        <textarea class="form-control" rows="1" placeholder="Node name" type="text" name="inputNodeName"></textarea>
+                                    </div>
                                     <div class="form-group">
                                         <label for="inputNodeDesc">Node Description</label>
                                         <textarea class="form-control" rows="1" placeholder="Node description" type="text" name="inputNodeDesc"></textarea>

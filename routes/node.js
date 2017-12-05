@@ -16,6 +16,7 @@ router.get('/:id', function(req, res, next) {
   var db = new sqlite3.Database('./Volvo.db');
   var lock = 5;
   var idParentNode;
+  var idProject;
   var nodeData;
   var childData;
   var levelData;
@@ -23,13 +24,14 @@ router.get('/:id', function(req, res, next) {
   var childNodeCosts;
 
   db.serialize(function() {
-        db.each("SELECT idNode, idProject, idParentNode, NodeDescription FROM Node where idNode = " + req.params.id , (err, rows)=>{
+        db.each("SELECT idNode, idProject, idParentNode, NodeDescription, Comments FROM Node where idNode = " + req.params.id , (err, rows)=>{
             if (err){
                 console.error(err);
                 //res.json("Error " : err);
             } else {
                 nodeData = rows;
                 idParentNode = rows.idParentNode;
+                idProject = rows.idProject;
                 console.log("MARMITE " + idParentNode);
                 lock -= 1;
                 //console.log('\n TOAST' + JSON.stringify(jsonTest));         
@@ -40,7 +42,7 @@ router.get('/:id', function(req, res, next) {
             }
         });
 
-        db.all("SELECT idNode, idProject FROM Node where idParentNode = " + req.params.id, (err, rows)=>{
+        db.all("SELECT idNode, idProject, Comments FROM Node where idParentNode = " + req.params.id, (err, rows)=>{
             if (err){
                 console.error(err);
             } else {
@@ -96,7 +98,7 @@ router.get('/:id', function(req, res, next) {
 
         function getLevelNodes(){
             console.log("in getLevelNodes");
-            db.all("SELECT idNode FROM Node where idParentNode = " + idParentNode + " AND idNode != " + req.params.id, (err, rows)=>{
+            db.all("SELECT idNode, Comments FROM Node where idParentNode = " + idParentNode + " AND idNode != " + req.params.id + " AND idProject = " + idProject, (err, rows)=>{
                 if (err){
                     console.error(err);
                 } else {
@@ -136,6 +138,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/:projectId/:nodeId/addchild', function(req, res, next){
+    var nodeName = req.body.inputNodeName;
     var nodeDescription = req.body.inputNodeDesc;
     var nodeType = req.body.inputNodeType;
     var nodeManager = req.body.inputManagerNode;
@@ -144,7 +147,7 @@ router.post('/:projectId/:nodeId/addchild', function(req, res, next){
 
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription) VALUES (?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription], function(err){
+    db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription, Comments) VALUES (?,?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription, nodeName], function(err){
         if (err){
             console.log(nodeDescription + " " + nodeType + " " + nodeManager + " " + parentId + " " + projectId);
             console.log("error in node.js");

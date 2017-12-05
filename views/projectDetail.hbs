@@ -21,10 +21,12 @@
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
-            <p> Involved Nodes</p>
-            <p><br><a href="/node/1">Node 1</a></p>
-            <p><br><a href="#">Node 2</a></p>
-            <p><br><a href="#">Node 3</a></p>
+            <p> Toplevel Nodes</p>
+            {{#each nodeData}}
+                <p><a href="/node/{{idNode}}">{{Comments}}</a></p>
+            {{/each}}
+
+            <button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModalProjDet">Create Child Node</button>
         </div>
 
         <div class="col-sm-8 text-left">
@@ -87,6 +89,65 @@
 
         </div>
     </div>
+
+    <div class="modal" id="createNodeModalProjDet" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Create Node</h4>
+                            </div>
+
+                            <div style="height:100%;" class="modal-body">
+                                <form action="/projectDetail/{{ output }}/addchild/" method="POST">
+                                    <div class="form-group">
+                                        <label for="inputNodeName">Node Name</label>
+                                        <textarea class="form-control" rows="1" placeholder="Node name" type="text" name="inputNodeName"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNodeDesc">Node Description</label>
+                                        <textarea class="form-control" rows="1" placeholder="Node description" type="text" name="inputNodeDesc"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNodeType">Select Node Type</label>
+                                        <select class="form-control" name="inputNodeType">
+                                            <option>Group</option>
+                                            <option>Engineering hours</option>
+                                            <option>D&D by non-production suppliers</option>
+                                            <option>D&D producion suppliers</option>
+                                            <option>Test Objects</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputNodePerson">Assign manager to node</label>
+                                        <select multiple class="form-control" name="inputManagerNode">
+                                            <option>Person 1</option>
+                                            <option>Person 2</option>
+                                            <option>Person 3</option>
+                                            <option>Person 4</option>
+                                            <option>Person 5</option>
+                                            <option>Person 6</option>
+                                            <option>Person 7</option>
+                                            <option>Person 8</option>
+                                            <option>Person 9</option>
+                                            <option>Person 10</option>
+                                            <option>Person 11</option>
+                                            <option>Person 12</option>
+                                        </select>
+                                    </div>
+                    
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+                                <!--TODO: Add a function that saves data to DB from form-->
+                                <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
