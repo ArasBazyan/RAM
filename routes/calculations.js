@@ -34,9 +34,10 @@ router.get('/table/:idManager', function(req, res, next) {
 
     //res.render(projectDetail.html);
 // Query
-    db.all("SELECT Project.idProject, Project.ProjectName, Project.Version, Project.dateStart, Project.dateEnd FROM Project "
-         + "INNER JOIN Person ON Project.idManager = Person.idPerson "
-         + "WHERE idManager = ?", [req.params.idManager] ,    function(err, rows) {
+    db.all("SELECT Project.ProjectName, Node.idNode, Node.Version, Node.dateStart, Node.dateEnd, Node.Completed, Node.Archived FROM Project "
+         + "INNER JOIN Node ON Project.idProject = Node.idProject "
+         + "INNER JOIN Person ON Node.idResponsible = Person.idPerson "
+         + "WHERE Node.idResponsible = ?", [req.params.idManager] ,    function(err, rows) {
         // If error
         if (err) {
             console.error(err);
@@ -52,16 +53,11 @@ router.get('/table/:idManager', function(req, res, next) {
                 res.json({ "error" : "Resource not found" });
             } else {
                 // Success
-                res.status(200);  // OK
+                res.status(200);
 
-                //res.render(path.join(__dirname+'/projectDetail.html'));
-
-               // console.log("got ittt  " + JSON.stringify(rows));
+               console.log("got ittt  " + JSON.stringify(rows));
 
                 res.json(rows);
-
-                //res.sendFile(path.join(__dirname+'/projectDetail.html'));
-
             }
         }
         //res.end();

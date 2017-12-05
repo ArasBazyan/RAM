@@ -38,9 +38,9 @@ function calculationTable(manager) {
 					console.log("NOOOOO!");
 			}
 			mapp = JSON.parse(data);
-			console.log(mapp);
-			createTableHeader(['Project Name', 'Version', 'Start Date', 'Delivery Date'], "myTable");
-			insertTableData(4, mapp, "http://localhost:3000/node", "myTable");
+			console.log("thiis: " + mapp);
+			createTableHeader(['Project Name', 'Node', 'Version', 'Start Date', 'Delivery Date', 'Status'], "myTable");
+			insertTableDataSpecificForCalculation(6, mapp, "http://localhost:3000/node", "myTable");
 	}).fail(function() {
 			console.log("Something went wrong!");
 	});
@@ -64,9 +64,10 @@ function createTableHeader(arrayHeader,elementId){
 }
 
 /**
+ *
  * @param int headerLenght : lenght of how many header you have
- * @param arrayString arrayTablesData : the data
- * @param bool isATag
+ * @param arrayString arrayTablesData : the data, The first object/Key will be use as the information where url will directed to
+ * @param urlDirectedTo:
  */
 function insertTableData(headerLength, arrayTablesData, urlDirectedTo, elementId){
 	const tablesDataKeys = Object.keys(arrayTablesData[0]);
@@ -82,7 +83,49 @@ function insertTableData(headerLength, arrayTablesData, urlDirectedTo, elementId
 
 			if(j == 1){ // if we need clickable modal
 				td.appendChild(clickAbleDirectedTo(text, urlDirectedTo+"/"+tableData[tablesDataKeys[0]]));
+			}
+			else td.appendChild(text);
 
+			tr.appendChild(td);
+		}
+		tbody.appendChild(tr);
+	}
+	document.getElementById(elementId).appendChild(tbody);
+}
+
+/**
+ * this is only for calculation to fix error
+ */
+function insertTableDataSpecificForCalculation(headerLength, arrayTablesData, urlDirectedTo, elementId){
+	const tablesDataKeys = Object.keys(arrayTablesData[0]);
+	const tbody = document.createElement("TBODY");
+
+	for(let i = 0; i < arrayTablesData.length; i++){
+		let tr = document.createElement("TR");
+		for(let j = 0; j < headerLength; j++){
+			let tableData = arrayTablesData[i];
+			let td = document.createElement("TD");
+			let text = document.createTextNode(tableData[tablesDataKeys[j]]);
+
+
+			if(j == 0){ // if we need clickable modal
+				td.appendChild(clickAbleDirectedTo(text, urlDirectedTo+"/"+tableData[tablesDataKeys[1]]));
+			}
+			else if (j == headerLength-1) {
+				if(tableData[tablesDataKeys[headerLength]]==1){
+					text = document.createTextNode("Archived");
+					td.appendChild(text);
+				}
+				else if (tableData[tablesDataKeys[headerLength]] == 0) {
+					if(tableData[tablesDataKeys[headerLength-1]]==1){
+						text = document.createTextNode("Submitted");
+						td.appendChild(text);
+					}
+					else if (tableData[tablesDataKeys[headerLength-1]]==0) {
+						text = document.createTextNode("In Progress");
+						td.appendChild(text);
+					}
+				}
 			}
 			else td.appendChild(text);
 
