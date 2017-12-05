@@ -17,21 +17,24 @@
 	<body>
 
 
-<br><br><br><br>
+<br><br><br>
+<!--
     <button type="button" class="btn btn-default" onclick="
-            location.href='http://localhost:3000/4'">
+            location.href='http://localhost:3000/admin/4'">
         Sime
     </button>
     <button type="button" class="btn btn-defualt" onclick="
-            location.href='http://localhost:3000/6'">
+            location.href='http://localhost:3000/admin/6'">
         Emieli
     </button>
 
+-->
 <br><br>
 
     <table id="myTable" class="table table-striped table-bordered sortable" cellspacing="0" width="100%">
         <script>
 
+            console.log("!  " + {{ data.idPerson }});
           adminViewTable( {{ data.idPerson }});
 
         </script>

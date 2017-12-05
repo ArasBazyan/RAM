@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <style>
+        body, html {
+            /* The image used */
+            background-image: url("../img/login.jpg");
+            z-index: 5000;
+            background-size:cover;
+
+            /* Full height */
+            height: 100%;
+
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+
+
+        }
+
+        div.box {
+            z-index: 1;
+            position: fixed; /* or absolute */
+            top: 35%;
+            left: 35%;
+            background-color: #ffffff;
+            border: 1px solid white;
+            height: 27%;
+            width: 27%;
+            opacity: 0.6;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
+        }
+
+
+        div.box p {
+            z-index: 55;
+            margin: 15%;
+            font-weight: bold;
+        }
+
+
+
+        .button {
+            z-index: 33;
+            display: inline-block;
+            border-radius: 4px;
+            background-color: darkcyan;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px;
+            width: 125px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+
+
+
+
+
+
+
+    </style>
+<body>
+
+
+<br><br><br><br>
+
+<button class="button" style="position: fixed; top: 37%; left: 43%;" onclick="
+            location.href='http://localhost:3000/admin/4'"><span>Henry </span></button>
+
+
+
+<button class="button" style="position: fixed; top: 50%; left: 43%;" onclick="
+            location.href='http://localhost:3000/admin/4'"><span>Sime </span></button>
+
+<div class="box">
+
+
+
+</div>
+
+
+
+<br><br>
+
+
+
+
+
+
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+
+</body>
+</html>

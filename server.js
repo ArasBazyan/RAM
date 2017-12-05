@@ -7,7 +7,7 @@ var sqlite3 = require("sqlite3").verbose();
 var bodyParser = require('body-parser');
 var hbs = require('express-handlebars');
 
-
+var login = require('./routes/login');
 var index = require('./routes/index');
 var node = require('./routes/node');
 var projectdetail = require('./routes/projectdetail');
@@ -40,7 +40,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/', index);
+
+app.use('/', login);
+app.use('/admin', index);
 app.use('/node', node);
 app.use('/projectdetail', projectdetail);
 app.use('/calculations', calculations);

@@ -10,7 +10,7 @@ var mapp = [];
 
 function adminViewTable(manager) {
 	$.ajax({
-		url: 'http://localhost:3000/adminView/' + manager,
+		url: 'http://localhost:3000/admin/table/' + manager,
 		type: 'GET',
 		dataType: 'html'
 	}).done(function(data) {
@@ -82,7 +82,7 @@ function insertTableData(headerLength, arrayTablesData, urlDirectedTo, elementId
 
 
 			if(j == 1){ // if we need clickable modal
-				td.appendChild(clickAbleDirectedTo(text, urlDirectedTo+"/"+tableData[tablesDataKeys[0]]));
+				td.appendChild(clickAbleDirectedTo(text, "/projectDetail/"+tableData[tablesDataKeys[0]]));
 			}
 			else td.appendChild(text);
 

@@ -4,16 +4,13 @@ var sqlite3 = require('sqlite3').verbose();
 
 
 
-router.get('/favicon.ico', function(req, res) {
-    res.status(204);
-});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('adminview');
 });
 
-// Route to AdminView, based on Person. Maybe idManager?
+
 
 // Route to AdminView, based on Person. Maybe idManager?
 router.get('/:id', function(req, res, next) {
@@ -80,10 +77,79 @@ router.get('/:id', function(req, res, next) {
     db.close();
 });
 
+
+
+
+// Route to AdminView, based on Person. Maybe idManager?
+router.get('/:id', function(req, res, next) {
+    var db = new sqlite3.Database('./Volvo.db');
+    var iddata;
+    var teamData;
+    var lock = 2;
+    db.serialize(function() {
+        db.each("SELECT * FROM Person where idPerson = " + req.params.id , (err, rows)=>{
+            if (err){
+                console.error(err);
+            } else {
+                iddata = rows;
+                lock -= 1;
+
+
+
+                console.log('\n iddata:  ' + JSON.stringify(iddata));
+
+            }
+
+            if(lock === 0){
+                sendData();
+            }
+
+        });
+
+
+
+        db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.idPerson = " + req.params.id , (err, rows)=>{
+            if (err){
+                console.error(err);
+            } else {
+                teamData = rows;
+                lock -= 1;
+
+
+                console.log('\n teamData: ' + JSON.stringify(teamData));
+
+
+            }
+
+            if(lock === 0){
+                sendData();
+            }
+
+        });
+
+
+        var sendData = function(){
+            console.log('\n EGG2 ' + JSON.stringify(iddata));
+            console.log('\n BEANS2 ' + JSON.stringify(teamData));
+            res.render('adminview', {
+                output: req.params.id,
+                data: iddata,
+                teamData: teamData
+            });
+        }
+
+
+    });
+
+
+    db.close();
+});
+
+
 /**
 * fetching all projects for manager
 */
-router.get('/adminView/:idManager', function(req, res, next) {
+router.get('/table/:idManager', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
     db.serialize(function() {
 
