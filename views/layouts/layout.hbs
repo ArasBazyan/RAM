@@ -144,7 +144,9 @@
                           <br>
                           -->
                           <br>
+                          <br>
                           <label>Available Roots</label>
+                          <br>
                           <select id="availableRoots" multiple="multiple">
                               {{#each teamData}}
                                   <option>  {{OrganizationName}} </option>
@@ -215,7 +217,7 @@
                           <small id="fileHelp" class="form-text text-muted"
                           >Allowed files: Word, Excel, PowerPoint, PDF</small>
                       </div>
-
+                      <br>
                       <label>Affected Teams</label>
                       <select id="affectedTeams" multiple="multiple">
                           {{#each teamData}}
@@ -655,10 +657,9 @@
       });  // end of document ready
   </script>
 
-      <!--/*
+      <!--
        * Script for createRoot (Organization)
-       *
-       */-->
+       *-->
       <script>
           $(".rootSubmit").click(function(){
 
@@ -697,18 +698,6 @@
       <script>
           var selectedRoots = [];
 
-          function close(){
-              window.close();
-          }
-
-          $(document).ready(function() {
-
-
-              $("#menu-toggle").click(function (e) {
-                  e.preventDefault();
-                  $("#wrapper").toggleClass("toggled");
-              });
-
               $('#availableRoots').multiselect({
                   selectAllValue: 'multiselect-all',
                   includeSelectAllOption: true,
@@ -721,7 +710,6 @@
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
                       });
-
 
                       console.log("selected roots" + selected);
 
@@ -771,6 +759,7 @@
                   console.log(employeeName + employeeLastName + selectedRoots);
                   return false;
               })
+
           });
 
 
