@@ -260,7 +260,7 @@ router.post('/createRoot', function(req, res){
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
+    db.run(`INSERT INTO Organization (dOrganizationName, idParentOrganization)
             VALUES(?,?)`, [rName, rDescription], function(err) {
         if (err){
             console.log("error:", rName + " " +rDescription );

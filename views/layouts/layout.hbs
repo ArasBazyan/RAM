@@ -151,13 +151,14 @@
                               {{#each teamData}}
                                   <option>  {{OrganizationName}} </option>
                               {{/each}}
-
+<!--
                               <option >527</option>
                               <option >546</option>
                               <option >576</option>
                               <option >527</option>
                               <option >507</option>
                               <option >586</option>
+                              -->
                           </select>
                           <br>
                           <br>
@@ -682,7 +683,7 @@
               });
 
               console.log(JSON.stringify(Ffn));
-              console.log(rName + rDescription);
+              console.log("SUCCESS" + rName + rDescription);
               return false;
           })
 
@@ -756,12 +757,9 @@
                   });
 
                   console.log(JSON.stringify(Ffn));
-                  console.log(employeeName + employeeLastName + selectedRoots);
+                  console.log("SUCCESS"+employeeName + employeeLastName + selectedRoots);
                   return false;
               })
-
-          });
-
 
       </script>
 
