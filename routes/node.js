@@ -14,7 +14,7 @@ router.get('/:id', function(req, res, next) {
   //{"cost": "This cool thing", "costType": "Type 5", "value": 900, "Status": "In Progress"}
   //var jsonTest = JSON.parse(variable);
   var db = new sqlite3.Database('./Volvo.db');
-  var lock = 5;
+  var lock = 6;
   var idParentNode;
   var idProject;
   var nodeData;
@@ -22,6 +22,7 @@ router.get('/:id', function(req, res, next) {
   var levelData;
   var nodeCosts;
   var childNodeCosts;
+  var resourceTypes;
 
   db.serialize(function() {
         db.each("SELECT idNode, idProject, idParentNode, NodeDescription, Comments FROM Node where idNode = " + req.params.id , (err, rows)=>{
@@ -78,6 +79,19 @@ router.get('/:id', function(req, res, next) {
             }
         });
 
+        db.all('Select * from resourceType', (err, rows)=>{
+            if (err){
+                console.error(err);
+            } else {
+                resourceTypes = rows;
+                lock -=1;
+            }
+            
+            if(lock === 1){
+                getLevelNodes();
+            }
+        });
+
         db.all("Select Node.idNode, resources.resourceName, resourceType.resourceType, PersonNodeResource.Cost, PersonNodeResource.Comments from PersonNodeResource join resources on PersonNodeResource.idResource=resources.idResource join resourceType on resources.idResourceType=resourceType.idResourceType join Node on Node.idNode = PersonNodeResource.idNode where Node.idParentNode= " + req.params.id, (err, rows) =>{
             if (err){
                 console.error(err);
@@ -123,13 +137,15 @@ router.get('/:id', function(req, res, next) {
             console.log('TOAST2' + JSON.stringify(levelData));
             console.log('SAUSAGES2' + JSON.stringify(nodeCosts));
             console.log('TOMATOES2' + JSON.stringify(childNodeCosts));
+            console.log('BACON2' + JSON.stringify(resourceTypes));
             res.render('nodeAdmin', {
                 output: req.params.id,
                 data: nodeData,
                 childNodes: childData,
                 levelNodes: levelData,
                 nodeCosts: nodeCosts,
-                childNodeCosts: childNodeCosts
+                childNodeCosts: childNodeCosts,
+                resourceTypes: resourceTypes
             });
             db.close();
         }
@@ -145,6 +161,7 @@ router.post('/:projectId/:nodeId/addchild', function(req, res, next){
     var parentId = req.params.nodeId;
     var projectId = req.params.projectId;
 
+    var insertedId;
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription, Comments) VALUES (?,?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription, nodeName], function(err){
@@ -153,13 +170,55 @@ router.post('/:projectId/:nodeId/addchild', function(req, res, next){
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('A row has been inserted with rowid ${this.lastID}');
+            insertedId = `${this.lastID}`;
+            console.log('New id is: ' + insertedId);
+           // console.log(`A row has been inserted with rowid ${this.lastID}`);
         }
     });
 
     db.close();
 
     res.redirect('/node/' + parentId);
+});
+
+router.post('/:nodeId/addCalculation', function(req, res, next){
+    var cost = req.body.inputCost; //goes into resources
+    var costType = req.body.inputCostType; //goes into resources
+    var value = req.body.inputValue; //goes into personnoderesource
+    var status = req.body.inputStatus; //goes into personnoderesource
+    var idNode = req.params.nodeId; //goes into personnoderesource
+
+    var insertedId;
+   
+    var db = new sqlite3.Database('./Volvo.db');
+
+    db.run('INSERT INTO Resources (idResourceType, ResourceName) VALUES(?,?)', [costType, cost], function(err){
+        if (err){
+            return console.log(err.message);
+        } else {
+            insertedId = `${this.lastID}`;
+            console.log('New id is: ' + insertedId);
+            setPersonNodeResource();
+        }
+    });
+
+    function setPersonNodeResource(){
+        db.run('INSERT INTO PersonNodeResource (idNode, idResource, Cost, Comments) VALUES(?,?,?,?)', [idNode, insertedId, value, status], function(err){
+            if (err){
+                console.log("error in node.js");
+                return console.log(err.message);
+            } else {
+                console.log(`New idPersonNodeResource is: ${this.lastID}`);
+                sendData();
+            }
+        });
+    }
+
+    var sendData = function(){
+        db.close();
+
+        res.redirect('/node/' + idNode);
+    }
 });
 
 

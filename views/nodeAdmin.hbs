@@ -4,7 +4,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/css/nodeAdmin.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/nodeAdmin.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,141 +20,125 @@
 </head>
 
 <body>
-    Handlebars.registerHelper()
     <div class="container-fluid text-center">
 
         <div class="row content">
 
-          <div class="col-sm-2 sidenav">
-            <p>Parent Node</p>
-            {{#if data.idParentNode}}
-                <p><a href="/node/{{data.idParentNode}}">Node {{data.Comments}}</a></p><br>
-            {{else}}
-                <p><a href="/projectDetail/{{data.idProject}}">Project {{data.idProject}}</a></p>
-            {{/if}}
+            <div class="col-sm-2 sidenav">
+                <p class="node-nav-p">Parent Node</p>
+                {{#if data.idParentNode}}
+                <p>
+                    <a href="/node/{{data.idParentNode}}">Node {{data.Comments}}</a>
+                </p>
+                <br> {{else}}
+                <p>
+                    <a href="/projectDetail/{{data.idProject}}">Project {{data.idProject}}</a>
+                </p>
+                {{/if}}
 
-            <p>Related Nodes (Nodes on same level)</p>
-            {{#each levelNodes}}
-                <p><a href="/node/{{idNode}}">{{Comments}}</a></p>
-            
-            {{/each}}
+                <p class="node-nav-p">Related Nodes (Nodes on same level)</p>
+                {{#each levelNodes}}
+                <p>
+                    <a href="/node/{{idNode}}">{{Comments}}</a>
+                </p>
 
-            <p>Child Nodes</p>
-            {{#each childNodes}}
-                <p><a href="/node/{{idNode}}">{{Comments}}</a></p>
-            {{else}}
+                {{/each}}
+
+                <p class="node-nav-p">Child Nodes</p>
+                {{#each childNodes}}
+                <p>
+                    <a href="/node/{{idNode}}">{{Comments}}</a>
+                </p>
+                {{else}}
                 <p>None</p>
-            {{/each}}
+                {{/each}}
 
-          </div>
+            </div>
 
-    <div class="col-sm-8 text-left">
-        
-        <h4>Node name: {{ data.Comments }} </h4>
-        <h4>Node ID: {{ data.idNode }} </h4>
-        <h4>Project ID: {{ data.idProject }} </h4>
-        <textarea class="form-control" id="exampleTextarea" readonly rows="4"> {{ data.NodeDescription }} </textarea>
+            <div class="col-sm-8 text-left">
 
-        <script>
-            function hey() {
-                document.getElementById('exampleTextarea').readOnly = false;
-                return false;
-            }
-        </script>
+                <h4>Node name: {{ data.Comments }} </h4>
+                <h4>Node ID: {{ data.idNode }} </h4>
+                <h4>Project ID: {{ data.idProject }} </h4>
+                <textarea class="form-control" id="exampleTextarea" readonly rows="4"> {{ data.NodeDescription }} </textarea>
 
-
-        <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()"> Edit </button>
-
-        <br>
+                <script>
+                    function hey() {
+                        document.getElementById('exampleTextarea').readOnly = false;
+                        return false;
+                    }
+                </script>
 
 
-        <div class="form-group">
-            <h4>Calculation Deadlines </h4>
-            <p>A form/table here </p>
-        </div>
+                <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()"> Edit </button>
 
-        <div class="form-group" style="overflow-x:auto;">
-            <h4>Costs</h4><br>
+                <br>
 
-            <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                        <th>Cost</th>
-                        <th>Cost type</th>
-                        <th>Value</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each nodeCosts}}
-                        <tr>
-                            <td>{{ResourceName}}</td>
-                            <td>{{ResourceType}}</td>
-                            <td>{{Cost}}</td>
-                            <td>{{Comments}}</td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-            </table><br>
-        </div>
 
-        <div class="form-group" id="nodeCostList" style="overflow-x:auto;">
-            {{#each childNodes}}
-                <h4>Node {{idNode}}</h4><br>
-                <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                      <th>Cost</th>
-                      <th>Cost type</th>
-                      <th>Value</th>
-                      <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each childNodeCosts}}
-                        <tr>
-                            <td>{{ResourceName}}</td>
-                            <td>{{ResourceType}}</td>
-                            <td>{{Cost}}</td>
-                            <td>{{Comments}}</td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-                </table> <br>
-            {{/each}}
-            <!--<h4>Node 6</h4><br>
+                <div class="form-group">
+                    <h4>Calculation Deadlines </h4>
+                    <p>A form/table here </p>
+                </div>
 
-            <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                <thead>
-                    <tr>
-                      <th>Cost</th>
-                      <th>Cost type</th>
-                      <th>Value</th>
-                      <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{{childNodes.cost}}</td>
-                    <td>{{childNodes.costType}}</td>
-                    <td>{{childNodes.value}}</td>
-                    <td>{{childNodes.Status}} </td>
-                  </tr>
-                  <tr>
-                    <td>Look at something</td>
-                    <td>Consulting</td>
-                    <td>500</td>
-                    <td>In Progress</td>
-                  </tr>
-                </tbody>
-            </table><br>-->
-    </div>
+                <div class="form-group" style="overflow-x:auto;">
+                    <h4>Costs</h4>
+                    <br>
 
-        <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createCalc">Create Calculation</button>
-        <button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal123">Create Child Node</button>
+                    <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Cost</th>
+                                <th>Cost type</th>
+                                <th>Value</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each nodeCosts}}
+                            <tr>
+                                <td>{{ResourceName}}</td>
+                                <td>{{ResourceType}}</td>
+                                <td>{{Cost}}</td>
+                                <td>{{Comments}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
 
-        <button type="button" class="btn btn-save">Save</button>
-        <button type="button" class="btn btn-submit" data-toggle="modal" data-target="#submitThisNode">Submit</button>
+                <div class="form-group" id="nodeCostList" style="overflow-x:auto;">
+                    {{#each childNodes}}
+                    <h4>Node {{idNode}}</h4>
+                    <br>
+                    <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Cost</th>
+                                <th>Cost type</th>
+                                <th>Value</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each childNodeCosts}}
+                            <tr>
+                                <td>{{ResourceName}}</td>
+                                <td>{{ResourceType}}</td>
+                                <td>{{Cost}}</td>
+                                <td>{{Comments}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <br> {{/each}}
+                </div>
+
+                <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createCalc">Create Calculation</button>
+                <button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal123">Create Child Node</button>
+
+                <button type="button" class="btn btn-save">Save</button>
+                <button type="button" class="btn btn-submit" data-toggle="modal" data-target="#submitThisNode">Submit</button>
 
                 <!--Modal submiting this node-->
                 <div class="modal" id="submitThisNode" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
@@ -170,19 +154,25 @@
                                 <table id="myTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                     <script type="text/javascript" src="../js/createTable.js"></script>
                                     <script>
-                                    var arrayTablesData =
-                                    [ { 'node': '4',
-                                    'version' : '1',
-                                    'calculationStatus' : 'In Progress',},
-                                    { 'node': '5',
-                                    'version' : '1',
-                                    'calculationStatus' : 'Submitted',},
-                                    { 'node': '6',
-                                    'version' : '1',
-                                    'calculationStatus' : 'In Progress',},];
+                                        var arrayTablesData =
+                                            [{
+                                                'node': '4',
+                                                'version': '1',
+                                                'calculationStatus': 'In Progress',
+                                            },
+                                            {
+                                                'node': '5',
+                                                'version': '1',
+                                                'calculationStatus': 'Submitted',
+                                            },
+                                            {
+                                                'node': '6',
+                                                'version': '1',
+                                                'calculationStatus': 'In Progress',
+                                            },];
 
-                                    createTableHeader(['Node', 'Version', 'Responsible Person'], "myTable");
-                                    insertTableData(3, arrayTablesData, false, "myTable");
+                                        createTableHeader(['Node', 'Version', 'Responsible Person'], "myTable");
+                                        insertTableData(3, arrayTablesData, false, "myTable");
                                     </script>
                                 </table>
                             </div>
@@ -206,7 +196,7 @@
                                 <h4 class="modal-title">Create Node</h4>
                             </div>
 
-                            <div style="height:100%;" class="modal-body">
+                            <div class="modal-body">
                                 <form action="/node/{{ data.idProject }}/{{ output }}/addchild/" method="POST">
                                     <div class="form-group">
                                         <label for="inputNodeName">Node Name</label>
@@ -244,7 +234,7 @@
                                             <option>Person 12</option>
                                         </select>
                                     </div>
-                    
+
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
@@ -258,43 +248,47 @@
 
                 <!-- from here is to create calculation -->
                 <div class="modal" id="createCalc" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
-                		aria-hidden="true">
-                		<div class="modal-dialog">
-                				<div class="modal-content">
-                						<div class="modal-header">
-                								<button class="close" data-dismiss="modal">&times;</button>
-                								<h4 class="modal-title">Create Calculation</h4>
-                						</div>
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Create Calculation</h4>
+                            </div>
 
-                						<div class="modal-body">
-                								<form>
-                										<div class="form-group">
-                												<label for="inputNodeName">Cost</label>
-                												<input class="form-control" Name="Node name" placeholder="The specific cost" type="text" id="inputNodeName">
-                										</div>
-                										<div class="form-group">
-                												<label for="inputNodeDesc">Cost Type</label>
-                												<textarea class="form-control" rows="1" placeholder="E.g Consulting, Testing equipment etc." type="text" id="inputNodeDesc"></textarea>
-                										</div>
+                            <div class="modal-body">
+                                <form action="/node/{{ output }}/addCalculation/" method="POST">
                                     <div class="form-group">
-                												<label for="inputNodeDesc">Value</label>
-                												<textarea class="form-control" rows="1" placeholder="Cost in $$$" type="text" id="inputNodeDesc"></textarea>
-                										</div>
+                                        <label for="inputCost">Cost</label>
+                                        <input class="form-control" name="inputCost" placeholder="The specific cost" type="text" id="inputCost">
+                                    </div>
                                     <div class="form-group">
-                                        <label for="inputNodeType">Status</label>
-                                        <select class="form-control" id="sel1">
+                                        <label for="inputCostType">Select Cost Type</label>
+                                        <select class="form-control" name="inputCostType">
+                                        {{#each resourceTypes}}
+                                            <option value="{{idResourceType}}">{{ResourceType}}</option>
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputValue">Value</label>
+                                        <textarea class="form-control" name="inputValue" rows="1" placeholder="Cost in $$$" type="text" id="inputValue"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputStatus">Status</label>
+                                        <select class="form-control" name="inputStatus" id="inputStatus">
                                             <option>In Progress</option>
                                             <option>Done</option>
                                         </select>
                                     </div>
-                						<div class="modal-footer">
-                								<button class="btn btn-primary" data-dismiss="modal">Save</button>
-                								<button class="btn btn-primary" data-dismiss="modal">Submit</button>
-                								<button class="btn btn-primary" data-dismiss="modal">Close</button>
-                						</div>
-                				</div>
-                		</div>
-                </div>
+                                    <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" value="Submit">Save</button>
+                                <!--TODO: Add a function that saves data to DB from form-->
+                                <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -302,31 +296,27 @@
                 <!--calculation ends here -->
 
 
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
 
+            </div>
+
+
+            <div class="col-sm-2 sidenav">
+                <h4>Node Administrator</h4>
+
+                <p>Sime</p>
+                <p>
+                    <br>
+                    <a href="#">Add new manager</a>
+                </p>
+
+            </div>
+        </div>
     </div>
 
 
-    <div class="col-sm-2 sidenav">
-        <h4>Node Administrator</h4>
-
-        <p>Sime</p>
-        <p><br><a href="#">Add new manager</a></p>
-
-    </div>
-    </div>
-    </div>
-
-    <script src="/js/nodeAdmin.js"></script>
-
-    <script>
-        console.log('test');
-        buildNodeTable(JSON.parse({{childNodes}}));
-        console.log('test2');
-    </script>
-
-<div class="footer"></div>
+    <div class="footer"></div>
 
 </body>
 
