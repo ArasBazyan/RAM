@@ -285,15 +285,16 @@ router.post('/createEmployee', function(req, res){
     //var data = req.body;
     var employeeName = req.body.employeeName;
     var employeeLastName = req.body.employeeLastName;
-    var employeeCdsi=req.body.employeeCdsi;
+    //var employeeCdsi=req.body.employeeCdsi;
     console.log(JSON.stringify(req.body));
+    console.log("selected: " + req.body.selectedRoots);
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization)
-            VALUES(?,?,?,?)`, [employeeName, employeeLastName, employeeCdsi], function(err) {
+            VALUES(?,?,?,?)`, [employeeName, employeeLastName], function(err) {
         if (err){
-            console.log("error:", employeeName + " " +employeeLastName + " " +employeeCdsi );
+            console.log("error:"+ employeeName + " "+ employeeLastName);
             console.log("error in node.js");
             return console.log(err.message);
         } else {

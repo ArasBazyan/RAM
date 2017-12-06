@@ -137,22 +137,34 @@
                           <br>
                           <label>Employee Lastname</label>
                           <input type="text" id="employeeLastName" name="employeeLastName" placeholder="Enter a name"/>
-                          <!--
                           <br>
-                          <label>Employee CDSI</label>
-                          <input type="text" id="employeeCdsi" name="employeeCdsi" placeholder="Enter a CDSI"/>
+                          <label>Employee RoleID</label>
                           <br>
+                          <select class ="form-control" id="employeeRoles" ><!--multiple="multiple">-->
+                              <option >Select Employee Role ID</option>
+                              <option >546</option>
+                              <option >576</option>
+                              <option >527</option>
+                              <option >507</option>
+                              <option >586</option>
+                          </select>
+                          <!--<label for="inputNodeType">Select Node Type</label>
+                          <select class="form-control" id="sel1">
+                              <option>Node type 1</option>
+                              <option>Node type 2</option>
+                              <option>Node type 3</option>
+                              <option>Node type 4</option>
+                          </select>
                           -->
                           <br>
                           <br>
-                          <label>Available Roots</label>
+                          <label>Organization</label>
                           <br>
                           <select id="availableRoots" multiple="multiple">
                               {{#each teamData}}
                                   <option>  {{OrganizationName}} </option>
                               {{/each}}
-<!--
-                              <option >527</option>
+                             <!-- <option >527</option>
                               <option >546</option>
                               <option >576</option>
                               <option >527</option>
@@ -740,7 +752,7 @@
                   var Ffn = {};
                   Ffn.employeeName = employeeName;
                   Ffn.employeeLastname = employeeLastName;
-                  Ffn.selectedRootsRoots = selectedRoots;
+                  Ffn.selectedRoots = selectedRoots;
                   //Ffn.employeeCdsi= employeeCdsi;
                   //Fnf.employeeRoleType= employeeRoleType;
                   //Fnf.employeeOrg= employeeOrg;
