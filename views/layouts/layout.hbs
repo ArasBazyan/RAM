@@ -96,7 +96,7 @@
                       <!-- fieldsets -->
                       <fieldset>
                           <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
-                          <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                          <!--<button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>-->
                           <br><br>
                           <h2 class="fs-title">Create Root</h2>
                           <br><br>
@@ -129,7 +129,7 @@
                       <!-- fieldsets -->
                       <fieldset>
                           <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
-                          <button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>
+                          <!--<button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>-->
                           <h2 class="fs-title">Assign Employee</h2>
                           <br><br>
                           <label>Employee Name</label>
@@ -137,10 +137,29 @@
                           <br>
                           <label>Employee Lastname</label>
                           <input type="text" id="employeeLastName" name="employeeLastName" placeholder="Enter a name"/>
+                          <!--
                           <br>
                           <label>Employee CDSI</label>
                           <input type="text" id="employeeCdsi" name="employeeCdsi" placeholder="Enter a CDSI"/>
                           <br>
+                          -->
+                          <label>Available Roots</label>
+                          <br>
+                          <select id="availableRoots" multiple="multiple">
+                              {{#each teamData}}
+                                  <option>  {{OrganizationName}} </option>
+                              {{/each}}
+
+                              <option >527</option>
+                              <option >546</option>
+                              <option >576</option>
+                              <option >527</option>
+                              <option >507</option>
+                              <option >586</option>
+                          </select>
+                          <br>
+                          <br>
+
                           <br><br><br>
 
                           <input type="button" name="save" class="previous action-button-previous" value="Save"/>
@@ -676,35 +695,83 @@
       *
       */-->
       <script>
-          $(".employeeSubmit").click(function(){
+          var selectedRoots = [];
 
-              var employeeName = $("#employeeNameName").val();
-              var employeeLastName = $( "#employeeLastName").val();
-              var employeeCdsi=  $( "#employeeCdsi").val();
-              //var employeeRoleType= $( "#employeeRoleType").val();
-              //var employeeOrg= $( "#employeeOrg").val();
-              var Ffn = {};
-              Ffn.employeeName = employeeName;
-              Ffn.employeeLastname = employeeLastName;
-              Ffn.employeeCdsi= employeeCdsi;
-              //Fnf.employeeRoleType= employeeRoleType;
-              //Fnf.employeeOrg= employeeOrg;
+          function close(){
+              window.close();
+          }
 
-              $.ajax({
-                  type: 'POST',
-                  data: JSON.stringify(Ffn),
-                  contentType: 'application/json',
-                  url: 'http://localhost:3000/createEmployee',
-                  success: function(Ffn) {
-                      console.log('success');
-                      //console.log(JSON.stringify(Ffn));
+          $(document).ready(function() {
+
+
+              $("#menu-toggle").click(function (e) {
+                  e.preventDefault();
+                  $("#wrapper").toggleClass("toggled");
+              });
+
+              $('#availableRoots').multiselect({
+                  selectAllValue: 'multiselect-all',
+                  includeSelectAllOption: true,
+
+                  numberDisplayed: 3,
+                  buttonWidth: '300px',
+                  onChange: function (element, checked) {
+                      var brands = $('#availableRoots option:selected');
+                      var selected = [];
+                      $(brands).each(function (index, brand) {
+                          selected.push($(this).val());
+                      });
+
+
+                      console.log("selected roots" + selected);
+
+                      selectedRoots = selected;
+                  },
+                  onSelectAll: function () {
+                      alert('You selected all existing roots!');
+                      var brands = $('#availableRoots option:selected');
+                      var selected = [];
+                      $(brands).each(function (index, brand) {
+                          selected.push($(this).val());
+                      });
+
+                      console.log("selected roots " + selected);
+
                   }
               });
 
-              console.log(JSON.stringify(Ffn));
-              console.log(employeeName + employeeLastName + employeeCdsi);
-              return false;
-          })
+              $(".employeeSubmit").click(function () {
+
+                  var employeeName = $("#employeeNameName").val();
+                  var employeeLastName = $("#employeeLastName").val();
+                  selectedRoots;
+                  //var employeeCdsi=  $( "#employeeCdsi").val();
+                  //var employeeRoleType= $( "#employeeRoleType").val();
+                  //var employeeOrg= $( "#employeeOrg").val();
+                  var Ffn = {};
+                  Ffn.employeeName = employeeName;
+                  Ffn.employeeLastname = employeeLastName;
+                  Ffn.selectedRootsRoots = selectedRoots;
+                  //Ffn.employeeCdsi= employeeCdsi;
+                  //Fnf.employeeRoleType= employeeRoleType;
+                  //Fnf.employeeOrg= employeeOrg;
+
+                  $.ajax({
+                      type: 'POST',
+                      data: JSON.stringify(Ffn),
+                      contentType: 'application/json',
+                      url: 'http://localhost:3000/createEmployee' + {{output}},
+                      success: function (Ffn) {
+                          console.log('success');
+                          //console.log(JSON.stringify(Ffn));
+                      }
+                  });
+
+                  console.log(JSON.stringify(Ffn));
+                  console.log(employeeName + employeeLastName + selectedRoots);
+                  return false;
+              })
+          });
 
 
       </script>

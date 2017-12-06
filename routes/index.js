@@ -10,7 +10,8 @@ router.get('/', function(req, res, next) {
   res.render('adminview');
 });
 
-
+//Get Roots to employee
+router.get('/:id')
 
 // Route to AdminView, based on Person. Maybe idManager?
 router.get('/:id', function(req, res, next) {
@@ -191,6 +192,10 @@ router.get('/table/:idManager', function(req, res, next) {
     db.close();
 
 });
+
+
+
+
 
 //This route maybe, later?
 router.post('/:idManager/addproject', function(req, res, next){
