@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
     <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
@@ -32,14 +31,14 @@
         }
 
         div.box {
-            z-index: 1;
-            position: fixed; /* or absolute */
-            top: 35%;
-            left: 35%;
+            display: none;
+            margin: auto;
+            margin-top: 300px;
+            width: 30%;
+            height: 40%;
+            padding: 10px;
             background-color: #ffffff;
             border: 1px solid white;
-            height: 27%;
-            width: 27%;
             opacity: 0.6;
             filter: alpha(opacity=60); /* For IE8 and earlier */
         }
@@ -54,19 +53,20 @@
 
 
         .button {
+            color: #FFFFFF;
+
             z-index: 33;
             display: inline-block;
-            border-radius: 4px;
+            border-radius: 40px;
             background-color: darkcyan;
-            border: none;
-            color: #FFFFFF;
+            border: 50px;
             text-align: center;
-            font-size: 20px;
-            padding: 20px;
-            width: 125px;
+            font-size: 15px;
+            padding: 10px;
+            width: 250px;
             transition: all 0.5s;
             cursor: pointer;
-            margin: 5px;
+            box-shadow: 1px 1px 35px 0px black;
         }
 
         .button span {
@@ -107,20 +107,27 @@
 
 <br><br><br><br>
 
-<button class="button" style="position: fixed; top: 37%; left: 43%;" onclick="
-            location.href='http://localhost:3000/admin/6'"><span>Henry </span></button>
+<button class="button" style="position: fixed; top: 35%; left: 43%;" onclick="
+            location.href='http://localhost:3000/admin/6'"><span> Henry Andreasson </span></button>
 
 
 
-<button class="button" style="position: fixed; top: 50%; left: 43%;" onclick="
-            location.href='http://localhost:3000/admin/4'"><span>Sime </span></button>
+<button class="button" style="position: fixed; top: 43%; left: 43%; " onclick="
+            location.href='http://localhost:3000/admin/4'"><span> Sime Colak </span></button>
 
+
+<button class="button" style="position: fixed; top: 51%; left: 43%;" onclick="
+            location.href='http://localhost:3000/admin/6'"><span> Mats Lindgren </span></button>
+
+
+
+<button class="button" style="position: fixed; top: 59%; left: 43%;" onclick="
+            location.href='http://localhost:3000/admin/4'"><span> Ulf Rådbo </span></button>
 <div class="box">
 
 
 
 </div>
-
 
 
 <br><br>
@@ -131,15 +138,6 @@
 
 
 
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.ui.min.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-
-
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -55,11 +55,17 @@
 
             </div>
 
+            <br>
             <div class="col-sm-8 text-left">
 
                 <h4>Node name: {{ data.Comments }} </h4>
+                <br>
                 <h4>Node ID: {{ data.idNode }} </h4>
+                <br>
                 <h4>Project ID: {{ data.idProject }} </h4>
+
+
+                <h4><br>Node Description</h4>
                 <textarea class="form-control" id="exampleTextarea" readonly rows="4"> {{ data.NodeDescription }} </textarea>
 
                 <script>
@@ -70,19 +76,18 @@
                 </script>
 
 
-                <button id="editDescButton" type="button" class="btn btn-default" onclick="hey()"> Edit </button>
+                <button style="width: 100px" id="editDescButton" type="button" class="btn btn-default" onclick=""> Edit </button>
 
-                <br>
+                <br><br>
 
 
                 <div class="form-group">
-                    <h4>Calculation Deadlines </h4>
-                    <p>A form/table here </p>
-                </div>
+                    <h4>Calculation Deadline </h4>
+                    <p>{{data.dateEnd}} </p>
+                </div><br>
 
                 <div class="form-group" style="overflow-x:auto;">
                     <h4>Costs</h4>
-                    <br>
 
                     <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
@@ -305,10 +310,10 @@
             <div class="col-sm-2 sidenav">
                 <h4>Node Administrator</h4>
 
-                <p>Sime</p>
+                <p>{{data.FirstName}}</p>
                 <p>
                     <br>
-                    <a href="#">Add new manager</a>
+                    <button type="button" class="btn btn-calculateProject" >Add new manager</button>
                 </p>
 
             </div>

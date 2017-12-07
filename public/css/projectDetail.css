@@ -166,6 +166,7 @@ body {
     font-family: montserrat, arial, verdana;
 }
 
+
 /*form styles*/
 #msform {
     text-align: center;
@@ -243,9 +244,9 @@ body {
     margin: 10px 5px;
 }
 
-
-.col-sm-8{
-    font-family: montserrat;
+.footer{
+    height: 100px;
+    width: 100%;
 }
 
 /*headings*/
@@ -279,6 +280,35 @@ body {
     overflow-y: initial !important
 }
 .modal-body{
-    height: 250px;
+    height: 100%;
     overflow-y: auto;
 }
+
+.node-nav-p{
+    font-weight: bold;
+}
+
+
+
+
+.btn {
+    color: #FFFFFF;
+    z-index: 33;
+    display: inline-block;
+    border-radius: 40px;
+    background-color: #2f79b9;
+    border: 50px;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+
+
+.btn:hover {
+    transition: 0.3s;
+}
+

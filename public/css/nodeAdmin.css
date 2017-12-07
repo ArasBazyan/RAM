@@ -124,7 +124,6 @@
 
 /*Create new project t*/
 /*custom font*/
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
 
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
@@ -165,6 +164,7 @@ body {
     padding: 50px 0 0 0;
     font-family: montserrat, arial, verdana;
 }
+
 
 /*form styles*/
 #msform {
@@ -286,3 +286,28 @@ body {
 .node-nav-p{
     font-weight: bold;
 }
+
+
+
+
+.btn {
+    color: #FFFFFF;
+    z-index: 33;
+    display: inline-block;
+    border-radius: 40px;
+    background-color: #2f79b9;
+    border: 50px;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+
+
+.btn:hover {
+    transition: 0.3s;
+}
+
