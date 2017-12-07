@@ -43,7 +43,7 @@
                                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  Organization
                           </li>
                           <li>
-                              <a href="#" data-toggle="modal" data-target="#createRootModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Root</a>
+                              <a href="#" data-toggle="modal" data-target="#createRootModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Organization</a>
                           </li>
 
                           <li>
@@ -95,18 +95,15 @@
 
                       <!-- fieldsets -->
                       <fieldset>
-                          <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
-                          <!--<button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>-->
                           <br><br>
-                          <h2 class="fs-title">Create Root</h2>
+                          <h2 class="fs-title">Create Organization</h2>
                           <br><br>
-                          <label> Root Name </label>
+                          <label> Organization Name </label>
                           <br>
-                          <input type="text" id="rootName" name="rootname" placeholder="Enter a name for the root"/>
+                          <input type="text" id="organizationName" name="organizationName" placeholder="Enter a name for the organization"/>
                           <br>
-                          <textarea class="form-control" id="RootDescription" rows="6" placeholder="add root description" ></textarea>
-                          <input type="button" name="save" class="previous action-button-previous" value="Save"/>
-                          <input type="submit" name="submit" class="rootSubmit action-button" value="Submit"/>
+                          <!--<input type="button" name="save" class="previous action-button-previous" value="Save"/>-->
+                          <input type="submit" name="submit" class="organizationSubmit action-button" value="Submit"/>
 
                       </fieldset>
                   </form>
@@ -138,39 +135,17 @@
                           <label>Employee Lastname</label>
                           <input type="text" id="employeeLastName" name="employeeLastName" placeholder="Enter a name"/>
                           <br>
-                          <label>Employee RoleID</label>
+                          <label>Employee CDSI</label>
                           <br>
-                          <select class ="form-control" id="employeeRoles" ><!--multiple="multiple">-->
-                              <option >Select Employee Role ID</option>
-                              <option >546</option>
-                              <option >576</option>
-                              <option >527</option>
-                              <option >507</option>
-                              <option >586</option>
-                          </select>
-                          <!--<label for="inputNodeType">Select Node Type</label>
-                          <select class="form-control" id="sel1">
-                              <option>Node type 1</option>
-                              <option>Node type 2</option>
-                              <option>Node type 3</option>
-                              <option>Node type 4</option>
-                          </select>
-                          -->
+                          <input type="text" id="employeeCdsi" name="employeeCDSI" placeholder="Enter the employee CDSI"/>
                           <br>
                           <br>
                           <label>Organization</label>
                           <br>
-                          <select id="availableRoots" multiple="multiple">
+                          <select id="availableOrganizations" multiple="multiple">
                               {{#each teamData}}
                                   <option>  {{OrganizationName}} </option>
                               {{/each}}
-                             <!-- <option >527</option>
-                              <option >546</option>
-                              <option >576</option>
-                              <option >527</option>
-                              <option >507</option>
-                              <option >586</option>
-                              -->
                           </select>
                           <br>
                           <br>
@@ -645,7 +620,7 @@
                   type: 'POST',
                   data: JSON.stringify(data),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/createProject/'+ {{output}},
+                  url: 'http://localhost:3000/admin/createProject/'+ {{output}},
                   success: function(data) {
                       console.log('success');
                       //console.log(JSON.stringify(data));
@@ -674,31 +649,28 @@
        * Script for createRoot (Organization)
        *-->
       <script>
-          $(".rootSubmit").click(function(){
+          $(".organizationSubmit").click(function(){
 
-              var rName = $("#rootName").val();
-              var rDescription = $( "#rootDescription").val();
+              var oName = $("#organizationName").val();
 
               var Ffn = {};
-              Ffn.rootName = rName;
-              Ffn.rootDescription = rDescription;
+              Ffn.organizationName = oName;
 
               $.ajax({
                   type: 'POST',
                   data: JSON.stringify(Ffn),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/createRoot',
+                  url: 'http://localhost:3000/admin/createOrganization/'+ {{output}},
                   success: function(Ffn) {
-                      console.log('success');
+                      console.log('Success');
                       //console.log(JSON.stringify(Ffn));
                   }
               });
 
               console.log(JSON.stringify(Ffn));
-              console.log("SUCCESS" + rName + rDescription);
+              console.log("SUCCESS" + oName);
               return false;
-          })
-
+          });
 
 
       </script>
@@ -709,59 +681,56 @@
       *
       */-->
       <script>
-          var selectedRoots = [];
+          var selectedOrganizations = [];
 
-              $('#availableRoots').multiselect({
+              $('#availableOrganizations').multiselect({
                   selectAllValue: 'multiselect-all',
                   includeSelectAllOption: true,
 
                   numberDisplayed: 3,
                   buttonWidth: '300px',
                   onChange: function (element, checked) {
-                      var brands = $('#availableRoots option:selected');
+                      var brands = $('#availableOrganizations option:selected');
                       var selected = [];
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
                       });
 
-                      console.log("selected roots" + selected);
+                      console.log("selected organizations" + selected);
 
-                      selectedRoots = selected;
+                      selectedOrganizations = selected;
                   },
                   onSelectAll: function () {
                       alert('You selected all existing roots!');
-                      var brands = $('#availableRoots option:selected');
+                      var brands = $('#availableOrganizations option:selected');
                       var selected = [];
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
                       });
 
-                      console.log("selected roots " + selected);
+                      console.log("selected organizations " + selected);
 
                   }
               });
 
               $(".employeeSubmit").click(function () {
-
                   var employeeName = $("#employeeNameName").val();
                   var employeeLastName = $("#employeeLastName").val();
-                  selectedRoots;
-                  //var employeeCdsi=  $( "#employeeCdsi").val();
+                  var employeeCdsi=  $( "#employeeCdsi").val();
+                  selectedOrganizations;
                   //var employeeRoleType= $( "#employeeRoleType").val();
                   //var employeeOrg= $( "#employeeOrg").val();
                   var Ffn = {};
                   Ffn.employeeName = employeeName;
                   Ffn.employeeLastname = employeeLastName;
-                  Ffn.selectedRoots = selectedRoots;
-                  //Ffn.employeeCdsi= employeeCdsi;
-                  //Fnf.employeeRoleType= employeeRoleType;
-                  //Fnf.employeeOrg= employeeOrg;
+                  Ffn.employeeCdsi= employeeCdsi;
+                  Ffn.selectedOrganizations = selectedOrganizations;
 
                   $.ajax({
                       type: 'POST',
                       data: JSON.stringify(Ffn),
                       contentType: 'application/json',
-                      url: 'http://localhost:3000/createEmployee' + {{output}},
+                      url: 'http://localhost:3000/admin/createEmployee'+ {{output}},
                       success: function (Ffn) {
                           console.log('success');
                           //console.log(JSON.stringify(Ffn));
@@ -769,7 +738,7 @@
                   });
 
                   console.log(JSON.stringify(Ffn));
-                  console.log("SUCCESS"+employeeName + employeeLastName + selectedRoots);
+                  console.log("SUCCESS"+employeeName + employeeLastName + selectedOrganizations);
                   return false;
               })
 
