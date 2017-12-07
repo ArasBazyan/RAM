@@ -263,22 +263,20 @@ router.post('/createProject/:id', function (req, res, next) {
 });
 
 
-//Creating Root
+//Creating Organization
 
-router.post('/createChild/:id', function (req, res) {
-
+router.post('/createOrganization/:id', function (req, res) {
     //var data = req.body;
-    var rName = req.body.rootName;
-    var rDescription = req.body.rootDescription;
-    //var isParentOrganization=req.body.isParent;
+    var organizationName = req.body.organizationName;
+
     console.log(JSON.stringify(req.body));
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
-            VALUES(?,?)`, [rName, rDescription], function (err) {
+            VALUES(?,?)`, [organizationName], function (err) {
         if (err) {
-            console.log("error:", rName + " " + rDescription);
+            console.log("error:", organizationName );
 
             console.log("error in node.js");
             return console.log(err.message);
