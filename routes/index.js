@@ -37,25 +37,18 @@ router.get('/:id', function (req, res, next) {
         });
 
 
-<<<<<<< HEAD
         db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.Manager=1 AND Person.idPerson = " + req.params.id, (err, rows) => {
             if (err) {
-=======
 
-        db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.idPerson = " + req.params.id , (err, rows)=>{
-            if (err){
->>>>>>> 6dae9be92263d808d2d3f140dc6a84d490185e60
+
                 console.error(err);
             } else {
                 teamData = rows;
                 lock -= 1;
 
                 console.log('\n teamData: ' + JSON.stringify(teamData));
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 6dae9be92263d808d2d3f140dc6a84d490185e60
             }
 
             if (lock === 0) {
@@ -216,12 +209,12 @@ router.post('/createProject/:id', function (req, res, next) {
     console.log('calcDead: ' + calcdeadline);
     console.log("affected: " + req.body.selectedGroups);
 
+    var affected = req.body.selectedGroups;
 
 
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Project (ProjectName, ProjectDescription, Version, VersionLocked, idManager, dateEnd, StartofProduction)
-<<<<<<< HEAD
             VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, id, calcdeadline, sop], function (err) {
         if (err) {
             console.log("error: " + pname + " " + pdescription + " " + calcdeadline + " " + sop);
@@ -255,7 +248,6 @@ router.post('/createProject/:id', function (req, res, next) {
                             return console.log(err.message);
                         } else {
                             console.log(`New idPersonNodeResource is: ${this.lastID}`);
-                            return next();
                         }
                     });
 
@@ -268,34 +260,13 @@ router.post('/createProject/:id', function (req, res, next) {
     };
 
 
-    //db.close();
-    //res.redirect('/');
-=======
-            VALUES(?,?,?,?,?,?,?)`, [pname, pdescription, 1, 0, id,calcdeadline, sop], function(err) {
-      if (err){
-        console.log("error: "+ pname + " " + pdescription + " " + calcdeadline + " " + sop);
-        console.log("error in node.js");
-        return console.log(err.message);
-    } else {
-        console.log('A row has been inserted with rowid ${this.lastID}');
-      }
-    });
-
-    db.close();
-
-    res.redirect('/');
->>>>>>> 6dae9be92263d808d2d3f140dc6a84d490185e60
-
 });
 
 
 //Creating Root
 
-<<<<<<< HEAD
 router.post('/createChild/:id', function (req, res) {
-=======
-router.post('/createRoot', function(req, res){
->>>>>>> 6dae9be92263d808d2d3f140dc6a84d490185e60
+
     //var data = req.body;
     var rName = req.body.rootName;
     var rDescription = req.body.rootDescription;
@@ -304,17 +275,11 @@ router.post('/createRoot', function(req, res){
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
-<<<<<<< HEAD
     db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
             VALUES(?,?)`, [rName, rDescription], function (err) {
         if (err) {
             console.log("error:", rName + " " + rDescription);
-=======
-    db.run(`INSERT INTO Organization (dOrganizationName, idParentOrganization)
-            VALUES(?,?)`, [rName, rDescription], function(err) {
-        if (err){
-            console.log("error:", rName + " " +rDescription );
->>>>>>> 6dae9be92263d808d2d3f140dc6a84d490185e60
+
             console.log("error in node.js");
             return console.log(err.message);
         } else {

@@ -234,15 +234,8 @@
                       <label>Affected Teams</label>
                       <select id="affectedTeams" multiple="multiple">
                           {{#each teamData}}
-                          <option>  {{OrganizationName}} </option>
+                          <option value="{{idOrganization}}">  {{OrganizationName}} </option>
                           {{/each}}
-
-                          <option >527</option>
-                          <option >546</option>
-                          <option >576</option>
-                          <option >527</option>
-                          <option >507</option>
-                          <option >586</option>
                       </select>
                       <br>
                       <br>
@@ -645,7 +638,7 @@
                   type: 'POST',
                   data: JSON.stringify(data),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/createProject/'+ {{output}},
+                  url: 'http://localhost:3000/admin/createProject/'+ {{output}},
                   success: function(data) {
                       console.log('success');
                       //console.log(JSON.stringify(data));
@@ -655,7 +648,7 @@
               console.log(JSON.stringify(data));
               console.log("MAGIC HAPPENS HERE! " + projname + sop + projectDescription  + calcDeadline + selectedGroups);
 
-              setTimeout(function(){ location.reload(); }, 200);
+              //setTimeout(function(){ location.reload(); }, 200);
 
               return false;
           })
