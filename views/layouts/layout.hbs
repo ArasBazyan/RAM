@@ -656,9 +656,11 @@
 
               console.log(JSON.stringify(data));
               console.log("MAGIC HAPPENS HERE! " + projname + sop + projectDescription  + calcDeadline + selectedGroups);
+
+              setTimeout(function(){ location.reload(); }, 200);
+
               return false;
           })
-
 
           // Modals
           $(".modal").each(function(l){$(this).on("show.bs.modal",function(l){var o=$(this).attr("data-easein");
@@ -670,6 +672,8 @@
 
 
       });  // end of document ready
+
+
   </script>
 
       <!--
