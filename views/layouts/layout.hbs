@@ -234,17 +234,15 @@
                       <label>Affected Teams</label>
                       <select id="affectedTeams" multiple="multiple">
                           {{#each teamData}}
-                          <option value="{{idOrganization}}">  {{OrganizationName}} </option>
+                          <option>  {{OrganizationName}} </option>
                           {{/each}}
-<!--
+
                           <option >527</option>
                           <option >546</option>
                           <option >576</option>
                           <option >527</option>
                           <option >507</option>
                           <option >586</option>
-                          -->
-                          -->
                       </select>
                       <br>
                       <br>
@@ -647,7 +645,7 @@
                   type: 'POST',
                   data: JSON.stringify(data),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/admin/createProject/'+ {{output}},
+                  url: 'http://localhost:3000/createProject/'+ {{output}},
                   success: function(data) {
                       console.log('success');
                       //console.log(JSON.stringify(data));
@@ -693,7 +691,7 @@
                   type: 'POST',
                   data: JSON.stringify(Ffn),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/admin/createRoot',
+                  url: 'http://localhost:3000/createRoot',
                   success: function(Ffn) {
                       console.log('success');
                       //console.log(JSON.stringify(Ffn));
@@ -715,7 +713,7 @@
       *
       */-->
       <script>
-          var selectedRoots = [];
+          var selectedOrganizations = [];
 
               $('#availableRoots').multiselect({
                   selectAllValue: 'multiselect-all',
@@ -724,7 +722,7 @@
                   numberDisplayed: 3,
                   buttonWidth: '300px',
                   onChange: function (element, checked) {
-                      var brands = $('#availableRoots option:selected');
+                      var brands = $('#availableOrganizations option:selected');
                       var selected = [];
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
@@ -732,11 +730,11 @@
 
                       console.log("selected roots" + selected);
 
-                      selectedRoots = selected;
+                      selectedOrganizations = selected;
                   },
                   onSelectAll: function () {
                       alert('You selected all existing roots!');
-                      var brands = $('#availableRoots option:selected');
+                      var brands = $('#availableOrganizations option:selected');
                       var selected = [];
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
@@ -751,14 +749,14 @@
 
                   var employeeName = $("#employeeNameName").val();
                   var employeeLastName = $("#employeeLastName").val();
-                  selectedRoots;
+                  selectedOrganizations;
                   //var employeeCdsi=  $( "#employeeCdsi").val();
                   //var employeeRoleType= $( "#employeeRoleType").val();
                   //var employeeOrg= $( "#employeeOrg").val();
                   var Ffn = {};
                   Ffn.employeeName = employeeName;
                   Ffn.employeeLastname = employeeLastName;
-                  Ffn.selectedRoots = selectedRoots;
+                  Ffn.selectedOrganizations = selectedOrganizations;
                   //Ffn.employeeCdsi= employeeCdsi;
                   //Fnf.employeeRoleType= employeeRoleType;
                   //Fnf.employeeOrg= employeeOrg;
@@ -767,7 +765,7 @@
                       type: 'POST',
                       data: JSON.stringify(Ffn),
                       contentType: 'application/json',
-                      url: 'http://localhost:3000/admin/createEmployee/' + {{output}},
+                      url: 'http://localhost:3000/createEmployee' + {{output}},
                       success: function (Ffn) {
                           console.log('success');
                           //console.log(JSON.stringify(Ffn));
