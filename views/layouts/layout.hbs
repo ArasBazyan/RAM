@@ -234,15 +234,17 @@
                       <label>Affected Teams</label>
                       <select id="affectedTeams" multiple="multiple">
                           {{#each teamData}}
-                          <option>  {{OrganizationName}} </option>
+                          <option value="{{idOrganization}}">  {{OrganizationName}} </option>
                           {{/each}}
-
+<!--
                           <option >527</option>
                           <option >546</option>
                           <option >576</option>
                           <option >527</option>
                           <option >507</option>
                           <option >586</option>
+                          -->
+                          -->
                       </select>
                       <br>
                       <br>
@@ -645,7 +647,7 @@
                   type: 'POST',
                   data: JSON.stringify(data),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/createProject/'+ {{output}},
+                  url: 'http://localhost:3000/admin/createProject/'+ {{output}},
                   success: function(data) {
                       console.log('success');
                       //console.log(JSON.stringify(data));
@@ -687,7 +689,7 @@
                   type: 'POST',
                   data: JSON.stringify(Ffn),
                   contentType: 'application/json',
-                  url: 'http://localhost:3000/createRoot',
+                  url: 'http://localhost:3000/admin/createRoot',
                   success: function(Ffn) {
                       console.log('success');
                       //console.log(JSON.stringify(Ffn));
@@ -761,7 +763,7 @@
                       type: 'POST',
                       data: JSON.stringify(Ffn),
                       contentType: 'application/json',
-                      url: 'http://localhost:3000/createEmployee' + {{output}},
+                      url: 'http://localhost:3000/admin/createEmployee/' + {{output}},
                       success: function (Ffn) {
                           console.log('success');
                           //console.log(JSON.stringify(Ffn));

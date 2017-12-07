@@ -13,6 +13,8 @@ router.get('/', function(req, res, next) {
 //Get Roots to employee
 router.get('/:id')
 
+
+var globalid;
 // Route to AdminView, based on Person. Maybe idManager?
 router.get('/:id', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
@@ -41,7 +43,7 @@ router.get('/:id', function(req, res, next) {
 
 
 
-        db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.idPerson = " + req.params.id , (err, rows)=>{
+        db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.Manager=1 AND Person.idPerson = " + req.params.id , (err, rows)=>{
             if (err){
                 console.error(err);
             } else {
@@ -50,6 +52,10 @@ router.get('/:id', function(req, res, next) {
 
 
                 console.log('\n teamData: ' + JSON.stringify(teamData));
+
+
+                console.log('\n !!IDDD : ' + teamData);
+
 
 
             }
@@ -118,6 +124,7 @@ router.get('/:id', function(req, res, next) {
 
 
                 console.log('\n teamData: ' + JSON.stringify(teamData));
+
 
 
             }
@@ -219,6 +226,7 @@ router.post('/createProject/:id', function(req, res){
     var calcdeadline = req.body.calcDeadline;
     var sop = req.body.sop;
     var id = req.params.id;
+    var affected = req.body.selectedGroups;
 
     console.log('All data: ' + JSON.stringify(req.body));
     console.log('pname: ' + pname);
@@ -227,7 +235,7 @@ router.post('/createProject/:id', function(req, res){
     console.log('calcDead: ' + calcdeadline);
     console.log("affected: " + req.body.selectedGroups);
 
-
+    var insertedPid;
 
     var db = new sqlite3.Database('./Volvo.db');
 
@@ -238,9 +246,132 @@ router.post('/createProject/:id', function(req, res){
         console.log("error in node.js");
         return console.log(err.message);
     } else {
-        console.log('A row has been inserted with rowid ${this.lastID}');
+
+
+
+          //   for(var i = 0; i <affected.length; i++){
+          db.each("SELECT idPerson from Person WHERE Manager = 1 AND idOrganization = " + 11, (err, rows)=>{
+              if (err){
+
+                  console.log("error in node.js");
+                  return console.log(err.message);
+              } else {
+                  console.log("ddd: " + rows);
+                  console.log("RRROOvsdOWWWSS: " + JSON.parse(rows.idPerson));
+                  console.log("RRROOOWWWSS: " + rows.idPerson);
+                  var  x = rows.idPerson;
+
+
+
+
+                  db.run(`INSERT INTO Node ( idProject, idResponsible, idNodeType)
+                    VALUES (?,?, ?)`, [ 63, 11, 3], function(err) {
+                      if (err){
+                          console.log("error in node.js");
+                          return console.log(err.message);
+                      } else {
+                          console.log(`New idPersonNodeResource is: ${this.lastID}`);
+                      }
+                  });
+
+
+                  console.log('A row has been inserted with rowid ${this.lastID}');
+              }
+          })
+
+
+
+
+
+
+
+
+
+
+
+
+
+          /*
+
+          db.run(`INSERT INTO Node ( idProject, idResponsible, idNodeType)
+                    VALUES (?,?, ?)`, [ 62, 12, 3], function(err) {
+              if (err){
+                  console.log("error in node.js");
+                  return console.log(err.message);
+              } else {
+                  console.log(`New idPersonNodeResource is: ${this.lastID}`);
+              }
+          });
+
+
+          */
+
+
+
+
+
+
+
+          insertedPid = `${this.lastID}`;
+          console.log("here: " + insertedPid);
+          //insertNode();
+
+          console.log('A row has been inserted with rowid ${this.lastID}');
       }
     });
+
+
+
+
+
+
+
+
+
+
+
+
+    function insertNode(){
+
+     //   for(var i = 0; i <affected.length; i++){
+    db.each("SELECT idPerson from Person WHERE Manager = 1 AND idOrganization = " + 11, (err, rows)=>{
+                if (err){
+
+                    console.log("error in node.js");
+                    return console.log(err.message);
+                } else {
+                    console.log("ddd: " + rows);
+                    console.log("RRROOvsdOWWWSS: " + JSON.parse(rows.idPerson));
+                    console.log("RRROOOWWWSS: " + rows.idPerson);
+                   var  x = rows.idPerson;
+
+
+
+
+                    db.run(`INSERT INTO Node ( idProject, idResponsible)
+                    VALUES (?,?)`, [ insertedPid, x], function(err) {
+                        if (err){
+                            console.log("error in node.js");
+                            return console.log(err.message);
+                        } else {
+                            console.log(`New idPersonNodeResource is: ${this.lastID}`);
+                        }
+                    });
+
+
+                    console.log('A row has been inserted with rowid ${this.lastID}');
+                }
+            })
+
+
+//}
+
+
+
+
+    };
+
+
 
     db.close();
 
@@ -251,7 +382,7 @@ router.post('/createProject/:id', function(req, res){
 
 //Creating Root
 
-router.post('/createRoot', function(req, res){
+router.post('/createChild/:id', function(req, res){
     //var data = req.body;
     var rName = req.body.rootName;
     var rDescription = req.body.rootDescription;
@@ -260,7 +391,7 @@ router.post('/createRoot', function(req, res){
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run(`INSERT INTO Organization (dOrganizationName, idParentOrganization)
+    db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
             VALUES(?,?)`, [rName, rDescription], function(err) {
         if (err){
             console.log("error:", rName + " " +rDescription );
