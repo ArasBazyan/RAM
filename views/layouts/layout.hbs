@@ -709,7 +709,7 @@
       *
       */-->
       <script>
-          var selectedRoots = [];
+          var selectedOrganizations = [];
 
               $('#availableRoots').multiselect({
                   selectAllValue: 'multiselect-all',
@@ -718,7 +718,7 @@
                   numberDisplayed: 3,
                   buttonWidth: '300px',
                   onChange: function (element, checked) {
-                      var brands = $('#availableRoots option:selected');
+                      var brands = $('#availableOrganizations option:selected');
                       var selected = [];
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
@@ -726,11 +726,11 @@
 
                       console.log("selected roots" + selected);
 
-                      selectedRoots = selected;
+                      selectedOrganizations = selected;
                   },
                   onSelectAll: function () {
                       alert('You selected all existing roots!');
-                      var brands = $('#availableRoots option:selected');
+                      var brands = $('#availableOrganizations option:selected');
                       var selected = [];
                       $(brands).each(function (index, brand) {
                           selected.push($(this).val());
@@ -745,14 +745,14 @@
 
                   var employeeName = $("#employeeNameName").val();
                   var employeeLastName = $("#employeeLastName").val();
-                  selectedRoots;
+                  selectedOrganizations;
                   //var employeeCdsi=  $( "#employeeCdsi").val();
                   //var employeeRoleType= $( "#employeeRoleType").val();
                   //var employeeOrg= $( "#employeeOrg").val();
                   var Ffn = {};
                   Ffn.employeeName = employeeName;
                   Ffn.employeeLastname = employeeLastName;
-                  Ffn.selectedRoots = selectedRoots;
+                  Ffn.selectedOrganizations = selectedOrganizations;
                   //Ffn.employeeCdsi= employeeCdsi;
                   //Fnf.employeeRoleType= employeeRoleType;
                   //Fnf.employeeOrg= employeeOrg;
