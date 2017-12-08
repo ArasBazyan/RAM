@@ -307,7 +307,7 @@ router.post('/createEmployee/:id', function (req, res) {
     console.log(JSON.stringify(req.body));
     console.log("selected: " + req.body.selectedOrganizations);
     //res.send("data")
-    var childrenGroup= req.body.selectedOrganizations;
+    //var childrenGroup= req.body.selectedOrganizations;
 
     var db = new sqlite3.Database('./Volvo.db');
 
@@ -319,34 +319,34 @@ router.post('/createEmployee/:id', function (req, res) {
             return console.log(err.message);
         } else {
 
-            var gManager= '${this.lastID}';
+            var gManager = '${this.lastID}';
             console.log(" assign group manager: " + gManager);
-            //db.run('UPDATE Person SET Manager=true WHERE ID= \"$gManager\" ');
-            assignManager();
-            console.log('Success the child manager is has been updated'+ gManager);
-        }
-    });
 
-    function assignManager(){
-        for (var i=0; i<childrenGroup.length();i++){
-            db.run('SELECT OrganizationName from Organization WHERE Manager = id'+ selectedOrganizations[i], (err,rows) =>{
-                if (err){
-                    console.log("error in node.js");
-                    return console.log(err.message);
-                }else{
-                    var allGroups=[];
-                    allGroups=rows.OrganizationName;
-                    db.run
+            var allGroups;
+            db.all('SELECT * FROM Organization JOIN Person on Person.idOrganization = Organization.idParentOrganization ' +
+                'WHERE Person.idPerson=' + id, (err, rows) => {
+                if (err) {
+                    console.error(err);
+                } else {
+                    allGroups = rows;
+                    //lock-=1;
+                    console.log('allGroups' + JSON.stringify(allGroups));
+                    for (var i = 0; i < allGroups.length(); i++) {
+                        db.run('UPDATE Person SET Manager=true WHERE idPerson=' + gManager, function (err) {
+                            if (err) {
+                                console.log('error in node.js');
+                                return console.log(err.message);
+                            } else {
+                                console.log('the created employee is manager ' + gManager);
+                            }
+                        });
+                    }
                 }
-            })
+            });
         }
-    }
+        });
     db.close();
-
     res.redirect('/');
-
-
 });
-
 
 module.exports = router;
