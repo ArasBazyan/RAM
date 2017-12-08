@@ -232,7 +232,7 @@ router.post('/createProject/:id', function (req, res, next) {
 
     function insertNode() {
         for (var i = 0; i < affected.length; i++) {
-            db.each("SELECT idPerson from Person WHERE Manager = 1 AND idOrganization = " + affected[i], (err, rows) => {
+            db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization = " + affected[i], (err, rows) => {
                 if (err) {
 
                     console.log("error in node.js");
@@ -256,11 +256,12 @@ router.post('/createProject/:id', function (req, res, next) {
             })
 
         }
-
+        db.close();
     };
 
 
 });
+//End of create project
 
 
 //Creating Organization
