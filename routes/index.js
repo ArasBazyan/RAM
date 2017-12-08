@@ -267,21 +267,22 @@ router.post('/createProject/:id', function (req, res, next) {
 
 router.post('/createOrganization/:id', function (req, res) {
     //var data = req.body;
+
     var organizationName = req.body.organizationName;
+    var id = req.params.id;
 
     console.log(JSON.stringify(req.body));
     //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
-            VALUES(?,?)`, [organizationName], function (err) {
+            VALUES(?,?)`, [organizationName,id], function (err) {
         if (err) {
-            console.log("error:", organizationName );
-
+            console.log("error:", organizationName,id );
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success');
+            console.log('Success ');
         }
     });
 
@@ -295,27 +296,50 @@ router.post('/createOrganization/:id', function (req, res) {
 
 //Creating Employee
 
-router.post('/createEmployee', function (req, res) {
+router.post('/createEmployee/:id', function (req, res) {
     //var data = req.body;
     var employeeName = req.body.employeeName;
     var employeeLastName = req.body.employeeLastName;
-    //var employeeCdsi=req.body.employeeCdsi;
+    var employeeCdsi=req.body.employeeCdsi;
+    var id= req.params.id;
+
     console.log(JSON.stringify(req.body));
-    console.log("selected: " + req.body.selectedRoots);
+    console.log("selected: " + req.body.selectedOrganizations);
     //res.send("data")
+    var childrenGroup= req.body.selectedOrganizations;
+
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization)
-            VALUES(?,?,?,?)`, [employeeName, employeeLastName], function (err) {
+    db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization, Manager)
+            VALUES(?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi,id, false], function (err) {
         if (err) {
-            console.log("error:" + employeeName + " " + employeeLastName);
+            console.log("error:" + employeeName + " " + employeeLastName + " " + employeeCdsi + " " + id + " " + false);
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            console.log('Success');
+
+            var gManager= '${this.lastID}';
+            console.log(" assign group manager: " + gManager);
+            //db.run('UPDATE Person SET Manager=true WHERE ID= \"$gManager\" ');
+            assignManager();
+            console.log('Success the child manager is has been updated'+ gManager);
         }
     });
 
+    function assignManager(){
+        for (var i=0; i<childrenGroup.length();i++){
+            db.run('SELECT OrganizationName from Organization WHERE Manager = id'+ selectedOrganizations[i], (err,rows) =>{
+                if (err){
+                    console.log("error in node.js");
+                    return console.log(err.message);
+                }else{
+                    var allGroups=[];
+                    allGroups=rows.OrganizationName;
+                    db.run
+                }
+            })
+        }
+    }
     db.close();
 
     res.redirect('/');

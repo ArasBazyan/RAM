@@ -147,7 +147,7 @@
                         <br>
                         <select id="availableOrganizations" multiple="multiple">
                             {{#each teamData}}
-                                <option>  {{OrganizationName}} </option>
+                                <option value="{{idOrganization}}">  {{OrganizationName}} </option>
                             {{/each}}
                             <!-- <option >527</option>
                              <option >546</option>
@@ -667,6 +667,7 @@
             });
             console.log(JSON.stringify(Ffn));
             console.log("SUCCESS "+employeeName + employeeLastName + employeeCdsi + selectedOrganizations);
+            setTimeout(function(){ location.reload(); }, 200);
             return false;
         })
     </script>
