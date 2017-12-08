@@ -659,7 +659,7 @@
                 type: 'POST',
                 data: JSON.stringify(Ffn),
                 contentType: 'application/json',
-                url: 'http://localhost:3000/admin/createEmployee' + {{output}},
+                url: 'http://localhost:3000/admin/createEmployee/' + {{output}},
                 success: function (Ffn) {
                     console.log('success ');
                     //console.log(JSON.stringify(Ffn));
@@ -667,7 +667,7 @@
             });
             console.log(JSON.stringify(Ffn));
             console.log("SUCCESS "+employeeName + employeeLastName + employeeCdsi + selectedOrganizations);
-            setTimeout(function(){ location.reload(); }, 200);
+            //setTimeout(function(){ location.reload(); }, 200);
             return false;
         })
     </script>

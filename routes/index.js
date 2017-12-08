@@ -312,14 +312,14 @@ router.post('/createEmployee/:id', function (req, res) {
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization, Manager)
-            VALUES(?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi,id, false], function (err) {
+            VALUES(?,?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi,id, false], function (err) {
         if (err) {
             console.log("error:" + employeeName + " " + employeeLastName + " " + employeeCdsi + " " + id + " " + false);
             console.log("error in node.js");
             return console.log(err.message);
         } else {
 
-            var gManager = '${this.lastID}';
+            var gManager = `${this.lastID}`;
             console.log(" assign group manager: " + gManager);
 
             var allGroups;
@@ -331,8 +331,8 @@ router.post('/createEmployee/:id', function (req, res) {
                     allGroups = rows;
                     //lock-=1;
                     console.log('allGroups' + JSON.stringify(allGroups));
-                    for (var i = 0; i < allGroups.length(); i++) {
-                        db.run('UPDATE Person SET Manager=true WHERE idPerson=' + gManager, function (err) {
+                    for (var i = 0; i < allGroups.length; i++) {
+                        db.run('UPDATE Person SET Manager=1 WHERE idPerson=' + gManager, function (err) {
                             if (err) {
                                 console.log('error in node.js');
                                 return console.log(err.message);
@@ -345,7 +345,7 @@ router.post('/createEmployee/:id', function (req, res) {
             });
         }
         });
-    db.close();
+  //  db.close();
     res.redirect('/');
 });
 
