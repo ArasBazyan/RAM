@@ -235,8 +235,8 @@ router.post('/createProject/:id', function (req, res, next) {
         parseInt(idResponsible);
 
         for (var i = 0; i < affected.length; i++) {
-            idResponsible = 0;
-            db.each("SELECT idPerson FROM Person WHERE manager=1 and idOrganization= " + affected[i], (err, rows) => {
+           // idResponsible = 0;
+                db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization =  " + affected[i], (err, rows) => {
                 if (err) {
 
                     console.log("error in node.js");
