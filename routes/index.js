@@ -231,15 +231,37 @@ router.post('/createProject/:id', function (req, res, next) {
 
 
     function insertNode() {
+        var idResponsible;
+        parseInt(idResponsible);
+
         for (var i = 0; i < affected.length; i++) {
-            db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization = " + affected[i], (err, rows) => {
+            idResponsible = 0;
+            db.each("SELECT idPerson FROM Person WHERE manager=1 and idOrganization= " + affected[i], (err, rows) => {
                 if (err) {
 
                     console.log("error in node.js");
                     return console.log(err.message);
                 } else {
-                    console.log("!C idResponsible: " + rows.idPerson);
-                    var idResponsible = rows.idPerson;
+
+
+                    if (idResponsible ==  0){
+                        console.log(" ????? idResponsible IS 00000");
+
+                    }
+
+                    if (rows.size ==  0){
+                        console.log(" ROWS IS 00000");
+
+                    }
+                    idResponsible = rows.idPerson;
+
+                    console.log("!!!!!! idResponsible: " + idResponsible );
+
+
+                    if(idResponsible == 0){
+                        console.log("YES IT IS 0")
+                        idResponsible = id;
+                    }
 
                     db.run(`INSERT INTO Node ( idProject, idResponsible, idNodeType)
                     VALUES (?,?,?)`, [insertedPid, idResponsible, 3], function (err) {
@@ -258,6 +280,7 @@ router.post('/createProject/:id', function (req, res, next) {
         }
         db.close();
     };
+
 
 
 });
@@ -305,14 +328,18 @@ router.post('/createEmployee/:id', function (req, res) {
     var id= req.params.id;
 
     console.log(JSON.stringify(req.body));
-    console.log("selected: " + req.body.selectedOrganizations);
-    //res.send("data")
-    //var childrenGroup= req.body.selectedOrganizations;
+    var selectedOrganizations = req.body.selectedOrganizations;
 
     var db = new sqlite3.Database('./Volvo.db');
 
+
+    console.log(" ORG ID OF THE SELECTED TEAM " + selectedOrganizations);
+
+
+
+
     db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization, Manager)
-            VALUES(?,?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi,id, false], function (err) {
+            VALUES(?,?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi, selectedOrganizations , 0], function (err) {
         if (err) {
             console.log("error:" + employeeName + " " + employeeLastName + " " + employeeCdsi + " " + id + " " + false);
             console.log("error in node.js");
@@ -331,16 +358,15 @@ router.post('/createEmployee/:id', function (req, res) {
                     allGroups = rows;
                     //lock-=1;
                     console.log('allGroups' + JSON.stringify(allGroups));
-                    for (var i = 0; i < allGroups.length; i++) {
-                        db.run('UPDATE Person SET Manager=1 WHERE idPerson=' + gManager, function (err) {
+                    db.run('UPDATE Person SET Manager=1 WHERE idPerson=' + gManager, function (err) {
                             if (err) {
                                 console.log('error in node.js');
                                 return console.log(err.message);
                             } else {
-                                console.log('the created employee is manager ' + gManager);
+                                console.log('ID of the created employee' + gManager);
                             }
                         });
-                    }
+
                 }
             });
         }
