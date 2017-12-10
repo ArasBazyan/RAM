@@ -231,11 +231,11 @@ router.post('/createProject/:id', function (req, res, next) {
 
 
     function insertNode() {
-        var idResponsible;
+        var idResponsible = 0;
         parseInt(idResponsible);
 
         for (var i = 0; i < affected.length; i++) {
-           // idResponsible = 0;
+            idResponsible = 0;
                 db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization =  " + affected[i], (err, rows) => {
                 if (err) {
 
@@ -249,7 +249,7 @@ router.post('/createProject/:id', function (req, res, next) {
 
                     }
 
-                    if (rows.size ==  0){
+                    if (rows.size !=  0){
                         console.log(" ROWS IS 00000");
 
                     }
@@ -269,7 +269,7 @@ router.post('/createProject/:id', function (req, res, next) {
                             console.log("error in node.js");
                             return console.log(err.message);
                         } else {
-                            console.log(`New idPersonNodeResource is: ${this.lastID}`);
+                            console.log(`New nodeID is: ${this.lastID}`);
                         }
                     });
 
@@ -278,7 +278,7 @@ router.post('/createProject/:id', function (req, res, next) {
             })
 
         }
-        db.close();
+       // db.close();
     };
 
 
@@ -290,27 +290,39 @@ router.post('/createProject/:id', function (req, res, next) {
 //Creating Organization
 
 router.post('/createOrganization/:id', function (req, res) {
-    //var data = req.body;
-
     var organizationName = req.body.organizationName;
     var id = req.params.id;
 
     console.log(JSON.stringify(req.body));
-    //res.send("data")
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
-            VALUES(?,?)`, [organizationName,id], function (err) {
+
+    var idOrganization;
+
+    db.each('SELECT idOrganization FROM Person WHERE idPerson=' + id, (err, rows) => {
         if (err) {
-            console.log("error:", organizationName,id );
-            console.log("error in node.js");
-            return console.log(err.message);
+            console.error(err);
         } else {
-            console.log('Success ');
+            idOrganization = rows;
+            console.log(' HERE idOrganization ' + JSON.stringify(rows.idOrganization));
+
+            //rows is idOrganization
+            db.run(`INSERT INTO Organization (OrganizationName, idParentOrganization)
+            VALUES(?,?)`, [organizationName,rows.idOrganization], function (err) {
+                if (err) {
+                    console.log("error in node.js");
+                    return console.log(err.message);
+                } else {
+                    console.log(' Success, idOrganization of new ORG ' + JSON.stringify(rows.idOrganization));
+
+                }
+            });
+
         }
     });
 
-    db.close();
+
+  //  db.close();
 
     res.redirect('/');
 
@@ -332,14 +344,15 @@ router.post('/createEmployee/:id', function (req, res) {
 
     var db = new sqlite3.Database('./Volvo.db');
 
+    console.log(" PARSEED ORG ID " + JSON.parse(selectedOrganizations) );
 
-    console.log(" ORG ID OF THE SELECTED TEAM " + selectedOrganizations);
 
 
+    selectedOrganizations = JSON.parse(selectedOrganizations);
 
 
     db.run(`INSERT INTO Person (FirstName, LastName, idRoleType, idOrganization, Manager)
-            VALUES(?,?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi, selectedOrganizations , 0], function (err) {
+            VALUES(?,?,?,?,?)`, [employeeName, employeeLastName,employeeCdsi, selectedOrganizations , 1], function (err) {
         if (err) {
             console.log("error:" + employeeName + " " + employeeLastName + " " + employeeCdsi + " " + id + " " + false);
             console.log("error in node.js");
@@ -347,8 +360,10 @@ router.post('/createEmployee/:id', function (req, res) {
         } else {
 
             var gManager = `${this.lastID}`;
-            console.log(" assign group manager: " + gManager);
+            console.log(" new group manager ID: " + gManager);
 
+
+            /*
             var allGroups;
             db.all('SELECT * FROM Organization JOIN Person on Person.idOrganization = Organization.idParentOrganization ' +
                 'WHERE Person.idPerson=' + id, (err, rows) => {
@@ -369,6 +384,9 @@ router.post('/createEmployee/:id', function (req, res) {
 
                 }
             });
+            */
+
+
         }
         });
   //  db.close();
