@@ -263,8 +263,10 @@ router.post('/createProject/:id', function (req, res, next) {
                         idResponsible = id;
                     }
 
-                    db.run(`INSERT INTO Node ( idProject, idResponsible, idNodeType)
-                    VALUES (?,?,?)`, [insertedPid, idResponsible, 3], function (err) {
+                    //var date = Date().getWeek();
+                    //var weekNumber = (new Date()).getWeek();
+                    db.run(`INSERT INTO Node ( idProject, idResponsible, idNodeType, dateStart, dateEnd, Version, Completed, Archived)
+                    VALUES (?,?,?,?,?,?,?,?)`, [insertedPid, idResponsible, 3, '2017-50', calcdeadline, 1, 0,0], function (err) {
                         if (err) {
                             console.log("error in node.js");
                             return console.log(err.message);
