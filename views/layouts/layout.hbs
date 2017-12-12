@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<nav style="z-index: 499" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav style="z-index: 499; opacity:1;" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -33,7 +33,7 @@
 <div id="wrapper" class="toggled">
     <div class="container-fluid">
         <!-- Sidebar -->
-        <div style="z-index: 490" id="sidebar-wrapper">
+        <div style="z-index: 490; opacity:.95;" id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <br>
@@ -47,32 +47,18 @@
                 </li>
 
                 <li>
-                    <a data-toggle="modal" data-target="#createEmployeeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Employee</a>
+                    <a  href="#" data-toggle="modal" data-target="#createEmployeeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Employee</a>
                 </li>
-                <!--
-                <li>
-                    <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Child</a>
-                </li>
-                <li>
-                    <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Assign Child</a>
-                <br>
-                </li>
-                -->
 
-                <li class="sidebar-brand">
 
+                <li style="margin-top: 20px" class="sidebar-brand">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>  Project Tree
 
                 </li>
                 <li>
                     <a href="#" data-toggle="modal" data-target="#createProjectModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Project</a>
                 </li>
-                <li>
-                    <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Calculation</a>
-                </li>
-                <li>
-                    <a data-toggle="modal" data-target="#createNodeModal"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Create Node</a>
-                </li>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -94,6 +80,8 @@
 
                     <!-- fieldsets -->
                     <fieldset>
+                        <button class="close" data-dismiss="modal">&times;</button>
+
                         <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
                         <!--<button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>-->
                         <br><br>
@@ -127,18 +115,17 @@
 
                     <!-- fieldsets -->
                     <fieldset>
-                        <!-- <input name= 'closeIt' onclick="close()" type="button" value="X" style="position: absolute; right: 0;">-->
-                        <!--<button name='closeIt' onClick="close()" style="position: absolute; right: 1%;">x</Button>-->
+                        <button class="close" data-dismiss="modal">&times;</button>
                         <h2 class="fs-title">Assign Employee</h2>
                         <br><br>
-                        <label>Employee Name</label>
-                        <input type="text" id="employeeName" name="employeeName" placeholder="Enter a name"/>
+                        <label>Employee First Name</label>
+                        <input type="text" id="employeeName" name="employeeName" placeholder="Enter first name"/>
                         <br>
-                        <label>Employee Lastname</label>
-                        <input type="text" id="employeeLastName" name="employeeLastName" placeholder="Enter a name"/>
+                        <label>Employee Last Name</label>
+                        <input type="text" id="employeeLastName" name="employeeLastName" placeholder="Enter last name"/>
                         <br>
                         <label>Employee CDSI</label>
-                        <input type="text" id="employeeCdsi" name="employeeCdsi" placeholder="Enter a the CDSI"/>
+                        <input type="text" id="employeeCdsi" name="employeeCdsi" placeholder="Enter employee CDSI"/>
                         <br>
 
                         <br>
@@ -149,14 +136,6 @@
                             {{#each teamData}}
                                 <option value="{{idOrganization}}">  {{OrganizationName}} </option>
                             {{/each}}
-                            <!-- <option >527</option>
-                             <option >546</option>
-
-                             <option >576</option>
-                             <option >527</option>
-                             <option >507</option>
-                             <option >586</option>
-                             -->
                         </select>
                         <br>
                         <br>
@@ -183,15 +162,15 @@
 
 <div class="container-fluid text-center">
     <!--Modal for adding additional subnodes to current node-->
-    <div class="modal" id="createProjectModal" data-easein="slideUpIn"
-         tabindex="-1" role="dialog" aria-labelledby="costumModalLabel">
+    <div class="modal" id="createProjectModal"  tabindex="-1" role="dialog" data-easein="slideUpIn" aria-labelledby="costumModalLabel">
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <form id="msform">
-
                     <!-- fieldsets -->
                     <fieldset>
+                        <button class="close" data-dismiss="modal">&times;</button>
+
                         <h2 class="fs-title">Create a New Project</h2>
                         <h3 class="fs-subtitle">Project Details</h3>
                         <input type="text" id="projectName" placeholder="Project Name"/>
@@ -275,10 +254,10 @@
     </div>
     <!-- end of create project -->
 
+
     <!-- Create Node  -->
-    <!--Modal for adding additional subnodes to current node-->
-    <div class="modal" id="createNodeModal" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
-         aria-hidden="true">
+    <!--Modal for adding additional subnodes to current node
+    <div class="modal" id="createNodeModal" data-easein="slideDownIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -341,7 +320,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-dismiss="modal">Save</button>
-                    <!--TODO: Add a function that saves data to DB from form-->
+                    <!--TODO: Add a function that saves data to DB from form
                     <button class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -369,7 +348,7 @@
             });
             $('#affectedTeams').multiselect({
                 selectAllValue: 'multiselect-all',
-                includeSelectAllOption: true,
+                includeSelectAllOption: false,
                 numberDisplayed: 3,
                 buttonWidth: '300px',
                 onChange: function(element, checked) {
@@ -618,7 +597,7 @@
         var selectedOrganizations = [];
         $('#availableOrganizations').multiselect({
             selectAllValue: 'multiselect-all',
-            includeSelectAllOption: true,
+            includeSelectAllOption: false,
             numberDisplayed: 3,
             buttonWidth: '300px',
             onChange: function (element, checked) {

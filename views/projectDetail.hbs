@@ -33,9 +33,9 @@
         </div>
 
         <div class="col-sm-8 text-left">
-            <h4 id="pname">Project Name: {{ data.ProjectName }}</h4><br>
-            <h4 id="SOP">Start of Production: {{ data.StartofProduction }}</h4>
-            <h4><br>Project Milestones<br></h4>
+            <h4 style="margin-top: 20px" id="pname">  <kbd> Project Name:</kbd>  {{ data.ProjectName }}</h4><br>
+            <h4 id="SOP">  <kbd>Start of Production:</kbd> {{ data.StartofProduction }}</h4>
+            <h4 style="margin-top: 40px"> <kbd>Project Milestones</kbd></h4>
 
             <label> Build series </label>
             <ul style="padding-left:2em">
@@ -61,24 +61,24 @@
 
             </ul>
 
-            <h4><br>Project Description</h4>
+            <h4><br> <kbd> Project Description </kbd></h4>
             <textarea class="form-control" id="pDescription"
                       readonly rows="4">{{ data.ProjectDescription }}</textarea>
 
 
-            <h4><br>Affected Teams <br></h4>
+            <h4><br> <kbd> Affected Teams </kbd> <br></h4>
             <ul>
 
                 {{#each teamData}}
                     <li>  {{OrganizationName}} </li>
                 {{/each}}
 
-                <li> HARD CODED 95550 </li>
 
             </ul>
 
+
             <div class="form-group">
-                <h4> <br>Calculation Deadlines: {{data.dateEnd}} </h4>
+                <h4 style="margin-top: 40px">  <kbd> Calculation Deadlines: {{data.dateEnd}} </kbd> </h4>
             </div>
         </div> <!-- end of Project Profile -->
 
@@ -86,9 +86,9 @@
         <div class="col-sm-2 sidenav">
             <h4>Additional Documents</h4>
 
-            <p><br><a href="#">Test1.xsxl</a></p>
-            <p><br><a href="#">Test2.pdf</a></p>
-            <p><br><a href="#">Test3.pptx</a></p>
+            <p><br><a href="#">Example1.xsxl</a></p>
+            <p><br><a href="#">Example2.pdf</a></p>
+            <p><br><a href="#">Example3.pptx</a></p>
 
         </div>
     </div>
