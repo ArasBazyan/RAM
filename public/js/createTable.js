@@ -7,8 +7,9 @@
 var isATag = true;
 var mapp = [];
 
-
-function adminViewTable(manager) {
+var manager;
+function adminViewTable(managerID) {
+	manager = managerID;
 	$.ajax({
 		url: 'http://localhost:3000/admin/table/' + manager,
 		type: 'GET',
@@ -82,7 +83,7 @@ function insertTableData(headerLength, arrayTablesData, urlDirectedTo, elementId
 
 
 			if(j == 1){ // if we need clickable modal
-				td.appendChild(clickAbleDirectedTo(text, "/projectDetail/"+tableData[tablesDataKeys[0]]));
+				td.appendChild(clickAbleDirectedTo(text, "/projectDetail/" + manager + "/" +  tableData[tablesDataKeys[0]]));
 			}
 			else td.appendChild(text);
 

@@ -62,7 +62,7 @@ router.get('/:id', function (req, res, next) {
             console.log('\n EGG2 ' + JSON.stringify(iddata));
             console.log('\n BEANS2 ' + JSON.stringify(teamData));
             res.render('adminview', {
-                output: req.params.id,
+                personID: req.params.id,
                 data: iddata,
                 teamData: teamData
             });
@@ -75,69 +75,6 @@ router.get('/:id', function (req, res, next) {
     db.close();
 });
 
-
-// Route to AdminView, based on Person. Maybe idManager?
-router.get('/:id', function (req, res, next) {
-    var db = new sqlite3.Database('./Volvo.db');
-    var iddata;
-    var teamData;
-    var lock = 2;
-    db.serialize(function () {
-        db.each("SELECT * FROM Person where idPerson = " + req.params.id, (err, rows) => {
-            if (err) {
-                console.error(err);
-            } else {
-                iddata = rows;
-                lock -= 1;
-
-
-                console.log('\n iddata:  ' + JSON.stringify(iddata));
-
-            }
-
-            if (lock === 0) {
-                sendData();
-            }
-
-        });
-
-
-        db.all("SELECT * FROM Person  INNER JOIN Organization on Person.idOrganization = Organization.idParentOrganization where Person.idPerson = " + req.params.id, (err, rows) => {
-            if (err) {
-                console.error(err);
-            } else {
-                teamData = rows;
-                lock -= 1;
-
-
-                console.log('\n teamData: ' + JSON.stringify(teamData));
-
-
-            }
-
-            if (lock === 0) {
-                sendData();
-            }
-
-        });
-
-
-        var sendData = function () {
-            console.log('\n EGG2 ' + JSON.stringify(iddata));
-            console.log('\n BEANS2 ' + JSON.stringify(teamData));
-            res.render('adminview', {
-                output: req.params.id,
-                data: iddata,
-                teamData: teamData
-            });
-        }
-
-
-    });
-
-
-    db.close();
-});
 
 
 /**
@@ -178,18 +115,6 @@ router.get('/table/:idManager', function (req, res, next) {
 });
 
 
-//This route maybe, later?
-router.post('/:idManager/addproject', function (req, res, next) {
-    var projname = req.body.projectname;
-    var sop = req.body.startofproduction;
-    var projectdescription = req.body.projectdescription;
-    var parentId = req.params.nodeId;
-    var projectId = req.params.projectId;
-
-
-    console.log('All data: ' + JSON.stringify(req.body));
-    console.log('pname: ' + projname);
-});
 
 
 //POST Create Project

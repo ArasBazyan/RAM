@@ -18,7 +18,7 @@ router.get('/:id', function(req, res, next) {
             } else {
                 console.log('\n Cheese' + JSON.stringify(rows));
                 res.render('calculationView', {
-                    output: req.params.id,
+                    personID: req.params.id,
                     data: rows
                 });
 
