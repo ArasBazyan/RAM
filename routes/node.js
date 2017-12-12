@@ -28,10 +28,6 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
 
   var idNode = req.params.idNode;
   var idPerson = req.params.idPerson; 
-  var output = [{
-      "idNode": idNode,
-      "idPerson": idPerson
-  }]
 
   db.serialize(function() {
         db.each("SELECT idNode, idProject, idResponsible, idParentNode, NodeDescription, Comments FROM Node where idNode = " + idNode , (err, rows)=>{
@@ -171,8 +167,9 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
             console.log('TOMATOES2' + JSON.stringify(childNodeCosts));
             console.log('BACON2' + JSON.stringify(resourceTypes));
             console.log('POTATOES2 ' + JSON.stringify(teamData));
+            console.log('IDPERSON: ' + idPerson);
             res.render('nodeAdmin', {
-                idPerson: idPerson,
+                output: idPerson,
                 data: nodeData,
                 childNodes: childData,
                 levelNodes: levelData,

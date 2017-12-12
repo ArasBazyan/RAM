@@ -28,7 +28,7 @@
                 <p class="node-nav-p">Parent Node</p>
                 {{#if data.idParentNode}}
                 <p>
-                    <a href="/node/{{idPerson}}/{{data.idParentNode}}">Node {{data.Comments}}</a>
+                    <a href="/node/{{output}}/{{data.idParentNode}}">Node {{data.Comments}}</a>
                 </p>
                 <br> {{else}}
                 <p>
@@ -39,7 +39,7 @@
                 <p class="node-nav-p">Related Nodes (Nodes on same level)</p>
                 {{#each levelNodes}}
                 <p>
-                    <a href="/node/{{idPerson}}/{{idNode}}">{{Comments}}</a>
+                    <a href="/node/{{output}}/{{idNode}}">{{Comments}}</a>
                 </p>
 
                 {{/each}}
@@ -47,7 +47,7 @@
                 <p class="node-nav-p">Child Nodes</p>
                 {{#each childNodes}}
                 <p>
-                    <a href="/node/{{idPerson}}/{{idNode}}">{{Comments}}</a>
+                    <a href="/node/{{output}}/{{idNode}}">{{Comments}}</a>
                 </p>
                 {{else}}
                 <p>None</p>
@@ -68,7 +68,7 @@
 
 
                 <h4>
-                    <br>Node Description : {{idPerson}}</h4>
+                    <br>Node Description : {{output}}</h4>
                 <textarea class="form-control" id="exampleTextarea" readonly rows="4"> {{ data.NodeDescription }} </textarea>
 
                 <script>
@@ -231,7 +231,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Affected Teams</label>
-                                        <select id="affectedTeams" multiple="multiple">
+                                        <select id="availableOrganizations" multiple="multiple">
                                             {{#each teamData}}
                                             <option value="{{idOrganization}}"> {{OrganizationName}} </option>
                                             {{/each}}
@@ -260,7 +260,7 @@
                             </div>
 
                             <div class="modal-body">
-                                <form action="/node/{{ idPerson }}/{{ data.idNode }}/addCalculation/" method="POST">
+                                <form action="/node/{{ output }}/{{ data.idNode }}/addCalculation/" method="POST">
                                     <div class="form-group">
                                         <label for="inputCost">Activity</label>
                                         <input class="form-control" name="inputCost" placeholder="The specific Activity" type="text" id="inputCost">
@@ -320,6 +320,36 @@
 
 
     <div class="footer"></div>
+
+    <script>
+            $(document).ready(function () {
+                var selectedOrganizations = [];
+                $('#availableOrganizations').multiselect({
+                    selectAllValue: 'multiselect-all',
+                    includeSelectAllOption: false,
+                    numberDisplayed: 3,
+                    buttonWidth: '300px',
+                    onChange: function (element, checked) {
+                        var brands = $('#availableOrganizations option:selected');
+                        var selected = [];
+                        $(brands).each(function (index, brand) {
+                            selected.push($(this).val());
+                        });
+                        console.log("selected organizations " + selected);
+                        selectedOrganizations = selected;
+                    },
+                    onSelectAll: function () {
+                        alert('You selected all existing roots!');
+                        var brands = $('#availableOrganizations option:selected');
+                        var selected = [];
+                        $(brands).each(function (index, brand) {
+                            selected.push($(this).val());
+                        });
+                        console.log("selected organizations " + selected);
+                    }
+                });
+            });
+    </script>
 
 </body>
 
