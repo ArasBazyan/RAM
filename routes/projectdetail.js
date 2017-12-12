@@ -14,14 +14,20 @@ router.get('/', function(req, res, next) {
 
 
 // Route to AdminView, based on Person. Maybe idManager?
-router.get('/:id', function(req, res, next) {
+router.get('/:idPerson/:idProject', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
     var iddata;
     var teamData;
     var nodeData;
-    var lock = 3;
+    var lock = 4;
+
+
+    var idProject = req.params.idProject;
+    var idPerson = req.params.idPerson;
+
+
     db.serialize(function() {
-        db.each("SELECT * FROM Project where idProject = " + req.params.id , (err, rows)=>{
+        db.each("SELECT * FROM Project where idProject = " + idProject , (err, rows)=>{
             if (err){
                 console.error(err);
             } else {
@@ -42,7 +48,7 @@ router.get('/:id', function(req, res, next) {
 
 
 
-        db.all("SELECT DISTINCT OrganizationName from Organization JOIN Person ON Person.idOrganization=Organization.idOrganization WHERE Person.idPerson IN  (SELECT DISTINCT idResponsible FROM Node WHERE idProject= " + req.params.id + ")" , (err, rows)=>{
+        db.all("SELECT DISTINCT OrganizationName from Organization JOIN Person ON Person.idOrganization=Organization.idOrganization WHERE Person.idPerson IN  (SELECT DISTINCT idResponsible FROM Node WHERE idProject= " + idProject + ")" , (err, rows)=>{
             if (err){
                 console.error(err);
             } else {
@@ -61,7 +67,7 @@ router.get('/:id', function(req, res, next) {
 
         });
 
-        db.all("SELECT * FROM Node where idProject = " + req.params.id + " AND idParentNode = " + 0, (err, rows)=>{
+        db.all("SELECT * FROM Node where idProject = " + idProject + " AND idParentNode = " + 0, (err, rows)=>{
             if (err){
                 console.error(err);
             } else {
@@ -80,12 +86,33 @@ router.get('/:id', function(req, res, next) {
         });
 
 
+        db.all("SELECT idPerson FROM Person where idPerson = " + idPerson, (err, rows)=>{
+            if (err){
+                console.error(err);
+            } else {
+                if (JSON.stringify(rows).length > 0){
+                    nodeData = rows;
+                    lock -= 1;
+                } else {
+                    nodeData = 0;
+                    lock -= 1;
+                }
+            }
+
+            if(lock === 0){
+                sendData();
+            }
+        });
+
+
+
         var sendData = function(){
             console.log('\n EGG2 ' + JSON.stringify(iddata));
             console.log('\n BEANS2 ' + JSON.stringify(teamData));
             console.log('\n BACON2 ' + JSON.stringify(nodeData));
             res.render('projectDetail', {
-                output: req.params.id,
+                personID : idPerson,
+                projectID: idProject,
                 data: iddata,
                 teamData: teamData,
                 nodeData: nodeData
