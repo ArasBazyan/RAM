@@ -254,6 +254,7 @@ router.post('/createProject/:id', function (req, res, next) {
 
                     }
                     idResponsible = rows.idPerson;
+                    groupName = rows.OrganizationName;
 
                     console.log("!!!!!! idResponsible: " + idResponsible );
 
@@ -265,8 +266,8 @@ router.post('/createProject/:id', function (req, res, next) {
 
                     //var date = Date().getWeek();
                     //var weekNumber = (new Date()).getWeek();
-                    db.run(`INSERT INTO Node ( idProject, idResponsible, idNodeType, dateStart, dateEnd, Version, Completed, Archived)
-                    VALUES (?,?,?,?,?,?,?,?)`, [insertedPid, idResponsible, 3, '2017-50', calcdeadline, 1, 0,0], function (err) {
+                    db.run(`INSERT INTO Node ( idProject, idParentNode, idResponsible, idNodeType, dateStart, dateEnd, Version, Completed, Archived, Comments)
+                    VALUES (?,?,?,?,?,?,?,?,?,?)`, [insertedPid, 0, idResponsible, 3, '2017-50', calcdeadline, 1, 0,0, groupName], function (err) {
                         if (err) {
                             console.log("error in node.js");
                             return console.log(err.message);
