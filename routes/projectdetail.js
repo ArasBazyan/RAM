@@ -91,10 +91,10 @@ router.get('/:idPerson/:idProject', function(req, res, next) {
                 console.error(err);
             } else {
                 if (JSON.stringify(rows).length > 0){
-                    nodeData = rows;
+                    //nodeData = rows;
                     lock -= 1;
                 } else {
-                    nodeData = 0;
+                   // nodeData = 0;
                     lock -= 1;
                 }
             }

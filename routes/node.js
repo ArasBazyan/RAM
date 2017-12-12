@@ -170,7 +170,7 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
             console.log('POTATOES2 ' + JSON.stringify(teamData));
             console.log('IDPERSON: ' + idPerson);*/
             res.render('nodeAdmin', {
-                output: idPerson,
+                personID: idPerson,
                 data: nodeData,
                 childNodes: childData,
                 levelNodes: levelData,

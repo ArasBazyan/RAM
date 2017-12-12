@@ -28,18 +28,18 @@
                 <p class="node-nav-p">Parent Node</p>
                 {{#if data.idParentNode}}
                 <p>
-                    <a href="/node/{{output}}/{{data.idParentNode}}">{{data.Comments}}</a>
+                    <a href="/node/{{personID}}/{{data.idParentNode}}">{{data.Comments}}</a>
                 </p>
                 <br> {{else}}
                 <p>
-                    <a href="/projectDetail/{{data.idProject}}">{{data.ProjectName}}</a>
+                    <a href="/projectDetail/{{personID}}/{{data.idProject}}">{{data.ProjectName}}</a>
                 </p>
                 {{/if}}
 
                 <p class="node-nav-p">Related Nodes (Nodes on same level)</p>
                 {{#each levelNodes}}
                 <p>
-                    <a href="/node/{{../output}}/{{idNode}}">{{Comments}}</a>
+                    <a href="/node/{{../personID}}/{{idNode}}">{{Comments}}</a>
                 </p>
 
                 {{/each}}
@@ -47,7 +47,7 @@
                 <p class="node-nav-p">Child Nodes</p>
                 {{#each childNodes}}
                 <p>
-                    <a href="/node/{{../output}}/{{idNode}}">{{Comments}}</a>
+                    <a href="/node/{{../personID}}/{{idNode}}">{{Comments}}</a>
                 </p>
                 {{else}}
                 <p>None</p>
@@ -62,12 +62,14 @@
                 <h4>Project ID: {{ data.ProjectName }} </h4>
                 <br>
                 <h4>Node name: {{ data.Comments }} </h4>
+                <br>
+                <h4>Responsible: {{ data.idResponsible }} </h4>
                 
 
 
                 <h4>
-                    <br>Node Description : {{output}}</h4>
-                <textarea class="form-control" id="exampleTextarea" readonly rows="4"> {{ data.NodeDescription }} </textarea>
+                    <br>Node Description</h4>
+                <textarea class="form-control" id="exampleTextarea" readonly="true" rows="4"> {{ data.NodeDescription }} </textarea>
 
                 <script>
                     function hey() {
@@ -77,7 +79,7 @@
                 </script>
 
 
-                <button style="width: 100px" id="editDescButton" type="button" class="btn btn-default" onclick=""> Edit </button>
+                <!--<button style="width: 100px" id="editDescButton" type="button" class="btn btn-default" onclick="hey"> Edit </button>-->
 
                 <br>
                 <br>
@@ -144,7 +146,7 @@
 
                 {{#if responsibleFlag}}
                 <button type="button" class="btn btn-calculateProject" data-toggle="modal" data-target="#createCalc">Create Calculation</button>
-                <button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal123">Create Child Node</button>
+                <button type="button" class="btn btn-createNode" data-toggle="modal" data-target="#createNodeModal1234">Create Child Node</button>
 
                 <!--<button type="button" class="btn btn-save">Save</button>-->
                 <button type="button" class="btn btn-submit" data-toggle="modal" data-target="#submitThisNode">Submit</button>
@@ -197,7 +199,7 @@
 
 
                 <!--Modal for adding additional subnodes to current node-->
-                <div class="modal" id="createNodeModal123" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
+                <div class="modal" id="createNodeModal1234" data-easein="slideUpIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -207,25 +209,10 @@
                             </div>
 
                             <div class="modal-body">
-                                <form action="/node/{{ data.idProject }}/{{ output }}/{{ data.idNode }}/addchild/" method="POST">
-                                    <div class="form-group">
-                                        <label for="inputNodeName">Node Name</label>
-                                        <input class="form-control" id="inputNodeName" rows="1" placeholder="Node name" type="text" name="inputNodeName"></textarea>
-                                    </div>
+                                <form action="/node/{{ data.idProject }}/{{ personID }}/{{ data.idNode }}/addchild/" method="POST">
                                     <div class="form-group">
                                         <label for="inputNodeDesc">Node Description</label>
                                         <textarea class="form-control" rows="1" placeholder="Node description" type="text" name="inputNodeDesc"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputNodeType">Select Node Type</label>
-                                        <select class="form-control" name="inputNodeType">
-                                            <option>Group</option>
-                                            <option>Engineering hours</option>
-                                            <option>D&D by non-production suppliers</option>
-                                            <option>D&D producion suppliers</option>
-                                            <option>Test Objects</option>
-                                        </select>
-                                        <br>
                                     </div>
                                     <div class="form-group">
                                         <label>Affected Teams</label>
@@ -345,32 +332,6 @@
                         console.log("SELECTED ORGANIZATIONS\n " + selected);
                     }
                 });
-                $(".projectSubmit").click(function(){
-                var projname = $("#projectName").val();
-                var sop = $( "#selectSOP").val();
-                var projectDescription = $( "#projectDescription").val();
-                var calcDeadline = $( "#calcDeadline").val();
-                var data = {};
-                data.projname = projname;
-                data.sop = sop;
-                data.projectDescription = projectDescription;
-                data.calcDeadline = calcDeadline;
-                data.selectedGroups = selectedGroups;
-                $.ajax({
-                    type: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json',
-                    url: 'http://localhost:3000/admin/createProject/'+ {{output}},
-                    success: function(data) {
-                        console.log('success');
-                        //console.log(JSON.stringify(data));
-                    }
-                });
-                console.log(JSON.stringify(data));
-                console.log("MAGIC HAPPENS HERE! " + projname + sop + projectDescription  + calcDeadline + selectedGroups);
-              //  setTimeout(function(){ location.reload(); }, 200);
-                return false;
-            })
             });
     </script>
 
