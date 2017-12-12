@@ -231,7 +231,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Affected Teams</label>
-                                        <select id="availableOrganizations" multiple="multiple">
+                                        <select id="availableOrganizationsN" multiple="multiple">
                                             {{#each teamData}}
                                             <option value="{{idOrganization}}"> {{OrganizationName}} </option>
                                             {{/each}}
@@ -324,13 +324,13 @@
     <script>
             $(document).ready(function () {
                 var selectedOrganizations = [];
-                $('#availableOrganizations').multiselect({
+                $('#availableOrganizationsN').multiselect({
                     selectAllValue: 'multiselect-all',
                     includeSelectAllOption: false,
                     numberDisplayed: 3,
                     buttonWidth: '300px',
                     onChange: function (element, checked) {
-                        var brands = $('#availableOrganizations option:selected');
+                        var brands = $('#availableOrganizationsN option:selected');
                         var selected = [];
                         $(brands).each(function (index, brand) {
                             selected.push($(this).val());
@@ -340,7 +340,7 @@
                     },
                     onSelectAll: function () {
                         alert('You selected all existing roots!');
-                        var brands = $('#availableOrganizations option:selected');
+                        var brands = $('#availableOrganizationsN option:selected');
                         var selected = [];
                         $(brands).each(function (index, brand) {
                             selected.push($(this).val());
