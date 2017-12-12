@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
+var qs = require('qs');
 
 
 
@@ -30,7 +31,7 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
   var idPerson = req.params.idPerson; 
 
   db.serialize(function() {
-        db.each("SELECT idNode, idProject, idResponsible, idParentNode, NodeDescription, Comments FROM Node where idNode = " + idNode , (err, rows)=>{
+        db.each("SELECT Node.idNode, Node.idProject, Node.idResponsible, Node.idParentNode, Node.NodeDescription, Node.Comments, Project.ProjectName FROM Node join Project on Node.idProject = Project.idProject where idNode = " + idNode , (err, rows)=>{
             if (err){
                 console.error(err);
                 //res.json("Error " : err);
@@ -127,7 +128,7 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
                 lock -= 1;
 
 
-                console.log('\n teamData: ' + JSON.stringify(teamData));
+               // console.log('\n teamData: ' + JSON.stringify(teamData));
 
 
             }
@@ -160,14 +161,14 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
         }
 
         var sendData = function(){
-            console.log('EGG2 ' + JSON.stringify(nodeData));
+            /*console.log('EGG2 ' + JSON.stringify(nodeData));
             console.log('BEANS2 ' + JSON.stringify(childData));
             console.log('TOAST2' + JSON.stringify(levelData));
             console.log('SAUSAGES2' + JSON.stringify(nodeCosts));
             console.log('TOMATOES2' + JSON.stringify(childNodeCosts));
             console.log('BACON2' + JSON.stringify(resourceTypes));
             console.log('POTATOES2 ' + JSON.stringify(teamData));
-            console.log('IDPERSON: ' + idPerson);
+            console.log('IDPERSON: ' + idPerson);*/
             res.render('nodeAdmin', {
                 output: idPerson,
                 data: nodeData,
@@ -186,28 +187,65 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
 });
 
 router.post('/:projectId/:personId/:nodeId/addchild', function(req, res, next){
-    var nodeName = req.body.inputNodeName;
+    //var nodeName = req.body.inputNodeName;
     var nodeDescription = req.body.inputNodeDesc;
     var nodeType = req.body.inputNodeType;
     var nodeManager = req.body.inputManagerNode;
     var parentId = req.params.nodeId;
     var projectId = req.params.projectId;
     var personId = req.params.personId;
+    var affected = req.body.selectedTeams;
+    //var affected = qs.parse(req.body.selectedTeams);
 
-    var insertedId;
+    var idResponsible;
+    var nodeName;
+
+    console.log("AFFECTED TEAAAAMZZZ \n" + JSON.stringify(affected));
+    console.log("Affected length: " + affected.length);
+
     var db = new sqlite3.Database('./Volvo.db');
 
-    db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription, Comments) VALUES (?,?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription, nodeName], function(err){
+    for(var i = 0; i<affected.length; i++){
+
+
+        db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization =  " + affected[i], (err, rows) => {
+            if (err) {
+                console.log("errors be comin");
+                console.error(err);
+            } else{
+                idResponsible = rows.idPerson;
+                nodeName = rows.OrganizationName;
+                console.log("ID RESPONSIBLE FOR NEW NODE: "+idResponsible);
+                console.log("NAME FOR NEW NODE: "+nodeName);
+
+                db.run('INSERT INTO Node (idParentNode, idProject, idNodeType, idResponsible, NodeDescription, Comments, Version, Completed, Archived) VALUES (?,?,?,?,?,?,?,?,?)', 
+                [parentId, projectId, 3, idResponsible, nodeDescription, nodeName, 1, 0, 0], function(err){
+                if (err){
+                    console.log(nodeDescription + " " + nodeType + " " + nodeManager + " " + parentId + " " + projectId);
+                    console.log("error in node.js");
+                    return console.log(err.message);
+                } else {
+                    console.log(`A new node inserted with id: ${this.lastID}`);
+                   // console.log(`A row has been inserted with rowid ${this.lastID}`);
+                }
+            });
+            }
+        });
+
+
+        
+    }
+
+    /*db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription, Comments) VALUES (?,?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription, nodeName], function(err){
         if (err){
             console.log(nodeDescription + " " + nodeType + " " + nodeManager + " " + parentId + " " + projectId);
             console.log("error in node.js");
             return console.log(err.message);
         } else {
-            insertedId = `${this.lastID}`;
-            console.log('New id is: ' + insertedId);
+            console.log(`A new node inserted with id: ${this.lastID}`);
            // console.log(`A row has been inserted with rowid ${this.lastID}`);
         }
-    });
+    });*/
 
     db.close();
 

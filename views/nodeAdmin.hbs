@@ -28,18 +28,18 @@
                 <p class="node-nav-p">Parent Node</p>
                 {{#if data.idParentNode}}
                 <p>
-                    <a href="/node/{{output}}/{{data.idParentNode}}">Node {{data.Comments}}</a>
+                    <a href="/node/{{output}}/{{data.idParentNode}}">{{data.Comments}}</a>
                 </p>
                 <br> {{else}}
                 <p>
-                    <a href="/projectDetail/{{data.idProject}}">Project {{data.idProject}}</a>
+                    <a href="/projectDetail/{{data.idProject}}">{{data.ProjectName}}</a>
                 </p>
                 {{/if}}
 
                 <p class="node-nav-p">Related Nodes (Nodes on same level)</p>
                 {{#each levelNodes}}
                 <p>
-                    <a href="/node/{{output}}/{{idNode}}">{{Comments}}</a>
+                    <a href="/node/{{../output}}/{{idNode}}">{{Comments}}</a>
                 </p>
 
                 {{/each}}
@@ -47,7 +47,7 @@
                 <p class="node-nav-p">Child Nodes</p>
                 {{#each childNodes}}
                 <p>
-                    <a href="/node/{{output}}/{{idNode}}">{{Comments}}</a>
+                    <a href="/node/{{../output}}/{{idNode}}">{{Comments}}</a>
                 </p>
                 {{else}}
                 <p>None</p>
@@ -58,13 +58,11 @@
             <br>
             <div class="col-sm-8 text-left">
 
+                
+                <h4>Project ID: {{ data.ProjectName }} </h4>
+                <br>
                 <h4>Node name: {{ data.Comments }} </h4>
-                <br>
-                <h4>Node ID: {{ data.idNode }} </h4>
-                <br>
-                <h4>Responsible ID: {{ data.idResponsible }} </h4>
-                <br>
-                <h4>Project ID: {{ data.idProject }} </h4>
+                
 
 
                 <h4>
@@ -119,7 +117,7 @@
 
                 <div class="form-group" id="nodeCostList" style="overflow-x:auto;">
                     {{#each childNodes}}
-                    <h4>Node {{idNode}}</h4>
+                    <h4>{{ Comments }}</h4>
                     <br>
                     <table id="My_Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
@@ -209,10 +207,10 @@
                             </div>
 
                             <div class="modal-body">
-                                <form action="/node/{{ data.idProject }}/{{ data.idNode }}/addchild/" method="POST">
+                                <form action="/node/{{ data.idProject }}/{{ output }}/{{ data.idNode }}/addchild/" method="POST">
                                     <div class="form-group">
                                         <label for="inputNodeName">Node Name</label>
-                                        <textarea class="form-control" rows="1" placeholder="Node name" type="text" name="inputNodeName"></textarea>
+                                        <input class="form-control" id="inputNodeName" rows="1" placeholder="Node name" type="text" name="inputNodeName"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputNodeDesc">Node Description</label>
@@ -231,15 +229,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Affected Teams</label>
-                                        <select id="availableOrganizationsN" multiple="multiple">
+                                        <select id="availableOrganizationsN" name="selectedTeams[]" multiple="multiple">
                                             {{#each teamData}}
                                             <option value="{{idOrganization}}"> {{OrganizationName}} </option>
                                             {{/each}}
                                         </select>
                                     </div>
 
-                            </div>
-                            <div class="modal-footer">
+                            
                                 <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
                                 <!--TODO: Add a function that saves data to DB from form-->
                                 <button class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -345,9 +342,35 @@
                         $(brands).each(function (index, brand) {
                             selected.push($(this).val());
                         });
-                        console.log("selected organizations " + selected);
+                        console.log("SELECTED ORGANIZATIONS\n " + selected);
                     }
                 });
+                $(".projectSubmit").click(function(){
+                var projname = $("#projectName").val();
+                var sop = $( "#selectSOP").val();
+                var projectDescription = $( "#projectDescription").val();
+                var calcDeadline = $( "#calcDeadline").val();
+                var data = {};
+                data.projname = projname;
+                data.sop = sop;
+                data.projectDescription = projectDescription;
+                data.calcDeadline = calcDeadline;
+                data.selectedGroups = selectedGroups;
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    url: 'http://localhost:3000/admin/createProject/'+ {{output}},
+                    success: function(data) {
+                        console.log('success');
+                        //console.log(JSON.stringify(data));
+                    }
+                });
+                console.log(JSON.stringify(data));
+                console.log("MAGIC HAPPENS HERE! " + projname + sop + projectDescription  + calcDeadline + selectedGroups);
+              //  setTimeout(function(){ location.reload(); }, 200);
+                return false;
+            })
             });
     </script>
 
