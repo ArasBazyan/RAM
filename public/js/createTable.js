@@ -41,7 +41,7 @@ function calculationTable(manager) {
 			mapp = JSON.parse(data);
 			console.log("thiis: " + mapp);
 			createTableHeader(['Project Name', 'Node', 'Version', 'Start Date', 'Delivery Date', 'Status'], "myTable");
-			insertTableDataSpecificForCalculation(6, mapp, "http://localhost:3000/node", "myTable");
+			insertTableDataSpecificForCalculation(6, mapp, "http://localhost:3000/node", "myTable", manager);
 	}).fail(function() {
 			console.log("Something went wrong!");
 	});
@@ -97,7 +97,7 @@ function insertTableData(headerLength, arrayTablesData, urlDirectedTo, elementId
 /**
  * this is only for calculation to fix error
  */
-function insertTableDataSpecificForCalculation(headerLength, arrayTablesData, urlDirectedTo, elementId){
+function insertTableDataSpecificForCalculation(headerLength, arrayTablesData, urlDirectedTo, elementId, manager){
 	const tablesDataKeys = Object.keys(arrayTablesData[0]);
 	const tbody = document.createElement("TBODY");
 
@@ -110,7 +110,7 @@ function insertTableDataSpecificForCalculation(headerLength, arrayTablesData, ur
 
 
 			if(j == 0){ // if we need clickable modal
-				td.appendChild(clickAbleDirectedTo(text, urlDirectedTo+"/"+tableData[tablesDataKeys[1]]));
+				td.appendChild(clickAbleDirectedTo(text, urlDirectedTo+"/"+manager+'/'+tableData[tablesDataKeys[1]]));
 			}
 			else if (j == headerLength-1) {
 				if(tableData[tablesDataKeys[headerLength]]==1){
