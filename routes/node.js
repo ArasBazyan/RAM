@@ -28,10 +28,10 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
   var responsibleFlag = false;
 
   var idNode = req.params.idNode;
-  var idPerson = req.params.idPerson; 
+  var idPerson = req.params.idPerson;
 
   db.serialize(function() {
-        db.each("SELECT Node.idNode, Node.idProject, Node.idResponsible, Node.idParentNode, Node.NodeDescription, Node.Comments, Project.ProjectName FROM Node join Project on Node.idProject = Project.idProject where idNode = " + idNode , (err, rows)=>{
+        db.each("SELECT Node.idNode, Node.idProject, Node.idResponsible, Node.idParentNode, Node.NodeDescription, Node.Comments, Project.ProjectName, Project.dateEnd FROM Node join Project on Node.idProject = Project.idProject where idNode = " + idNode , (err, rows)=>{
             if (err){
                 console.error(err);
                 //res.json("Error " : err);
@@ -45,7 +45,7 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
                     responsibleFlag = true;
                 }
                 lock -= 1;
-                //console.log('\n TOAST' + JSON.stringify(jsonTest));         
+                //console.log('\n TOAST' + JSON.stringify(jsonTest));
             }
 
             if(lock === 1){
@@ -96,13 +96,13 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
                 resourceTypes = rows;
                 lock -=1;
             }
-            
+
             if(lock === 1){
                 getLevelNodes();
             }
         });
 
-        db.all("Select Node.idNode, resources.resourceName, resourceType.resourceType, PersonNodeResource.Cost, PersonNodeResource.Comments from PersonNodeResource join resources on PersonNodeResource.idResource=resources.idResource join resourceType on resources.idResourceType=resourceType.idResourceType join Node on Node.idNode = PersonNodeResource.idNode where Node.idParentNode= " + idNode, (err, rows) =>{
+        db.all("Select Node.idNode, Node.Comments as NodeName, resources.resourceName, resourceType.resourceType, PersonNodeResource.Cost, PersonNodeResource.Comments from PersonNodeResource join resources on PersonNodeResource.idResource=resources.idResource join resourceType on resources.idResourceType=resourceType.idResourceType join Node on Node.idNode = PersonNodeResource.idNode where Node.idParentNode= " + idNode +" order by NodeName", (err, rows) =>{
             if (err){
                 console.error(err);
             } else {
@@ -153,7 +153,7 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
                         lock -= 1;
                     }
                 }
-    
+
                 if(lock === 0){
                     sendData();
                 }
@@ -183,7 +183,7 @@ router.get('/:idPerson/:idNode', function(req, res, next) {
             db.close();
         }
     });
-    
+
 });
 
 router.post('/:projectId/:personId/:nodeId/addchild', function(req, res, next){
@@ -218,7 +218,7 @@ router.post('/:projectId/:personId/:nodeId/addchild', function(req, res, next){
                 console.log("ID RESPONSIBLE FOR NEW NODE: "+idResponsible);
                 console.log("NAME FOR NEW NODE: "+nodeName);
 
-                db.run('INSERT INTO Node (idParentNode, idProject, idNodeType, idResponsible, NodeDescription, Comments, Version, Completed, Archived) VALUES (?,?,?,?,?,?,?,?,?)', 
+                db.run('INSERT INTO Node (idParentNode, idProject, idNodeType, idResponsible, NodeDescription, Comments, Version, Completed, Archived) VALUES (?,?,?,?,?,?,?,?,?)',
                 [parentId, projectId, 3, idResponsible, nodeDescription, nodeName, 1, 0, 0], function(err){
                 if (err){
                     console.log(nodeDescription + " " + nodeType + " " + nodeManager + " " + parentId + " " + projectId);
@@ -233,7 +233,7 @@ router.post('/:projectId/:personId/:nodeId/addchild', function(req, res, next){
         });
 
 
-        
+
     }
 
     /*db.run('INSERT INTO Node (idParentNode, idProject, idResponsible, idNodeType, NodeDescription, Comments) VALUES (?,?,?,?,?,?)', [parentId, projectId, 55, 3, nodeDescription, nodeName], function(err){
@@ -247,7 +247,7 @@ router.post('/:projectId/:personId/:nodeId/addchild', function(req, res, next){
         }
     });*/
 
-    db.close();
+  //  db.close();
 
     res.redirect('/node/' + personId + '/' + parentId);
 });
@@ -261,7 +261,7 @@ router.post('/:personId/:nodeId/addCalculation', function(req, res, next){
     var personId = req.params.personId;
 
     var insertedId;
-   
+
     var db = new sqlite3.Database('./Volvo.db');
 
     db.run('INSERT INTO Resources (idResourceType, ResourceName) VALUES(?,?)', [costType, cost], function(err){

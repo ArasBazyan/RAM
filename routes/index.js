@@ -163,7 +163,7 @@ router.post('/createProject/:id', function (req, res, next) {
         for (var i = 0; i < affected.length; i++) {
             //idResponsible = 0;
             console.log("before");
-
+            console.log("loop iteration: "+i);
             console.log(idResponsible);
 
             db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Organization.idOrganization =  " + affected[i], (err, rows) => {
