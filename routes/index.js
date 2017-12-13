@@ -156,19 +156,71 @@ router.post('/createProject/:id', function (req, res, next) {
 
 
     function insertNode() {
-        var idResponsible = 0;
+        console.log(" lenght " + affected.length);
+       var idResponsible = 0;
         parseInt(idResponsible);
 
         for (var i = 0; i < affected.length; i++) {
-            idResponsible = 0;
-                db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization =  " + affected[i], (err, rows) => {
+            //idResponsible = 0;
+            console.log("before");
+
+            console.log(idResponsible);
+
+            db.each("SELECT Person.idPerson, Organization.OrganizationName FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Organization.idOrganization =  " + affected[i], (err, rows) => {
                 if (err) {
 
                     console.log("error in node.js");
                     return console.log(err.message);
                 } else {
 
+                    console.log("after");
 
+                    var groupName = rows.OrganizationName;
+
+
+
+                    console.log(" 1 rows.idPerson: " + JSON.stringify(rows.idPerson));
+
+                    console.log(" 2 rows.idPerson: " + rows.idPerson);
+
+
+                    if (rows.idPerson!=0) {
+                        console.log(" !!2 rows.idPerson: " + rows.idPerson);
+
+                        idResponsible=rows.idPerson;
+                    }
+                    else {
+
+
+                        db.each("SELECT Person.idPerson FROM Person JOIN Organization on Person.idOrganization = Organization.idOrganization WHERE Person.Manager = 1 AND Organization.idOrganization in (SELECT idParentOrganization from Organization where idOrganization  = " + affected[i], (err, rows) => {
+                            if (err) {
+                                console.error(err);
+                            } else {
+
+                                console.log(" 11 parentorganization: " + rows.idParentOrganization);
+
+                                console.log(" 22 parentorganization: " + rows);
+                                idResponsible = rows.idPerson;
+
+
+                            }
+
+
+                        });
+
+
+
+
+
+
+                      //  db.run("select parentorganization from organization where organizationid=" + affected[i]);
+                       // affected[i] = result.parentorganization
+                    }
+
+
+
+
+                    /*
                     if (idResponsible ==  0){
                         console.log(" ????? idResponsible IS 00000");
 
@@ -188,6 +240,7 @@ router.post('/createProject/:id', function (req, res, next) {
                         console.log("YES IT IS 0")
                         idResponsible = id;
                     }
+                    */
 
                     //var date = Date().getWeek();
                     //var weekNumber = (new Date()).getWeek();
