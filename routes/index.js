@@ -257,7 +257,7 @@ router.post('/createOrganization/:id', function (req, res) {
 
 
 });
-
+//End of creating organization
 
 //Creating Employee
 
@@ -323,3 +323,4 @@ router.post('/createEmployee/:id', function (req, res) {
 });
 
 module.exports = router;
+//End of creating Employee
