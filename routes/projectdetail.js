@@ -10,9 +10,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-
-
-
 // Route to AdminView, based on Person. Maybe idManager?
 router.get('/:idPerson/:idProject', function(req, res, next) {
     var db = new sqlite3.Database('./Volvo.db');
